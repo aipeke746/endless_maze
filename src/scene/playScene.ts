@@ -1,4 +1,4 @@
-import { Tilemap } from '../entity/map/tilemap';
+import { Tilemap } from '../entity/tilemap';
 
 export class PlayScene extends Phaser.Scene {
     private tilemap: Tilemap;

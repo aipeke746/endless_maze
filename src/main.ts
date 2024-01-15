@@ -3,8 +3,8 @@ import { PlayScene } from './scene/playScene';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 1800,
-    height: 1600,
+    width: 5800,
+    height: 5600,
     parent: 'app',
     physics: {
         default: 'arcade',

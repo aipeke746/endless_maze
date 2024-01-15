@@ -1,7 +1,8 @@
-import { Coord } from '../../vo/coord';
+import { Coord } from '../vo/coord';
 import { MapState } from './mapState';
 
 export class Tilemap {
+    public static readonly SIZE = 64;
     public mapState: MapState;
     private readonly map: Phaser.Tilemaps.Tilemap;
     private readonly tileset: Phaser.Tilemaps.Tileset;
@@ -11,8 +12,8 @@ export class Tilemap {
         this.mapState = new MapState();
         this.map = scene.make.tilemap({
             data: this.mapState.getField(),
-            tileWidth: MapState.SIZE,
-            tileHeight: MapState.SIZE,
+            tileWidth: Tilemap.SIZE,
+            tileHeight: Tilemap.SIZE,
         });
         this.tileset = this.getTileset(tilesetName, this.map);
         this.layer = this.getLayer(this.tileset);
