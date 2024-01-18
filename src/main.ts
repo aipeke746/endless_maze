@@ -3,13 +3,13 @@ import { PlayScene } from './scene/playScene';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 5800,
-    height: 5600,
+    width: 600,
+    height: 800,
     parent: 'app',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 200 },
+            // gravity: { y: 200 },
         },
     },
     scale: {

@@ -1,7 +1,8 @@
 import { MazeFactory } from '../factory/mazeFactory';
-import { MazeService } from '../service/mazeService';
+import { MazeService } from '../service/maze/mazeService';
 import { CellType } from '../type/cellType';
 import { MazeType } from '../type/mazeType';
+import { Coord } from '../vo/coord';
 
 /**
  * マップ（迷路）の状態を管理するクラス
@@ -25,5 +26,14 @@ export class MapState {
      */
     public getField(): CellType[][] {
         return this.field;
+    }
+
+    /**
+     * 指定した座標のセルが通路かどうかを返す
+     * @param coord 座標
+     * @returns 通路の場合はtrue
+     */
+    public isFloor(coord: Coord): boolean {
+        return this.field[coord.y][coord.x] === CellType.FLOOR;
     }
 }

@@ -29,6 +29,24 @@ export class Coord {
     }
 
     /**
+     * 座標を加算する
+     * @param coord 加算する座標
+     * @returns 加算した座標
+     */
+    public add(coord: Coord): Coord {
+        return new Coord(this.x + coord.x, this.y + coord.y);
+    }
+
+    /**
+     * 座標を加算する
+     * @param pos 加算する座標
+     * @returns 加算した座標
+     */
+    public addPos(pos: Phaser.Math.Vector2): Coord {
+        return new Coord(this.x + pos.x, this.y + pos.y);
+    }
+
+    /**
      * 指定した座標が無効の座標かどうかを返す
      * 座標がマップ（迷路）外の場合は無効（true）
      * @returns 無効な座標の場合はtrue
