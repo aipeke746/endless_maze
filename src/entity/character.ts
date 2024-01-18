@@ -8,7 +8,7 @@ export class Character {
     /**
      * キャラクターのサイズ
      */
-    private static readonly SIZE: number = 60;
+    private readonly SIZE: number = Tilemap.SIZE;
     /**
      * キャラクターのスプライト
      */
@@ -49,6 +49,19 @@ export class Character {
      */
     public getPos(): Phaser.Math.Vector2 {
         return new Phaser.Math.Vector2(this.sprite.x, this.sprite.y);
+    }
+
+    /**
+     * キャラクターのマップ（迷路）上の座標を取得する
+     * @param tilemap タイルマップ
+     * @returns キャラクターのマップ（迷路）上の座標
+     */
+    public getCoord(tilemap: Tilemap): Coord {
+        try {
+            return tilemap.getTilePos(this.getPos());
+        } catch {
+            throw new Error('invalid coord by character.ts: getCoord()');
+        }
     }
 
     /**
@@ -134,6 +147,6 @@ export class Character {
         return scene.add
             .sprite(pos.x, pos.y, spriteName)
             .setOrigin(0, 0)
-            .setDisplaySize(Character.SIZE, Character.SIZE);
+            .setDisplaySize(this.SIZE, this.SIZE);
     }
 }

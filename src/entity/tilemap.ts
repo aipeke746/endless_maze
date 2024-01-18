@@ -50,8 +50,13 @@ export class Tilemap {
      * @params pos ワールドの座標
      * @returns タイルマップの座標
      */
-    public getTilePos(pos: Phaser.Math.Vector2): Phaser.Math.Vector2 {
-        return this.layer.worldToTileXY(pos.x, pos.y);
+    public getTilePos(pos: Phaser.Math.Vector2): Coord {
+        const coord = this.layer.worldToTileXY(pos.x, pos.y);
+        try {
+            return new Coord(coord.x, coord.y);
+        } catch {
+            throw new Error('invalid coord by tilemap.ts: getTilePos()');
+        }
     }
 
     /**

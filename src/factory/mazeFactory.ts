@@ -10,7 +10,7 @@ export class MazeFactory {
     /**
      * 迷路生成方法の種類と迷路生成を行うクラスのマップ
      */
-    private static readonly map: Map<MazeType, MazeService> = new Map<
+    private static readonly MAP: Map<MazeType, MazeService> = new Map<
         MazeType,
         MazeService
     >([
@@ -24,6 +24,6 @@ export class MazeFactory {
      * @returns 迷路生成を行うクラス
      */
     public static create(type: MazeType): MazeService {
-        return this.map.get(type);
+        return this.MAP.get(type);
     }
 }

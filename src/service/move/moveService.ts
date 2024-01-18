@@ -2,11 +2,26 @@ import { Character } from '../../entity/character';
 import { Tilemap } from '../../entity/tilemap';
 import { MoveDirectionType } from '../../type/MoveDirectionType';
 import { Coord } from '../../vo/coord';
+import Phaser from 'phaser';
 
 /**
- * 移動を行うサービス
+ * 移動に関連するサービス
  */
 export class MoveService {
+    /**
+     * 移動方向と移動する時の差分をまとめたマップ
+     */
+    private readonly MAP: Map<MoveDirectionType, Phaser.Math.Vector2> = new Map<
+        MoveDirectionType,
+        Phaser.Math.Vector2
+    >([
+        [MoveDirectionType.DOWN, new Phaser.Math.Vector2(0, 1)],
+        [MoveDirectionType.UP, new Phaser.Math.Vector2(0, -1)],
+        [MoveDirectionType.LEFT, new Phaser.Math.Vector2(-1, 0)],
+        [MoveDirectionType.RIGHT, new Phaser.Math.Vector2(1, 0)],
+        [MoveDirectionType.IDLE, undefined],
+    ]);
+
     /**
      * 移動先の座標を取得する（移動できない場合はundefinedを返す）
      * @param target 移動するターゲット
@@ -19,23 +34,14 @@ export class MoveService {
         tilemap: Tilemap,
         direction: MoveDirectionType
     ): Coord | undefined {
-        const nowCoord = tilemap.getTilePos(target.getPos());
-        let nextCoord: Coord;
-        switch (direction) {
-            case MoveDirectionType.DOWN:
-                nextCoord = new Coord(nowCoord.x, nowCoord.y + 1);
-                break;
-            case MoveDirectionType.UP:
-                nextCoord = new Coord(nowCoord.x, nowCoord.y - 1);
-                break;
-            case MoveDirectionType.LEFT:
-                nextCoord = new Coord(nowCoord.x - 1, nowCoord.y);
-                break;
-            case MoveDirectionType.RIGHT:
-                nextCoord = new Coord(nowCoord.x + 1, nowCoord.y);
-                break;
+        try {
+            const nowCoord: Coord = target.getCoord(tilemap);
+            const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));
+            return tilemap.mapState.isFloor(nextCoord) ? nextCoord : undefined;
+        } catch {
+            // 例外（移動先の座標がマップ[迷路のフィールド]外）の場合
+            return undefined;
         }
-        return tilemap.mapState.isFloor(nextCoord) ? nextCoord : undefined;
     }
 
     /**
