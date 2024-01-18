@@ -23,6 +23,12 @@ export class Character {
      */
     private isWalking: boolean = false;
 
+    /**
+     * キャラクターを生成する
+     * @param scene シーン
+     * @param tilemap タイルマップ
+     * @param spriteName スプライト名
+     */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         CharacterAnimation.create(scene, spriteName);
         this.sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);

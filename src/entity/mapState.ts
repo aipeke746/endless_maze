@@ -13,6 +13,9 @@ export class MapState {
      */
     private readonly field: CellType[][] = [];
 
+    /**
+     * マップ（迷路）の状態を生成する
+     */
     constructor() {
         const mazeService: MazeService = MazeFactory.create(
             MazeType.DiggingOut

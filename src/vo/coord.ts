@@ -10,6 +10,11 @@ export class Coord {
      */
     public readonly y: number;
 
+    /**
+     * 座標を生成する
+     * @param x マップ（迷路）上のx座標
+     * @param y マップ（迷路）上のy座標
+     */
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;

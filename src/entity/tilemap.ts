@@ -1,13 +1,39 @@
 import { Coord } from '../vo/coord';
 import { MapState } from './mapState';
 
+/**
+ * タイルマップを表すクラス
+ *
+ * MapStateの内容をこのクラスに反映させることで、更新した迷路を描画する
+ */
 export class Tilemap {
+    /**
+     * タイルマップの1マスのサイズ
+     */
     public static readonly SIZE = 64;
+    /**
+     * マップ（迷路）の状態
+     */
     public mapState: MapState;
+    /**
+     * タイルマップ
+     */
     private readonly map: Phaser.Tilemaps.Tilemap;
+    /**
+     * タイルセット
+     */
     private readonly tileset: Phaser.Tilemaps.Tileset;
+    /**
+     * レイヤー
+     */
     private readonly layer: Phaser.Tilemaps.TilemapLayer;
 
+    /**
+     * タイルマップを生成する
+     * マップ（迷路）の状態を生成する
+     * @param scene シーン
+     * @param tilesetName タイルセットの名前
+     */
     constructor(scene: Phaser.Scene, tilesetName: string) {
         this.mapState = new MapState();
         this.map = scene.make.tilemap({
