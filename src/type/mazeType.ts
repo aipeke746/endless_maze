@@ -10,4 +10,8 @@ export enum MazeType {
      * 穴掘り法
      */
     DiggingOut,
+    /**
+     * 壁のばし法
+     */
+    WallStretching,
 }

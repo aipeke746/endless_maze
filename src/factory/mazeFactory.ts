@@ -16,6 +16,7 @@ export class MazeFactory {
     >([
         [MazeType.StickKnockDown, new StickKnockDown()],
         [MazeType.DiggingOut, new DiggingOut()],
+        [MazeType.WallStretching, new StickKnockDown()],
     ]);
 
     /**

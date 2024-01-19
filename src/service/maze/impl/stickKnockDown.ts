@@ -1,6 +1,7 @@
 import { Param } from '../../../param';
 import { CellType } from '../../../type/cellType';
 import { DirectionDiffUtil } from '../../../util/directionDiffUtil';
+import { FieldUtil } from '../../../util/fieldUtil';
 import { Coord } from '../../../vo/coord';
 import { MazeService } from '../mazeService';
 
@@ -42,21 +43,7 @@ export class StickKnockDown implements MazeService {
      * @returns 壁をセットする座標の場合はtrue
      */
     private isSetupWallCoord(coord: Coord): boolean {
-        return this.isCircumference(coord) || this.isEven(coord);
-    }
-
-    /**
-     * 指定した座標が外周（迷路の一番外側）かどうかを返す
-     * @param coord 座標
-     * @returns 外周の場合はtrue
-     */
-    private isCircumference(coord: Coord): boolean {
-        return (
-            coord.x === 0 ||
-            coord.x === Param.MAZE_SIZE - 1 ||
-            coord.y === 0 ||
-            coord.y === Param.MAZE_SIZE - 1
-        );
+        return FieldUtil.isCircumference(coord) || this.isEven(coord);
     }
 
     /**

@@ -1,10 +1,14 @@
 import Phaser from 'phaser';
 import { PlayScene } from './scene/playScene';
+import { Tilemap } from './entity/tilemap';
+import { Param } from './param';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 600,
-    height: 800,
+    // width: 600,
+    // height: 800,
+    width: Param.MAZE_SIZE * Tilemap.SIZE,
+    height: Param.MAZE_SIZE * Tilemap.SIZE,
     parent: 'app',
     physics: {
         default: 'arcade',
