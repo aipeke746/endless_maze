@@ -57,9 +57,8 @@ export class WallStretching implements MazeService {
                     this.maze[coord1.y][coord1.x] = CellType.WALL;
                     this.maze[coord2.y][coord2.x] = CellType.WALL;
 
-                    // this.positions.unshift(coord2);
+                    this.positions.unshift(coord2);
                     this.positions.push(coord);
-                    this.createWall(coord2);
                     break;
                 }
             } catch {
