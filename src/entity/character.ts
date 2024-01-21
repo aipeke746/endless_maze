@@ -31,7 +31,7 @@ export class Character {
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         CharacterAnimation.create(scene, spriteName);
-        this.sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
+        this.sprite = this.createSpriteByInitPos(scene, tilemap, spriteName);
         this.moveService = new MoveService();
     }
 
@@ -116,13 +116,13 @@ export class Character {
     }
 
     /**
-     * キャラクターをランダムな位置に生成する
+     * キャラクターのスプライトを初期位置（左上）に生成する
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
-     * @returns キャラクター
+     * @returns キャラクターのスプライト
      */
-    private createSpriteByRandomPos(
+    private createSpriteByInitPos(
         scene: Phaser.Scene,
         tilemap: Tilemap,
         spriteName: string

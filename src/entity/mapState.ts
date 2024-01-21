@@ -18,7 +18,7 @@ export class MapState {
      */
     constructor() {
         const mazeService: MazeService = MazeFactory.create(
-            MazeType.WallStretching
+            MazeType.StickKnockDown
         );
         this.field = mazeService.create();
     }
