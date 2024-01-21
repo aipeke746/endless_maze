@@ -1,5 +1,6 @@
 import { Param } from '../param';
-import { GoalAnimation } from '../static/goalAnimation';
+import { AnimationService } from '../service/animation/animationService';
+import { GoalAnimation } from '../service/animation/impl/goalAnimation';
 import { Coord } from '../vo/coord';
 import { Tilemap } from './tilemap';
 
@@ -9,6 +10,7 @@ export class Goal {
      * ゴールのスプライト
      */
     private readonly sprite: Phaser.GameObjects.Sprite;
+    private readonly animation: AnimationService;
 
     /**
      * ゴールを生成する
@@ -17,9 +19,10 @@ export class Goal {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        GoalAnimation.create(scene, spriteName);
         this.sprite = this.createSpriteByInitPos(scene, tilemap, spriteName);
-        this.playAnimation();
+        this.animation = new GoalAnimation();
+        this.animation.create(scene, spriteName);
+        this.animation.play(this.sprite, GoalAnimation.KEY);
     }
 
     /**
@@ -28,10 +31,6 @@ export class Goal {
      */
     public getSprite(): Phaser.GameObjects.Sprite {
         return this.sprite;
-    }
-
-    public playAnimation(): void {
-        this.sprite.anims.play('goal');
     }
 
     /**

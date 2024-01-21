@@ -1,5 +1,6 @@
+import { AnimationService } from '../service/animation/animationService';
+import { CharacterAnimation } from '../service/animation/impl/characterAnimation';
 import { MoveService } from '../service/move/moveService';
-import { CharacterAnimation } from '../static/characterAnimation';
 import { MoveDirectionType } from '../type/MoveDirectionType';
 import { Coord } from '../vo/coord';
 import { Tilemap } from './tilemap';
@@ -13,6 +14,10 @@ export class Character {
      * キャラクターのスプライト
      */
     private readonly sprite: Phaser.GameObjects.Sprite;
+    /**
+     * キャラクターのアニメーション
+     */
+    private readonly animation: AnimationService;
     /**
      * キャラクターの移動
      */
@@ -30,9 +35,10 @@ export class Character {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        CharacterAnimation.create(scene, spriteName);
         this.sprite = this.createSpriteByInitPos(scene, tilemap, spriteName);
         this.moveService = new MoveService();
+        this.animation = new CharacterAnimation();
+        this.animation.create(scene, spriteName);
     }
 
     /**
@@ -96,7 +102,7 @@ export class Character {
      */
     private startWalk(direction: MoveDirectionType): void {
         this.isWalking = true;
-        this.playAnimation(direction);
+        this.animation.play(this.sprite, direction);
     }
 
     /**
@@ -104,15 +110,7 @@ export class Character {
      */
     private stopWalk(): void {
         this.isWalking = false;
-        this.sprite.anims.stop();
-    }
-
-    /**
-     * キャラクターのアニメーションを再生する
-     * @param walkType 歩行タイプ
-     */
-    private playAnimation(walkType: MoveDirectionType): void {
-        this.sprite.anims.play(walkType);
+        this.animation.stop(this.sprite);
     }
 
     /**

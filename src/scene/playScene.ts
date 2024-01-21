@@ -34,8 +34,7 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの準備
      */
     preload(): void {
-        this.load.image('mapTiles', 'asset/image/mapTiles.png');
-        // this.load.image('goal', 'asset/image/goal.png');
+        this.load.image('mapTiles', 'asset/tileset/mapTiles.png');
         this.load.spritesheet('character', 'asset/sprite/character.png', {
             frameWidth: 32,
             frameHeight: 32,

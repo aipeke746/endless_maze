@@ -1,34 +1,41 @@
-import { MoveDirectionType } from '../type/MoveDirectionType';
-
-/**
- * キャラクターのアニメーション
- */
-export class CharacterAnimation {
+export abstract class AnimationService {
     /**
      * アニメーションの設定
      */
-    private static readonly ANIMATION: Array<{
-        key: MoveDirectionType;
+    protected abstract ANIMATION: Array<{
+        key: string;
         frameStart: number;
         frameEnd: number;
-    }> = [
-        { key: MoveDirectionType.DOWN, frameStart: 0, frameEnd: 2 },
-        { key: MoveDirectionType.LEFT, frameStart: 3, frameEnd: 5 },
-        { key: MoveDirectionType.RIGHT, frameStart: 6, frameEnd: 8 },
-        { key: MoveDirectionType.UP, frameStart: 9, frameEnd: 11 },
-    ];
+    }>;
 
     /**
      * アニメーションを生成する
      * @param scene シーン
      * @param spriteName スプライト名
      */
-    public static create(scene: Phaser.Scene, spriteName: string): void {
-        for (const anim of CharacterAnimation.ANIMATION) {
+    public create(scene: Phaser.Scene, spriteName: string): void {
+        for (const anim of this.ANIMATION) {
             if (!scene.anims.exists(anim.key)) {
                 scene.anims.create(this.config(scene, anim, spriteName));
             }
         }
+    }
+
+    /**
+     * アニメーションを再生する
+     * @param sprite アニメーションを再生するスプライト
+     * @param key 再生するアニメーションのキー
+     */
+    public play(sprite: Phaser.GameObjects.Sprite, key: string): void {
+        sprite.anims.play(key);
+    }
+
+    /**
+     * アニメーションを停止する
+     * @param sprite アニメーションを停止するスプライト
+     */
+    public stop(sprite: Phaser.GameObjects.Sprite): void {
+        sprite.anims.stop();
     }
 
     /**
@@ -38,7 +45,7 @@ export class CharacterAnimation {
      * @param spriteName スプライト名
      * @returns アニメーションの設定
      */
-    private static config(
+    private config(
         scene: Phaser.Scene,
         config: { key: string; frameStart: number; frameEnd: number },
         spriteName: string
