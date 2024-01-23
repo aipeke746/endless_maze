@@ -2,7 +2,7 @@ import { Character } from '../entity/character';
 import { Goal } from '../entity/goal';
 import { Tilemap } from '../entity/tilemap';
 import { Param } from '../param';
-import { ManulImpl as ManualImpl } from '../service/operate/impl/manualImpl';
+import { ManualImpl } from '../service/operate/impl/manualImpl';
 import { OperateService } from '../service/operate/operateService';
 
 /**

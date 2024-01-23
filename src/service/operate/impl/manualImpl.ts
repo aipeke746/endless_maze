@@ -7,7 +7,7 @@ import { OperateService } from '../operateService';
  * PC: キーボードの上下左右キーでキャラクターを操作する
  * スマホ: スワイプでキャラクターを操作する
  */
-export class ManulImpl implements OperateService {
+export class ManualImpl implements OperateService {
     /**
      * キーボード入力
      */
@@ -24,7 +24,7 @@ export class ManulImpl implements OperateService {
     constructor(scene: Phaser.Scene) {
         if (scene.input.keyboard == null) throw new Error('keyboard is null');
         this.cursors = scene.input.keyboard.createCursorKeys();
-        this.pointer = scene.input.activePointer;
+        this.pointer = scene.input.pointer1;
 
         // スワイプ用のイベントを設定する
         scene.input.on(
