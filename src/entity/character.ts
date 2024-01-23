@@ -142,7 +142,7 @@ export class Character {
         pos: Phaser.Math.Vector2,
         spriteName: string
     ): Phaser.GameObjects.Sprite {
-        return scene.add
+        return scene.physics.add
             .sprite(pos.x, pos.y, spriteName)
             .setOrigin(0, 0)
             .setDisplaySize(this.SIZE, this.SIZE);
