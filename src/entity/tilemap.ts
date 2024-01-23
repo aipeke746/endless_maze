@@ -1,3 +1,4 @@
+import { MazeType } from '../type/mazeType';
 import { Coord } from '../vo/coord';
 import { MapState } from './mapState';
 
@@ -34,8 +35,8 @@ export class Tilemap {
      * @param scene シーン
      * @param tilesetName タイルセットの名前
      */
-    constructor(scene: Phaser.Scene, tilesetName: string) {
-        this.mapState = new MapState();
+    constructor(scene: Phaser.Scene, tilesetName: string, mazeType: MazeType) {
+        this.mapState = new MapState(mazeType);
         this.map = scene.make.tilemap({
             data: this.mapState.getField(),
             tileWidth: Tilemap.SIZE,
