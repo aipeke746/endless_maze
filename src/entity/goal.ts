@@ -4,12 +4,18 @@ import { GoalAnimation } from '../service/animation/impl/goalAnimation';
 import { Coord } from '../vo/coord';
 import { Tilemap } from './tilemap';
 
+/**
+ * 迷路のゴールを管理するクラス
+ */
 export class Goal {
     private readonly SIZE: number = Tilemap.SIZE;
     /**
      * ゴールのスプライト
      */
     private readonly sprite: Phaser.GameObjects.Sprite;
+    /**
+     * ゴールのアニメーション
+     */
     private readonly animation: AnimationService;
 
     /**

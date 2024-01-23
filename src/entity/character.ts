@@ -5,6 +5,9 @@ import { MoveDirectionType } from '../type/MoveDirectionType';
 import { Coord } from '../vo/coord';
 import { Tilemap } from './tilemap';
 
+/**
+ * キャラクターを管理するクラス
+ */
 export class Character {
     /**
      * キャラクターのサイズ
