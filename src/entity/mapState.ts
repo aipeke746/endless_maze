@@ -17,7 +17,7 @@ export class MapState {
      * マップ（迷路）の状態を生成する
      */
     constructor(mazeType: MazeType) {
-        const mazeService: MazeService = MazeFactory.create(mazeType);
+        const mazeService: MazeService = new MazeFactory().create(mazeType);
         this.field = mazeService.create();
     }
 

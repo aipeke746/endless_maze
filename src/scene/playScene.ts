@@ -61,6 +61,7 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの作成
      */
     create(): void {
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.tilemap = new Tilemap(this, 'mapTiles', this.mazeType);
         this.player = new Character(this, this.tilemap, 'character');
         this.operate = new ManualImpl(this);
@@ -95,7 +96,9 @@ export class PlayScene extends Phaser.Scene {
             this.player.getSprite(),
             this.goal.getSprite(),
             () => {
-                this.getNextScene();
+                this.time.delayedCall(200, () => {
+                    this.nextScene();
+                });
             },
             undefined,
             this
@@ -106,11 +109,11 @@ export class PlayScene extends Phaser.Scene {
      * 次に遷移するシーンを取得する
      * @returns 次のシーン
      */
-    private getNextScene(): Phaser.Scenes.ScenePlugin {
+    private nextScene(): void {
         const mazeTypeCount: number = Object.keys(MazeType).length / 2;
         const nextMazeType: MazeType = this.mazeType + 1;
 
-        return nextMazeType < mazeTypeCount
+        nextMazeType < mazeTypeCount
             ? this.scene.start('playScene', { mazeType: nextMazeType })
             : this.scene.start('menuScene');
     }

@@ -79,11 +79,7 @@ export class Character {
      * @param direction 移動方向
      */
     public walk(tilemap: Tilemap, direction: MoveDirectionType): void {
-        if (this.isWalking) return;
-        if (direction === MoveDirectionType.IDLE) {
-            this.stopWalk();
-            return;
-        }
+        if (this.isWalking || direction === MoveDirectionType.IDLE) return;
 
         const nextCoord: Coord = this.moveService.getMoveToCoord(this, tilemap, direction);
         this.startWalk(direction);

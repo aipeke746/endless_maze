@@ -10,18 +10,23 @@ export class MazeFactory {
     /**
      * 迷路生成方法の種類と迷路生成を行うクラスのマップ
      */
-    private static readonly MAP: Map<MazeType, MazeService> = new Map<MazeType, MazeService>([
-        [MazeType.StickKnockDown, new StickKnockDown()],
-        [MazeType.DiggingOut, new DiggingOut()],
-        [MazeType.WallStretching, new StickKnockDown()],
-    ]);
+    private readonly MAP = new Map<MazeType, MazeService>();
+
+    /**
+     * 迷路生成方法の種類と迷路生成を行うクラスのマップを設定する
+     */
+    constructor() {
+        this.MAP.set(MazeType.StickKnockDown, new StickKnockDown());
+        this.MAP.set(MazeType.DiggingOut, new DiggingOut());
+        this.MAP.set(MazeType.WallStretching, new StickKnockDown());
+    }
 
     /**
      * 迷路生成を行うクラスを作成する
      * @param type 迷路生成方法の種類
      * @returns 迷路生成を行うクラス
      */
-    public static create(type: MazeType): MazeService {
+    public create(type: MazeType): MazeService {
         return this.MAP.get(type);
     }
 }
