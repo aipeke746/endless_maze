@@ -33,14 +33,14 @@ export class MoveService {
         target: Character,
         tilemap: Tilemap,
         direction: MoveDirectionType
-    ): Coord | undefined {
+    ): Coord {
+        const nowCoord: Coord = target.getCoord(tilemap);
         try {
-            const nowCoord: Coord = target.getCoord(tilemap);
             const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));
-            return tilemap.mapState.isFloor(nextCoord) ? nextCoord : undefined;
+            return tilemap.mapState.isFloor(nextCoord) ? nextCoord : nowCoord;
         } catch {
             // 例外（移動先の座標がマップ[迷路のフィールド]外）の場合
-            return undefined;
+            return nowCoord;
         }
     }
 

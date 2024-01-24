@@ -85,17 +85,15 @@ export class Character {
             return;
         }
 
-        const nextCoord: Coord | undefined = this.moveService.getMoveToCoord(
+        const nextCoord: Coord = this.moveService.getMoveToCoord(
             this,
             tilemap,
             direction
         );
-        if (nextCoord !== undefined) {
-            this.startWalk(direction);
-            this.moveService.gridMoveTween(this, tilemap, nextCoord, () => {
-                this.stopWalk();
-            });
-        }
+        this.startWalk(direction);
+        this.moveService.gridMoveTween(this, tilemap, nextCoord, () => {
+            this.stopWalk();
+        });
     }
 
     /**
