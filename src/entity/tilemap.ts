@@ -75,10 +75,7 @@ export class Tilemap {
      * @param map タイルマップ
      * @returns タイルセット
      */
-    private getTileset(
-        name: string,
-        map: Phaser.Tilemaps.Tilemap
-    ): Phaser.Tilemaps.Tileset {
+    private getTileset(name: string, map: Phaser.Tilemaps.Tilemap): Phaser.Tilemaps.Tileset {
         const tileset = map.addTilesetImage(name);
         if (tileset == null) {
             throw new Error('tileset is null');
@@ -91,9 +88,7 @@ export class Tilemap {
      * @param tileset タイルセット
      * @returns レイヤー
      */
-    private getLayer(
-        tileset: Phaser.Tilemaps.Tileset
-    ): Phaser.Tilemaps.TilemapLayer {
+    private getLayer(tileset: Phaser.Tilemaps.Tileset): Phaser.Tilemaps.TilemapLayer {
         const layer = this.map?.createLayer(0, tileset);
         if (layer == null) {
             throw new Error('layer is null');

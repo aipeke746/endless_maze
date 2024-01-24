@@ -34,9 +34,7 @@ export class FieldUtil {
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             field[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
-                field[y][x] = this.isCircumference(new Coord(x, y))
-                    ? type
-                    : CellTypeUtil.getOpposite(type);
+                field[y][x] = this.isCircumference(new Coord(x, y)) ? type : CellTypeUtil.getOpposite(type);
             }
         }
         return field;
@@ -48,11 +46,6 @@ export class FieldUtil {
      * @returns 外周の場合はtrue
      */
     public static isCircumference(coord: Coord): boolean {
-        return (
-            coord.x === 0 ||
-            coord.x === Param.MAZE_SIZE - 1 ||
-            coord.y === 0 ||
-            coord.y === Param.MAZE_SIZE - 1
-        );
+        return coord.x === 0 || coord.x === Param.MAZE_SIZE - 1 || coord.y === 0 || coord.y === Param.MAZE_SIZE - 1;
     }
 }

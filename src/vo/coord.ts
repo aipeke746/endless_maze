@@ -57,11 +57,6 @@ export class Coord {
      * @returns 無効な座標の場合はtrue
      */
     private inValid(): boolean {
-        return (
-            this.x < 0 ||
-            Param.MAZE_SIZE <= this.x ||
-            this.y < 0 ||
-            Param.MAZE_SIZE <= this.y
-        );
+        return this.x < 0 || Param.MAZE_SIZE <= this.x || this.y < 0 || Param.MAZE_SIZE <= this.y;
     }
 }

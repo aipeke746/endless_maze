@@ -51,10 +51,7 @@ export class Goal {
         tilemap: Tilemap,
         spriteName: string
     ): Phaser.GameObjects.Sprite {
-        const coord: Coord = new Coord(
-            Param.MAZE_SIZE - 2,
-            Param.MAZE_SIZE - 2
-        );
+        const coord: Coord = new Coord(Param.MAZE_SIZE - 2, Param.MAZE_SIZE - 2);
         const pos: Phaser.Math.Vector2 = tilemap.getWorldPos(coord);
         return this.createSprite(scene, pos, spriteName);
     }
@@ -66,14 +63,7 @@ export class Goal {
      * @param spriteName スプライト名
      * @returns ゴールのスプライト
      */
-    private createSprite(
-        scene: Phaser.Scene,
-        pos: Phaser.Math.Vector2,
-        spriteName: string
-    ): Phaser.GameObjects.Sprite {
-        return scene.physics.add
-            .sprite(pos.x, pos.y, spriteName)
-            .setOrigin(0, 0)
-            .setDisplaySize(this.SIZE, this.SIZE);
+    private createSprite(scene: Phaser.Scene, pos: Phaser.Math.Vector2, spriteName: string): Phaser.GameObjects.Sprite {
+        return scene.physics.add.sprite(pos.x, pos.y, spriteName).setOrigin(0, 0).setDisplaySize(this.SIZE, this.SIZE);
     }
 }

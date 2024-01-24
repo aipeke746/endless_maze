@@ -51,9 +51,7 @@ export class ManualImpl implements OperateService {
         const keyDirection = this.getKeyDirection();
         const swipeDirection = this.getSwipeDirection();
 
-        return this.getKeyDirection() !== MoveDirectionType.IDLE
-            ? keyDirection
-            : swipeDirection;
+        return this.getKeyDirection() !== MoveDirectionType.IDLE ? keyDirection : swipeDirection;
     }
 
     /**
@@ -94,26 +92,16 @@ export class ManualImpl implements OperateService {
         );
 
         const swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipeVector);
-        const swipeNormal = new Phaser.Geom.Point(
-            swipeVector.x / swipeMagnitude,
-            swipeVector.y / swipeMagnitude
-        );
+        const swipeNormal = new Phaser.Geom.Point(swipeVector.x / swipeMagnitude, swipeVector.y / swipeMagnitude);
 
         if (swipeMagnitude < 50) return MoveDirectionType.IDLE;
 
-        const { x: absX, y: absY } = new Phaser.Geom.Point(
-            Math.abs(swipeNormal.x),
-            Math.abs(swipeNormal.y)
-        );
+        const { x: absX, y: absY } = new Phaser.Geom.Point(Math.abs(swipeNormal.x), Math.abs(swipeNormal.y));
 
         if (absX > absY) {
-            return swipeNormal.x > 0
-                ? MoveDirectionType.RIGHT
-                : MoveDirectionType.LEFT;
+            return swipeNormal.x > 0 ? MoveDirectionType.RIGHT : MoveDirectionType.LEFT;
         } else {
-            return swipeNormal.y > 0
-                ? MoveDirectionType.DOWN
-                : MoveDirectionType.UP;
+            return swipeNormal.y > 0 ? MoveDirectionType.DOWN : MoveDirectionType.UP;
         }
     }
 }

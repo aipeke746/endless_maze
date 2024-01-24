@@ -11,16 +11,15 @@ export class MoveService {
     /**
      * 移動方向と移動する時の差分をまとめたマップ
      */
-    private readonly MAP: Map<MoveDirectionType, Phaser.Math.Vector2> = new Map<
-        MoveDirectionType,
-        Phaser.Math.Vector2
-    >([
-        [MoveDirectionType.DOWN, new Phaser.Math.Vector2(0, 1)],
-        [MoveDirectionType.UP, new Phaser.Math.Vector2(0, -1)],
-        [MoveDirectionType.LEFT, new Phaser.Math.Vector2(-1, 0)],
-        [MoveDirectionType.RIGHT, new Phaser.Math.Vector2(1, 0)],
-        [MoveDirectionType.IDLE, undefined],
-    ]);
+    private readonly MAP: Map<MoveDirectionType, Phaser.Math.Vector2> = new Map<MoveDirectionType, Phaser.Math.Vector2>(
+        [
+            [MoveDirectionType.DOWN, new Phaser.Math.Vector2(0, 1)],
+            [MoveDirectionType.UP, new Phaser.Math.Vector2(0, -1)],
+            [MoveDirectionType.LEFT, new Phaser.Math.Vector2(-1, 0)],
+            [MoveDirectionType.RIGHT, new Phaser.Math.Vector2(1, 0)],
+            [MoveDirectionType.IDLE, undefined],
+        ]
+    );
 
     /**
      * 移動先の座標を取得する（移動できない場合はundefinedを返す）
@@ -29,11 +28,7 @@ export class MoveService {
      * @param direction 移動方向
      * @returns 移動先の座標
      */
-    public getMoveToCoord(
-        target: Character,
-        tilemap: Tilemap,
-        direction: MoveDirectionType
-    ): Coord {
+    public getMoveToCoord(target: Character, tilemap: Tilemap, direction: MoveDirectionType): Coord {
         const nowCoord: Coord = target.getCoord(tilemap);
         try {
             const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));
@@ -51,12 +46,7 @@ export class MoveService {
      * @param nextCoord 移動先の座標
      * @param onComplete 移動完了時の処理
      */
-    public gridMoveTween(
-        target: Character,
-        tilemap: Tilemap,
-        nextCoord: Coord,
-        onComplete: () => void
-    ): void {
+    public gridMoveTween(target: Character, tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
         const nowPos = target.getPos();
         const nextPos = tilemap.getWorldPos(nextCoord);
         const sprite = target.getSprite();

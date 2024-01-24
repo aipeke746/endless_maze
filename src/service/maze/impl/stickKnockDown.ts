@@ -87,13 +87,9 @@ export class StickKnockDown implements MazeService {
      * @returns 壁を作る座標
      */
     private getWallCoord(baseCoord: Coord, withoutUp: boolean): Coord {
-        const directions = withoutUp
-            ? DirectionDiffUtil.DIFF_WITHOUT_UP
-            : DirectionDiffUtil.DIFF;
+        const directions = withoutUp ? DirectionDiffUtil.DIFF_WITHOUT_UP : DirectionDiffUtil.DIFF;
         const changeWallCoord = this.canChangeWallCoords(baseCoord, directions);
-        return changeWallCoord[
-            Math.floor(Math.random() * changeWallCoord.length)
-        ];
+        return changeWallCoord[Math.floor(Math.random() * changeWallCoord.length)];
     }
 
     /**
@@ -102,10 +98,7 @@ export class StickKnockDown implements MazeService {
      * @param directions baseCoordからの相対座標（壁を作る方向）
      * @returns 壁を作ることができる全ての座標
      */
-    private canChangeWallCoords(
-        baseCoord: Coord,
-        directions: Phaser.Math.Vector2[]
-    ): Coord[] {
+    private canChangeWallCoords(baseCoord: Coord, directions: Phaser.Math.Vector2[]): Coord[] {
         const result: Coord[] = [];
 
         for (const dir of directions) {

@@ -71,10 +71,8 @@ export class DiggingOut implements MazeService {
      * @returns スタート位置
      */
     private getStartCoord(): Coord {
-        const x =
-            Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
-        const y =
-            Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
+        const x = Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
+        const y = Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
 
         return new Coord(x, y);
     }

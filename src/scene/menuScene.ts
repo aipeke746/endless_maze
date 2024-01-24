@@ -32,13 +32,7 @@ export class MenuScene extends Phaser.Scene {
      * @param content 表示する文字列
      */
     private createStartText(x: number, y: number, content: string): void {
-        const text = TextUtil.createTextButton(
-            this,
-            x,
-            y,
-            content,
-            this.FONT_SIZE
-        ).on('pointerdown', () => {
+        const text = TextUtil.createTextButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
             this.scene.start('playScene', {
                 mazeType: MazeType.StickKnockDown,
             });

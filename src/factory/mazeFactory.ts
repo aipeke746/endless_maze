@@ -10,10 +10,7 @@ export class MazeFactory {
     /**
      * 迷路生成方法の種類と迷路生成を行うクラスのマップ
      */
-    private static readonly MAP: Map<MazeType, MazeService> = new Map<
-        MazeType,
-        MazeService
-    >([
+    private static readonly MAP: Map<MazeType, MazeService> = new Map<MazeType, MazeService>([
         [MazeType.StickKnockDown, new StickKnockDown()],
         [MazeType.DiggingOut, new DiggingOut()],
         [MazeType.WallStretching, new StickKnockDown()],

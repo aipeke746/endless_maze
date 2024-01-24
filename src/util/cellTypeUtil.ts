@@ -7,10 +7,7 @@ export class CellTypeUtil {
     /**
      * セルの種類を反転するマップ
      */
-    private static readonly OPPSITE_MAP: Map<CellType, CellType> = new Map<
-        CellType,
-        CellType
-    >([
+    private static readonly OPPSITE_MAP: Map<CellType, CellType> = new Map<CellType, CellType>([
         [CellType.WALL, CellType.FLOOR],
         [CellType.FLOOR, CellType.WALL],
     ]);

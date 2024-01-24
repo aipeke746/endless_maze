@@ -85,11 +85,7 @@ export class Character {
             return;
         }
 
-        const nextCoord: Coord = this.moveService.getMoveToCoord(
-            this,
-            tilemap,
-            direction
-        );
+        const nextCoord: Coord = this.moveService.getMoveToCoord(this, tilemap, direction);
         this.startWalk(direction);
         this.moveService.gridMoveTween(this, tilemap, nextCoord, () => {
             this.stopWalk();
@@ -138,14 +134,7 @@ export class Character {
      * @param spriteName スプライト名
      * @returns キャラクターのスプライト
      */
-    private createSprite(
-        scene: Phaser.Scene,
-        pos: Phaser.Math.Vector2,
-        spriteName: string
-    ): Phaser.GameObjects.Sprite {
-        return scene.physics.add
-            .sprite(pos.x, pos.y, spriteName)
-            .setOrigin(0, 0)
-            .setDisplaySize(this.SIZE, this.SIZE);
+    private createSprite(scene: Phaser.Scene, pos: Phaser.Math.Vector2, spriteName: string): Phaser.GameObjects.Sprite {
+        return scene.physics.add.sprite(pos.x, pos.y, spriteName).setOrigin(0, 0).setDisplaySize(this.SIZE, this.SIZE);
     }
 }
