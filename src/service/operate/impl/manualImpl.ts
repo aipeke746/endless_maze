@@ -21,6 +21,10 @@ export class ManualImpl implements OperateService {
      */
     private isPointerDown: boolean = false;
 
+    /**
+     * カーソルキーとポインターを初期化する
+     * @param scene シーン
+     */
     constructor(scene: Phaser.Scene) {
         if (scene.input.keyboard == null) throw new Error('keyboard is null');
         this.cursors = scene.input.keyboard.createCursorKeys();

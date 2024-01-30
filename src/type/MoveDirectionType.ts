@@ -5,11 +5,11 @@ export enum MoveDirectionType {
     /**
      * 下移動
      */
-    DOWN = 'move_front',
+    DOWN = 'move_down',
     /**
      * 上移動
      */
-    UP = 'move_back',
+    UP = 'move_up',
     /**
      * 左移動
      */

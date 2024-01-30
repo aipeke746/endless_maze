@@ -1,10 +1,11 @@
 import { Character } from '../entity/character';
 import { Goal } from '../entity/goal';
 import { Tilemap } from '../entity/tilemap';
+import { OperateFactory } from '../factory/operateFactory';
 import { Param } from '../param';
-import { ManualImpl } from '../service/operate/impl/manualImpl';
 import { OperateService } from '../service/operate/operateService';
 import { MazeType } from '../type/mazeType';
+import { OperateType } from '../type/operateType';
 
 /**
  * ゲームのプレイシーン
@@ -64,7 +65,7 @@ export class PlayScene extends Phaser.Scene {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.tilemap = new Tilemap(this, 'mapTiles', this.mazeType);
         this.player = new Character(this, this.tilemap, 'character');
-        this.operate = new ManualImpl(this);
+        this.operate = new OperateFactory(this).create(OperateType.AUTO);
         this.goal = new Goal(this, this.tilemap, 'goal');
 
         this.cameraSetting();
@@ -75,7 +76,11 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの更新
      */
     update(): void {
-        const direction = this.operate.getDirection();
+        const direction = this.operate.getDirection(
+            this.tilemap.mapState,
+            this.player.getCoord(this.tilemap),
+            this.goal.getCoord(this.tilemap)
+        );
         this.player.walk(this.tilemap, direction);
     }
 

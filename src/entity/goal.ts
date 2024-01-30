@@ -39,6 +39,18 @@ export class Goal {
         return this.sprite;
     }
 
+    public getCoord(tilemap: Tilemap): Coord {
+        try {
+            return tilemap.getTilePos(this.getPos());
+        } catch {
+            throw new Error('invalid coord by goal.ts: getCoord()');
+        }
+    }
+
+    public getPos(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.sprite.x, this.sprite.y);
+    }
+
     /**
      * ゴールのスプライトを初期位置（右下）に生成する
      * @param scene シーン

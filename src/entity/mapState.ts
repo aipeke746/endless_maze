@@ -26,7 +26,7 @@ export class MapState {
      * @returns 迷路の状態
      */
     public getField(): CellType[][] {
-        return this.field;
+        return JSON.parse(JSON.stringify(this.field));
     }
 
     /**
