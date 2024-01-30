@@ -30,11 +30,13 @@ export class FieldUtil {
      * @returns 指定したセルタイプで埋めたフィールド
      */
     public static circumference(type: CellType): CellType[][] {
-        const field: CellType[][] = [];
+        const field: CellType[][] = FieldUtil.fill(CellTypeUtil.getOpposite(type));
+
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
-            field[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
-                field[y][x] = this.isCircumference(new Coord(x, y)) ? type : CellTypeUtil.getOpposite(type);
+                if (this.isCircumference(new Coord(x, y))) {
+                    field[y][x] = type;
+                }
             }
         }
         return field;
