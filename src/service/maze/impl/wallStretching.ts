@@ -1,6 +1,6 @@
 import { Param } from '../../../param';
 import { CellType } from '../../../type/cellType';
-import { DirectionDiffUtil } from '../../../util/directionDiffUtil';
+import { DirectionDiffService } from '../../direction/directionDiffService';
 import { FieldUtil } from '../../../util/fieldUtil';
 import { Coord } from '../../../vo/coord';
 import { MazeService } from '../mazeService';
@@ -17,6 +17,11 @@ export class WallStretching implements MazeService {
      * 壁のばし法で掘り進める開始位置
      */
     private positions: Coord[] = [];
+    /**
+     * 移動方向の差分に関するサービス
+     */
+    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
+
     /**
      * 壁のばし法で迷路を生成する
      * @returns 迷路を生成する
@@ -45,7 +50,7 @@ export class WallStretching implements MazeService {
      * @param coord 壁を生成する位置
      */
     private createWall(coord: Coord): void {
-        for (const dir of DirectionDiffUtil.getShuffle()) {
+        for (const dir of this.directionDiffService.getShuffle()) {
             try {
                 const coord1 = coord.addPos(dir);
                 const coord2 = coord1.addPos(dir);

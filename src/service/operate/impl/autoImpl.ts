@@ -1,7 +1,7 @@
 import { MapState } from '../../../entity/mapState';
 import { Param } from '../../../param';
 import { MoveDirectionType } from '../../../type/MoveDirectionType';
-import { DirectionDiffUtil } from '../../../util/directionDiffUtil';
+import { DirectionDiffService } from '../../direction/directionDiffService';
 import { Coord } from '../../../vo/coord';
 import { FifoQueue } from '../../../vo/fifoQueue';
 import { OperateService } from '../operateService';
@@ -24,6 +24,10 @@ export class AutoImpl implements OperateService {
      * 幅優先探索法の開始カウンターの数字
      */
     private readonly START_COUNTER_NUM = 1;
+    /**
+     * 移動方向の差分に関するサービス
+     */
+    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
 
     /**
      * 次の移動方向を返す
@@ -77,7 +81,7 @@ export class AutoImpl implements OperateService {
                 break;
             }
 
-            for (const diff of DirectionDiffUtil.DIFF) {
+            for (const diff of this.directionDiffService.getDiff()) {
                 try {
                     const nextCoord = coord.addPos(diff);
                     if (dist[nextCoord.y][nextCoord.x] === this.CAN_MOVE) {
@@ -104,11 +108,11 @@ export class AutoImpl implements OperateService {
         let coord = to;
 
         while (dist[coord.y][coord.x] > this.START_COUNTER_NUM) {
-            for (const diff of DirectionDiffUtil.DIFF) {
+            for (const diff of this.directionDiffService.getDiff()) {
                 try {
                     const nextCoord = coord.addPos(diff);
                     if (dist[nextCoord.y][nextCoord.x] === dist[coord.y][coord.x] - 1) {
-                        nextDirection = DirectionDiffUtil.getOpponentDirection(diff);
+                        nextDirection = this.directionDiffService.getOpponentDirection(diff);
                         coord = nextCoord;
                         break;
                     }

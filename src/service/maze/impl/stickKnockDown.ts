@@ -1,6 +1,6 @@
 import { Param } from '../../../param';
 import { CellType } from '../../../type/cellType';
-import { DirectionDiffUtil } from '../../../util/directionDiffUtil';
+import { DirectionDiffService } from '../../direction/directionDiffService';
 import { FieldUtil } from '../../../util/fieldUtil';
 import { Coord } from '../../../vo/coord';
 import { MazeService } from '../mazeService';
@@ -9,6 +9,11 @@ import { MazeService } from '../mazeService';
  * 迷路自動生成: 棒倒し法
  */
 export class StickKnockDown implements MazeService {
+    /**
+     * 移動方向の差分に関するサービス
+     */
+    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
+
     /**
      * 棒倒し法で迷路を生成する
      * @returns 迷路を生成する
@@ -61,7 +66,7 @@ export class StickKnockDown implements MazeService {
      */
     private getWallCoord(baseCoord: Coord): Coord {
         const diffs: Phaser.Math.Vector2[] =
-            baseCoord.y === 2 ? DirectionDiffUtil.DIFF : DirectionDiffUtil.DIFF_WITHOUT_UP;
+            baseCoord.y === 2 ? this.directionDiffService.getDiff() : this.directionDiffService.getDiffWithoutUp();
         const diff: Phaser.Math.Vector2 = diffs[Math.floor(Math.random() * diffs.length)];
         return baseCoord.addPos(diff);
     }

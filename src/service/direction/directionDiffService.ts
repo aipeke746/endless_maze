@@ -1,13 +1,13 @@
-import { MoveDirectionType } from '../type/MoveDirectionType';
+import { MoveDirectionType } from '../../type/MoveDirectionType';
 
 /**
  * 方向の差分に関するユーティリティ
  */
-export class DirectionDiffUtil {
+export class DirectionDiffService {
     /**
      * 移動方向と座標の差分のマップ
      */
-    private static readonly MAP = new Map<MoveDirectionType, Phaser.Math.Vector2>([
+    private readonly MAP = new Map<MoveDirectionType, Phaser.Math.Vector2>([
         [MoveDirectionType.IDLE, new Phaser.Math.Vector2(0, 0)],
         [MoveDirectionType.UP, new Phaser.Math.Vector2(0, -1)],
         [MoveDirectionType.DOWN, new Phaser.Math.Vector2(0, 1)],
@@ -18,7 +18,7 @@ export class DirectionDiffUtil {
     /**
      * 移動方向と反対の移動方向のマップ
      */
-    private static readonly OPPNENT_DICTION = new Map<MoveDirectionType, MoveDirectionType>([
+    private readonly OPPNENT_DICTION = new Map<MoveDirectionType, MoveDirectionType>([
         [MoveDirectionType.IDLE, MoveDirectionType.IDLE],
         [MoveDirectionType.UP, MoveDirectionType.DOWN],
         [MoveDirectionType.DOWN, MoveDirectionType.UP],
@@ -26,33 +26,47 @@ export class DirectionDiffUtil {
         [MoveDirectionType.RIGHT, MoveDirectionType.LEFT],
     ]);
 
-    public static readonly DIFF2: Phaser.Math.Vector2[] = [];
-
     /**
      * 4方向（上下左右）の差分
      */
-    public static readonly DIFF: Phaser.Math.Vector2[] = [
-        DirectionDiffUtil.MAP.get(MoveDirectionType.UP),
-        DirectionDiffUtil.MAP.get(MoveDirectionType.DOWN),
-        DirectionDiffUtil.MAP.get(MoveDirectionType.LEFT),
-        DirectionDiffUtil.MAP.get(MoveDirectionType.RIGHT),
+    private readonly DIFF: Phaser.Math.Vector2[] = [
+        this.MAP.get(MoveDirectionType.UP),
+        this.MAP.get(MoveDirectionType.DOWN),
+        this.MAP.get(MoveDirectionType.LEFT),
+        this.MAP.get(MoveDirectionType.RIGHT),
     ];
 
     /**
      * 3方向（下左右）の差分
      */
-    public static readonly DIFF_WITHOUT_UP: Phaser.Math.Vector2[] = [
-        DirectionDiffUtil.MAP.get(MoveDirectionType.DOWN),
-        DirectionDiffUtil.MAP.get(MoveDirectionType.LEFT),
-        DirectionDiffUtil.MAP.get(MoveDirectionType.RIGHT),
+    private readonly DIFF_WITHOUT_UP: Phaser.Math.Vector2[] = [
+        this.MAP.get(MoveDirectionType.DOWN),
+        this.MAP.get(MoveDirectionType.LEFT),
+        this.MAP.get(MoveDirectionType.RIGHT),
     ];
+
+    /**
+     * 4方向(上下左右）の座標の差分を返す
+     * @returns 4方向の座標の差分
+     */
+    public getDiff(): Phaser.Math.Vector2[] {
+        return this.DIFF;
+    }
+
+    /**
+     * 3方向（下左右）の座標の差分を返す
+     * @returns 3方向の座標の差分
+     */
+    public getDiffWithoutUp(): Phaser.Math.Vector2[] {
+        return this.DIFF_WITHOUT_UP;
+    }
 
     /**
      * 4方向（上下左右）の差分をシャッフルして返す
      * @returns 4方向（上下左右）の差分をシャッフルしたもの
      */
-    public static getShuffle(): Phaser.Math.Vector2[] {
-        const result: Phaser.Math.Vector2[] = JSON.parse(JSON.stringify(DirectionDiffUtil.DIFF));
+    public getShuffle(): Phaser.Math.Vector2[] {
+        const result: Phaser.Math.Vector2[] = JSON.parse(JSON.stringify(this.DIFF));
         for (let i = result.length - 1; i > 0; i--) {
             const r = Math.floor(Math.random() * (i + 1));
             const tmp = result[i];
@@ -67,8 +81,8 @@ export class DirectionDiffUtil {
      * @param diff 差分
      * @returns 移動方向
      */
-    public static getDirection(diff: Phaser.Math.Vector2): MoveDirectionType {
-        for (const [key, value] of DirectionDiffUtil.MAP) {
+    public getDirection(diff: Phaser.Math.Vector2): MoveDirectionType {
+        for (const [key, value] of this.MAP) {
             if (value.x === diff.x && value.y === diff.y) {
                 return key;
             }
@@ -80,8 +94,8 @@ export class DirectionDiffUtil {
      * @param diff 差分
      * @returns 逆の移動方向
      */
-    public static getOpponentDirection(diff: Phaser.Math.Vector2): MoveDirectionType {
-        const direction = DirectionDiffUtil.getDirection(diff);
-        return DirectionDiffUtil.OPPNENT_DICTION.get(direction);
+    public getOpponentDirection(diff: Phaser.Math.Vector2): MoveDirectionType {
+        const direction = this.getDirection(diff);
+        return this.OPPNENT_DICTION.get(direction);
     }
 }

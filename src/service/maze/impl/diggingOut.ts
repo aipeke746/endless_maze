@@ -1,9 +1,9 @@
 import { Param } from '../../../param';
 import { CellType } from '../../../type/cellType';
-import { DirectionDiffUtil } from '../../../util/directionDiffUtil';
 import { FieldUtil } from '../../../util/fieldUtil';
 import { Coord } from '../../../vo/coord';
 import { MazeService } from '../mazeService';
+import { DirectionDiffService } from '../../direction/directionDiffService';
 
 /**
  * 迷路自動生成: 穴掘り法
@@ -17,6 +17,10 @@ export class DiggingOut implements MazeService {
      * 穴掘り法で掘り進める位置
      */
     private readonly positions: Coord[] = [];
+    /**
+     * 移動方向の差分に関するサービス
+     */
+    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
 
     /**
      * 穴掘り法で迷路を生成する
@@ -48,7 +52,7 @@ export class DiggingOut implements MazeService {
      * @param coord 掘り進める位置
      */
     private dig(coord: Coord): void {
-        for (const dir of DirectionDiffUtil.getShuffle()) {
+        for (const dir of this.directionDiffService.getShuffle()) {
             try {
                 const coord1 = coord.addPos(dir);
                 const coord2 = coord1.addPos(dir);
