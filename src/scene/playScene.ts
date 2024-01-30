@@ -4,7 +4,6 @@ import { Tilemap } from '../entity/tilemap';
 import { OperateFactory } from '../factory/operateFactory';
 import { Param } from '../param';
 import { OperateService } from '../service/operate/operateService';
-import { MazeType } from '../type/mazeType';
 import { OperateType } from '../type/operateType';
 
 /**
@@ -27,20 +26,9 @@ export class PlayScene extends Phaser.Scene {
      * ゴール
      */
     private goal: Goal;
-    /**
-     * 迷路のタイプ
-     */
-    private mazeType: MazeType;
 
     constructor() {
         super({ key: 'playScene' });
-    }
-
-    /**
-     * ゲームのプレイシーンの初期設定
-     */
-    init(data: any): void {
-        this.mazeType = data.mazeType as MazeType;
     }
 
     /**
@@ -63,9 +51,9 @@ export class PlayScene extends Phaser.Scene {
      */
     create(): void {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
-        this.tilemap = new Tilemap(this, 'mapTiles', this.mazeType);
+        this.tilemap = new Tilemap(this, 'mapTiles');
         this.player = new Character(this, this.tilemap, 'character');
-        this.operate = new OperateFactory(this).create(OperateType.AUTO);
+        this.operate = new OperateFactory(this).create(OperateType.MANUAL);
         this.goal = new Goal(this, this.tilemap, 'goal');
 
         this.cameraSetting();
@@ -76,11 +64,7 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの更新
      */
     update(): void {
-        const direction = this.operate.getDirection(
-            this.tilemap.mapState,
-            this.player.getCoord(this.tilemap),
-            this.goal.getCoord(this.tilemap)
-        );
+        const direction = this.operate.getDirection();
         this.player.walk(this.tilemap, direction);
     }
 
@@ -102,24 +86,11 @@ export class PlayScene extends Phaser.Scene {
             this.goal.getSprite(),
             () => {
                 this.time.delayedCall(200, () => {
-                    this.nextScene();
+                    this.scene.start('playScene');
                 });
             },
             undefined,
             this
         );
-    }
-
-    /**
-     * 次に遷移するシーンを取得する
-     * @returns 次のシーン
-     */
-    private nextScene(): void {
-        const mazeTypeCount: number = Object.keys(MazeType).length / 2;
-        const nextMazeType: MazeType = this.mazeType + 1;
-
-        nextMazeType < mazeTypeCount
-            ? this.scene.start('playScene', { mazeType: nextMazeType })
-            : this.scene.start('menuScene');
     }
 }

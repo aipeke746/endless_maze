@@ -8,6 +8,9 @@ import { Tilemap } from './tilemap';
  * 迷路のゴールを管理するクラス
  */
 export class Goal {
+    /**
+     * ゴールのサイズ
+     */
     private readonly SIZE: number = Tilemap.SIZE;
     /**
      * ゴールのスプライト
@@ -39,16 +42,25 @@ export class Goal {
         return this.sprite;
     }
 
+    /**
+     * ゴールのワールド（画面）の座標を取得する
+     * @returns ゴールのワールド（画面）の座標
+     */
+    public getPos(): Phaser.Math.Vector2 {
+        return new Phaser.Math.Vector2(this.sprite.x, this.sprite.y);
+    }
+
+    /**
+     * ゴールのマップ（迷路）上の座標を取得する
+     * @param tilemap タイルマップ
+     * @returns ゴールのマップ（迷路）上の座標
+     */
     public getCoord(tilemap: Tilemap): Coord {
         try {
             return tilemap.getTilePos(this.getPos());
         } catch {
             throw new Error('invalid coord by goal.ts: getCoord()');
         }
-    }
-
-    public getPos(): Phaser.Math.Vector2 {
-        return new Phaser.Math.Vector2(this.sprite.x, this.sprite.y);
     }
 
     /**
