@@ -1,7 +1,7 @@
 import { MoveDirectionType } from '../../type/MoveDirectionType';
 
 /**
- * 方向の差分に関するユーティリティ
+ * 方向の差分に関するサービスクラス
  */
 export class DirectionDiffService {
     /**
