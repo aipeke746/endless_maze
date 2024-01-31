@@ -38,7 +38,7 @@ export class Character {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this.sprite = this.createSpriteByInitPos(scene, tilemap, spriteName);
+        this.sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
         this.moveService = new MoveService();
         this.animation = new CharacterAnimation();
         this.animation.create(scene, spriteName);
@@ -107,18 +107,18 @@ export class Character {
     }
 
     /**
-     * キャラクターのスプライトを初期位置（左上）に生成する
+     * キャラクターのスプライトをランダムな位置に生成する
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
      * @returns キャラクターのスプライト
      */
-    private createSpriteByInitPos(
+    private createSpriteByRandomPos(
         scene: Phaser.Scene,
         tilemap: Tilemap,
         spriteName: string
     ): Phaser.GameObjects.Sprite {
-        const coord: Coord = new Coord(1, 1);
+        const coord: Coord = tilemap.mapState.getRandomFloorCoord();
         const pos: Phaser.Math.Vector2 = tilemap.getWorldPos(coord);
         return this.createSprite(scene, pos, spriteName);
     }

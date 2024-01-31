@@ -30,6 +30,22 @@ export class MapState {
     }
 
     /**
+     * 床の座標をランダムに取得する
+     * @param coord 座標
+     */
+    public getRandomFloorCoord(): Coord {
+        const floorCoords: Coord[] = [];
+        this.field.forEach((row, y) => {
+            row.forEach((cell, x) => {
+                if (cell === CellType.FLOOR) {
+                    floorCoords.push(new Coord(x, y));
+                }
+            });
+        });
+        return floorCoords[Math.floor(Math.random() * floorCoords.length)];
+    }
+
+    /**
      * 指定した座標のセルが通路かどうかを返す
      * @param coord 座標
      * @returns 通路の場合はtrue

@@ -1,4 +1,3 @@
-import { Param } from '../param';
 import { AnimationService } from '../service/animation/animationService';
 import { GoalAnimation } from '../service/animation/impl/goalAnimation';
 import { Coord } from '../vo/coord';
@@ -28,7 +27,7 @@ export class Goal {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this.sprite = this.createSpriteByInitPos(scene, tilemap, spriteName);
+        this.sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
         this.animation = new GoalAnimation();
         this.animation.create(scene, spriteName);
         this.animation.play(this.sprite, GoalAnimation.KEY);
@@ -64,18 +63,18 @@ export class Goal {
     }
 
     /**
-     * ゴールのスプライトを初期位置（右下）に生成する
+     * ゴールのスプライトをランダムな位置に生成する
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
      * @returns ゴールのスプライト
      */
-    private createSpriteByInitPos(
+    private createSpriteByRandomPos(
         scene: Phaser.Scene,
         tilemap: Tilemap,
         spriteName: string
     ): Phaser.GameObjects.Sprite {
-        const coord: Coord = new Coord(Param.MAZE_SIZE - 2, Param.MAZE_SIZE - 2);
+        const coord: Coord = tilemap.mapState.getRandomFloorCoord();
         const pos: Phaser.Math.Vector2 = tilemap.getWorldPos(coord);
         return this.createSprite(scene, pos, spriteName);
     }
