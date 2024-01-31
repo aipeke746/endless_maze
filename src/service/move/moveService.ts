@@ -1,8 +1,8 @@
-import { Character } from '../../entity/character';
 import { Tilemap } from '../../entity/tilemap';
 import { MoveDirectionType } from '../../type/MoveDirectionType';
 import { Coord } from '../../vo/coord';
 import Phaser from 'phaser';
+import { Sprite } from '../../vo/sprite';
 
 /**
  * 移動に関連するサービス
@@ -23,12 +23,12 @@ export class MoveService {
 
     /**
      * 移動先の座標を取得する（移動できない場合はundefinedを返す）
-     * @param target 移動するターゲット
+     * @param target 移動するターゲットのスプライト
      * @param tilemap タイルマップ
      * @param direction 移動方向
      * @returns 移動先の座標
      */
-    public getMoveToCoord(target: Character, tilemap: Tilemap, direction: MoveDirectionType): Coord {
+    public getMoveToCoord(target: Sprite, tilemap: Tilemap, direction: MoveDirectionType): Coord {
         const nowCoord: Coord = target.getCoord(tilemap);
         try {
             const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));
@@ -40,13 +40,13 @@ export class MoveService {
     }
 
     /**
-     * キャラクターをグリッド移動させる
-     * @param target 移動するターゲット
+     * 対象のスプライトをグリッド移動させる
+     * @param target 移動するターゲットのスプライト
      * @param tilemap タイルマップ
      * @param nextCoord 移動先の座標
      * @param onComplete 移動完了時の処理
      */
-    public gridMoveTween(target: Character, tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
+    public gridMoveTween(target: Sprite, tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
         const nowPos = target.getPos();
         const nextPos = tilemap.getWorldPos(nextCoord);
         const sprite = target.getSprite();
