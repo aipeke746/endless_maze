@@ -1,10 +1,10 @@
-import { Character } from '../entity/character';
-import { Goal } from '../entity/goal';
-import { Tilemap } from '../entity/tilemap';
-import { OperateFactory } from '../factory/operateFactory';
-import { Param } from '../param';
-import { OperateService } from '../service/operate/operateService';
-import { OperateType } from '../type/operateType';
+import { Character } from '../../domain/model/entity/character';
+import { Goal } from '../../domain/model/entity/goal';
+import { Tilemap } from '../../domain/model/entity/tilemap';
+import { OperateFactory } from '../../domain/factory/operateFactory';
+import { Param } from '../../param';
+import { OperateService } from '../../domain/service/operate/operateService';
+import { OperateType } from '../../domain/type/operateType';
 
 /**
  * ゲームのプレイシーン

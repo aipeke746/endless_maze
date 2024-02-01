@@ -1,7 +1,7 @@
-import { MazeFactory } from '../factory/mazeFactory';
-import { MazeService } from '../service/maze/mazeService';
-import { CellType } from '../type/cellType';
-import { MazeType } from '../type/mazeType';
+import { MazeFactory } from '../../factory/mazeFactory';
+import { MazeService } from '../../service/maze/mazeService';
+import { CellType } from '../../type/cellType';
+import { MazeType } from '../../type/mazeType';
 import { Coord } from '../vo/coord';
 
 /**

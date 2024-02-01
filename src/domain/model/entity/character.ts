@@ -1,7 +1,7 @@
-import { AnimationService } from '../service/animation/animationService';
-import { CharacterAnimation } from '../service/animation/impl/characterAnimation';
-import { MoveService } from '../service/move/moveService';
-import { MoveDirectionType } from '../type/MoveDirectionType';
+import { AnimationService } from '../../service/animation/animationService';
+import { CharacterAnimation } from '../../service/animation/impl/characterAnimation';
+import { MoveService } from '../../service/move/moveService';
+import { MoveDirectionType } from '../../type/MoveDirectionType';
 import { Coord } from '../vo/coord';
 import { Sprite } from '../vo/sprite';
 import { Tilemap } from './tilemap';

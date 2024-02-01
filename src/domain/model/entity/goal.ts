@@ -1,5 +1,5 @@
-import { AnimationService } from '../service/animation/animationService';
-import { GoalAnimation } from '../service/animation/impl/goalAnimation';
+import { AnimationService } from '../../service/animation/animationService';
+import { GoalAnimation } from '../../service/animation/impl/goalAnimation';
 import { Sprite } from '../vo/sprite';
 import { Tilemap } from './tilemap';
 

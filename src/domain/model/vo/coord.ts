@@ -1,4 +1,4 @@
-import { Param } from '../param';
+import { Param } from '../../../param';
 
 export class Coord {
     /**

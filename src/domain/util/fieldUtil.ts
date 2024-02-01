@@ -1,6 +1,6 @@
-import { Param } from '../param';
+import { Param } from '../../param';
 import { CellType } from '../type/cellType';
-import { Coord } from '../vo/coord';
+import { Coord } from '../model/vo/coord';
 import { CellTypeUtil } from './cellTypeUtil';
 
 /**
