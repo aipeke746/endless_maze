@@ -13,10 +13,3 @@ export const CELL = {
 };
 
 export type Cell = (typeof CELL)[keyof typeof CELL];
-
-export function toCell(value: number): Cell {
-    if (!Object.values(CELL).includes(value)) {
-        throw new Error('error');
-    }
-    return value;
-}

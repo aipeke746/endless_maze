@@ -1,7 +1,7 @@
 import { AutoImpl } from '../../service/operate/impl/autoImpl';
 import { ManualImpl } from '../../service/operate/impl/manualImpl';
 import { OperateService } from '../../service/operate/operateService';
-import { OperateType } from './operateType';
+import { OPERATION, Operation } from './operation';
 
 /**
  * 操作方法の種類から操作方法のサービスクラスを取得するファクトリクラス
@@ -10,14 +10,14 @@ export class OperateFactory {
     /**
      * 操作方法の種類と操作方法のサービスクラスのマップ
      */
-    private readonly MAP = new Map<OperateType, OperateService>();
+    private readonly MAP = new Map<Operation, OperateService>();
 
     /**
      * 操作方法の種類と操作方法のサービスクラスのマップを設定する
      */
     constructor(scene: Phaser.Scene) {
-        this.MAP.set(OperateType.MANUAL, new ManualImpl(scene));
-        this.MAP.set(OperateType.AUTO, new AutoImpl());
+        this.MAP.set(OPERATION.MANUAL, new ManualImpl(scene));
+        this.MAP.set(OPERATION.AUTO, new AutoImpl());
     }
 
     /**
@@ -25,7 +25,7 @@ export class OperateFactory {
      * @param type 操作方法の種類
      * @returns 操作方法のサービスクラス
      */
-    public create(type: OperateType): OperateService {
+    public create(type: Operation): OperateService {
         return this.MAP.get(type);
     }
 }
