@@ -1,4 +1,4 @@
-import { CellType } from '../type/cellType';
+import { CellType } from './cellType';
 
 /**
  * セル（迷路のマス）の種類に関するユーティリティクラス

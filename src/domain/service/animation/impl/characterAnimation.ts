@@ -1,4 +1,4 @@
-import { MoveDirectionType } from '../../../type/MoveDirectionType';
+import { MoveDirectionType } from '../../../model/direction/MoveDirectionType';
 import { AnimationService } from '../animationService';
 
 /**

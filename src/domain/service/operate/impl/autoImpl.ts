@@ -1,9 +1,9 @@
-import { MapState } from '../../../model/entity/mapState';
+import { MapState } from '../../../model/map/mapState';
 import { Param } from '../../../../param';
-import { MoveDirectionType } from '../../../type/MoveDirectionType';
+import { MoveDirectionType } from '../../../model/direction/MoveDirectionType';
 import { DirectionDiffService } from '../../direction/directionDiffService';
-import { Coord } from '../../../model/vo/coord';
-import { FifoQueue } from '../../../model/vo/fifoQueue';
+import { Coord } from '../../../model/coord/coord';
+import { FifoQueue } from '../../../model/queue/fifoQueue';
 import { OperateService } from '../operateService';
 
 /**

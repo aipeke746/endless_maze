@@ -1,4 +1,4 @@
-import { Coord } from '../vo/coord';
+import { Coord } from '../coord/coord';
 import { MapState } from './mapState';
 
 /**

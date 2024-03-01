@@ -1,7 +1,7 @@
-import { DiggingOut } from '../service/maze/impl/diggingOut';
-import { StickKnockDown } from '../service/maze/impl/stickKnockDown';
-import { MazeType } from '../type/mazeType';
-import { MazeService } from '../service/maze/mazeService';
+import { DiggingOut } from '../../service/maze/impl/diggingOut';
+import { StickKnockDown } from '../../service/maze/impl/stickKnockDown';
+import { MazeType } from '../maze/mazeType';
+import { MazeService } from '../../service/maze/mazeService';
 
 /**
  * 迷路生成方法の種類から迷路生成を行うクラスを取得するファクトリクラス

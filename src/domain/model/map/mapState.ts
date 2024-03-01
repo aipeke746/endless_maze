@@ -1,8 +1,8 @@
-import { MazeFactory } from '../../factory/mazeFactory';
+import { MazeFactory } from './mazeFactory';
 import { MazeService } from '../../service/maze/mazeService';
-import { CellType } from '../../type/cellType';
-import { MazeType } from '../../type/mazeType';
-import { Coord } from '../vo/coord';
+import { CellType } from '../cell/cellType';
+import { MazeType } from '../maze/mazeType';
+import { Coord } from '../coord/coord';
 
 /**
  * マップ（迷路）の状態を管理するクラス

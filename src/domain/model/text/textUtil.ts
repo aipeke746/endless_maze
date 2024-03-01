@@ -1,4 +1,4 @@
-import { Color } from '../type/color';
+import { Color } from '../color/color';
 
 /**
  * 文字を作成するユーティリティクラス

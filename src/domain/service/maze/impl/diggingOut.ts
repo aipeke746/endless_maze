@@ -1,7 +1,7 @@
 import { Param } from '../../../../param';
-import { CellType } from '../../../type/cellType';
-import { FieldUtil } from '../../../util/fieldUtil';
-import { Coord } from '../../../model/vo/coord';
+import { CellType } from '../../../model/cell/cellType';
+import { FieldUtil } from '../../../model/maze/fieldUtil';
+import { Coord } from '../../../model/coord/coord';
 import { MazeService } from '../mazeService';
 import { DirectionDiffService } from '../../direction/directionDiffService';
 

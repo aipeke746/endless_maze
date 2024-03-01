@@ -1,8 +1,8 @@
-import { Tilemap } from '../../model/entity/tilemap';
-import { MoveDirectionType } from '../../type/MoveDirectionType';
-import { Coord } from '../../model/vo/coord';
+import { Tilemap } from '../../model/map/tilemap';
+import { MoveDirectionType } from '../../model/direction/MoveDirectionType';
+import { Coord } from '../../model/coord/coord';
 import Phaser from 'phaser';
-import { Sprite } from '../../model/vo/sprite';
+import { Sprite } from '../../model/sprite/sprite';
 
 /**
  * 移動に関連するサービス

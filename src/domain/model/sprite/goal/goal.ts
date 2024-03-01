@@ -1,7 +1,7 @@
-import { AnimationService } from '../../service/animation/animationService';
-import { GoalAnimation } from '../../service/animation/impl/goalAnimation';
-import { Sprite } from '../vo/sprite';
-import { Tilemap } from './tilemap';
+import { AnimationService } from '../../../service/animation/animationService';
+import { GoalAnimation } from '../../../service/animation/impl/goalAnimation';
+import { Sprite } from '../sprite';
+import { Tilemap } from '../../map/tilemap';
 
 /**
  * 迷路のゴールを管理するクラス

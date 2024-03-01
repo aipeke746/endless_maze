@@ -1,5 +1,5 @@
-import { Tilemap } from '../entity/tilemap';
-import { Coord } from './coord';
+import { Tilemap } from '../map/tilemap';
+import { Coord } from '../coord/coord';
 
 export class Sprite {
     /**

@@ -1,4 +1,4 @@
-import { CellType } from '../../type/cellType';
+import { CellType } from '../../model/cell/cellType';
 
 /**
  * 迷路自動生成

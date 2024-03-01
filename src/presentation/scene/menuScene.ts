@@ -1,6 +1,6 @@
-import { MazeType } from '../../domain/type/mazeType';
-import { TextUtil } from '../../domain/util/textUtil';
-import { TweenUtil } from '../../domain/util/tweenUtil';
+import { MazeType } from '../../domain/model/maze/mazeType';
+import { TextUtil } from '../../domain/model/text/textUtil';
+import { TweenUtil } from '../../domain/model/tween/tweenUtil';
 
 /**
  * ゲームのメニューシーン

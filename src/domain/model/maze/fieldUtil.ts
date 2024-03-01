@@ -1,7 +1,7 @@
-import { Param } from '../../param';
-import { CellType } from '../type/cellType';
-import { Coord } from '../model/vo/coord';
-import { CellTypeUtil } from './cellTypeUtil';
+import { Param } from '../../../param';
+import { CellType } from '../cell/cellType';
+import { Coord } from '../coord/coord';
+import { CellTypeUtil } from '../cell/cellTypeUtil';
 
 /**
  * フィールド（迷路）に関するユーティリティクラス

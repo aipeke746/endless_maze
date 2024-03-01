@@ -1,7 +1,7 @@
-import { AutoImpl } from '../service/operate/impl/autoImpl';
-import { ManualImpl } from '../service/operate/impl/manualImpl';
-import { OperateService } from '../service/operate/operateService';
-import { OperateType } from '../type/operateType';
+import { AutoImpl } from '../../service/operate/impl/autoImpl';
+import { ManualImpl } from '../../service/operate/impl/manualImpl';
+import { OperateService } from '../../service/operate/operateService';
+import { OperateType } from './operateType';
 
 /**
  * 操作方法の種類から操作方法のサービスクラスを取得するファクトリクラス

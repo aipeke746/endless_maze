@@ -1,6 +1,6 @@
-import { MapState } from '../../model/entity/mapState';
-import { MoveDirectionType } from '../../type/MoveDirectionType';
-import { Coord } from '../../model/vo/coord';
+import { MapState } from '../../model/map/mapState';
+import { MoveDirectionType } from '../../model/direction/MoveDirectionType';
+import { Coord } from '../../model/coord/coord';
 
 /**
  * キャラクターの操作を行うサービス
