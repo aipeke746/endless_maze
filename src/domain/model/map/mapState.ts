@@ -1,6 +1,6 @@
 import { MazeFactory } from './mazeFactory';
 import { MazeService } from '../../service/maze/mazeService';
-import { CellType } from '../cell/cellType';
+import { CELL, Cell } from '../cell/cell';
 import { MazeType } from '../maze/mazeType';
 import { Coord } from '../coord/coord';
 
@@ -11,7 +11,7 @@ export class MapState {
     /**
      * 迷路の状態を表す2次元配列
      */
-    private readonly field: CellType[][] = [];
+    private readonly field: Cell[][] = [];
 
     /**
      * マップ（迷路）の状態を生成する
@@ -25,7 +25,7 @@ export class MapState {
      * 迷路の状態を取得する
      * @returns 迷路の状態
      */
-    public getField(): CellType[][] {
+    public getField(): Cell[][] {
         return JSON.parse(JSON.stringify(this.field));
     }
 
@@ -37,7 +37,7 @@ export class MapState {
         const floorCoords: Coord[] = [];
         this.field.forEach((row, y) => {
             row.forEach((cell, x) => {
-                if (cell === CellType.FLOOR) {
+                if (cell === CELL.Floor) {
                     floorCoords.push(new Coord(x, y));
                 }
             });
@@ -51,6 +51,6 @@ export class MapState {
      * @returns 通路の場合はtrue
      */
     public isFloor(coord: Coord): boolean {
-        return this.field[coord.y][coord.x] === CellType.FLOOR;
+        return this.field[coord.y][coord.x] === CELL.Floor;
     }
 }

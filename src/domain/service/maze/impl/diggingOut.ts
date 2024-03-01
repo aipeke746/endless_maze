@@ -1,5 +1,5 @@
 import { Param } from '../../../../param';
-import { CellType } from '../../../model/cell/cellType';
+import { CELL, Cell } from '../../../model/cell/cell';
 import { FieldUtil } from '../../../model/maze/fieldUtil';
 import { Coord } from '../../../model/coord/coord';
 import { MazeService } from '../mazeService';
@@ -12,7 +12,7 @@ export class DiggingOut implements MazeService {
     /**
      * 生成を行う迷路
      */
-    private maze: CellType[][] = [];
+    private maze: Cell[][] = [];
     /**
      * 穴掘り法で掘り進める位置
      */
@@ -26,8 +26,8 @@ export class DiggingOut implements MazeService {
      * 穴掘り法で迷路を生成する
      * @returns 迷路を生成する
      */
-    public create(): CellType[][] {
-        this.maze = FieldUtil.fill(CellType.WALL);
+    public create(): Cell[][] {
+        this.maze = FieldUtil.fill(CELL.Wall);
         this.createByDiggingOut();
         return this.maze;
     }
@@ -38,7 +38,7 @@ export class DiggingOut implements MazeService {
     private createByDiggingOut(): void {
         const coord = this.getStartCoord();
 
-        this.maze[coord.y][coord.x] = CellType.FLOOR;
+        this.maze[coord.y][coord.x] = CELL.Floor;
         this.positions.push(coord);
 
         while (this.positions.length > 0) {
@@ -57,9 +57,9 @@ export class DiggingOut implements MazeService {
                 const coord1 = coord.addPos(dir);
                 const coord2 = coord1.addPos(dir);
 
-                if (this.maze[coord2.y][coord2.x] === CellType.WALL) {
-                    this.maze[coord1.y][coord1.x] = CellType.FLOOR;
-                    this.maze[coord2.y][coord2.x] = CellType.FLOOR;
+                if (this.maze[coord2.y][coord2.x] === CELL.Wall) {
+                    this.maze[coord1.y][coord1.x] = CELL.Floor;
+                    this.maze[coord2.y][coord2.x] = CELL.Floor;
 
                     this.positions.push(coord);
                     this.dig(coord2);

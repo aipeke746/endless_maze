@@ -1,7 +1,7 @@
 import { Param } from '../../../param';
-import { CellType } from '../cell/cellType';
+import { Cell } from '../cell/cell';
 import { Coord } from '../coord/coord';
-import { CellTypeUtil } from '../cell/cellTypeUtil';
+import { CellUtil } from '../cell/cellUtil';
 
 /**
  * フィールド（迷路）に関するユーティリティクラス
@@ -12,8 +12,8 @@ export class FieldUtil {
      * @param type セルタイプ
      * @returns 指定したセルタイプで埋めたフィールド
      */
-    public static fill(type: CellType): CellType[][] {
-        const field: CellType[][] = [];
+    public static fill(type: Cell): Cell[][] {
+        const field: Cell[][] = [];
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             field[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
@@ -29,8 +29,8 @@ export class FieldUtil {
      * @param type セルタイプ
      * @returns 指定したセルタイプで埋めたフィールド
      */
-    public static circumference(type: CellType): CellType[][] {
-        const field: CellType[][] = FieldUtil.fill(CellTypeUtil.getOpposite(type));
+    public static circumference(type: Cell): Cell[][] {
+        const field: Cell[][] = FieldUtil.fill(CellUtil.getOpposite(type));
 
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             for (let x = 0; x < Param.MAZE_SIZE; x++) {

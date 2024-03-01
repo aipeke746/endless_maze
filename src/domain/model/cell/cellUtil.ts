@@ -1,15 +1,15 @@
-import { CellType } from './cellType';
+import { CELL, Cell } from './cell';
 
 /**
  * セル（迷路のマス）の種類に関するユーティリティクラス
  */
-export class CellTypeUtil {
+export class CellUtil {
     /**
      * セルの種類を反転するマップ
      */
-    private static readonly OPPSITE_MAP: Map<CellType, CellType> = new Map<CellType, CellType>([
-        [CellType.WALL, CellType.FLOOR],
-        [CellType.FLOOR, CellType.WALL],
+    private static readonly OPPSITE_MAP: Map<Cell, Cell> = new Map<Cell, Cell>([
+        [CELL.Wall, CELL.Floor],
+        [CELL.Floor, CELL.Wall],
     ]);
 
     /**
@@ -18,7 +18,7 @@ export class CellTypeUtil {
      * @param type セルの種類
      * @returns 対のセルの種類
      */
-    public static getOpposite(type: CellType): CellType {
+    public static getOpposite(type: Cell): Cell {
         return this.OPPSITE_MAP.get(type);
     }
 }
