@@ -1,14 +1,14 @@
-import { Param } from '../../../../param';
-import { Cell } from '../../cell/cell';
-import { FieldUtil } from '../fieldUtil';
-import { Coord } from '../../coord/coord';
-import { Maze } from '../maze';
-import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
+import { Param } from '../../../../../param';
+import { Cell } from '../../../cell/cell';
+import { FieldUtil } from '../../fieldUtil';
+import { Coord } from '../../../coord/coord';
+import { MoveDirectionDiff } from '../../../direction/moveDirectionDiff';
+import { MazeGenerate } from '../mazeFactory';
 
 /**
  * 迷路自動生成: 穴掘り法
  */
-export class DiggingOut implements Maze {
+export class DiggingOut implements MazeGenerate {
     /**
      * 生成を行う迷路
      */

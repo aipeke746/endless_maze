@@ -1,14 +1,14 @@
-import { Param } from '../../../../param';
-import { Cell } from '../../cell/cell';
-import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
-import { FieldUtil } from '../fieldUtil';
-import { Coord } from '../../coord/coord';
-import { Maze } from '../maze';
+import { Param } from '../../../../../param';
+import { Cell } from '../../../cell/cell';
+import { MoveDirectionDiff } from '../../../direction/moveDirectionDiff';
+import { FieldUtil } from '../../fieldUtil';
+import { Coord } from '../../../coord/coord';
+import { MazeGenerate } from '../mazeFactory';
 
 /**
  * 迷路自動生成: 棒倒し法
  */
-export class StickKnockDown implements Maze {
+export class StickKnockDown implements MazeGenerate {
     /**
      * 移動方向の差分に関するサービス
      */

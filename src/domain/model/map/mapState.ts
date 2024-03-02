@@ -1,8 +1,7 @@
-import { MazeFactory } from './mazeFactory';
-import { Maze } from '../maze/maze';
 import { Cell } from '../cell/cell';
-import { MAZE_TYPE } from '../maze/mazeType';
 import { Coord } from '../coord/coord';
+import { MazeFactory } from '../maze/generate/mazeFactory';
+import { MAZE_TYPE } from '../maze/generate/mazeType';
 
 /**
  * マップ（迷路）の状態を管理するクラス
@@ -17,8 +16,7 @@ export class MapState {
      * マップ（迷路）の状態を生成する
      */
     constructor() {
-        const mazeService: Maze = new MazeFactory().create(MAZE_TYPE.DiggingOut);
-        this.field = mazeService.create();
+        this.field = new MazeFactory().create(MAZE_TYPE.DiggingOut);
     }
 
     /**

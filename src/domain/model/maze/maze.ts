@@ -1,11 +1,21 @@
 import { Cell } from '../cell/cell';
+import { MazeFactory } from './generate/mazeFactory';
+import { MAZE_TYPE } from './generate/mazeType';
 
 /**
- * 迷路自動生成
+ * 迷路
  */
-export interface Maze {
+export class Maze {
     /**
-     * 迷路を生成する
+     * 迷路
      */
-    create: () => Cell[][];
+    private readonly _field: Cell[][];
+
+    constructor() {
+        this._field = new MazeFactory().create(MAZE_TYPE.DiggingOut);
+    }
+
+    public get field(): Cell[][] {
+        return JSON.parse(JSON.stringify(this._field));
+    }
 }

@@ -1,4 +1,4 @@
-import { MAZE_TYPE } from '../../domain/model/maze/mazeType';
+import { MAZE_TYPE } from '../../domain/model/maze/generate/mazeType';
 import { TextFactory } from '../../domain/model/text/textFactory';
 import { Blink } from '../../domain/model/tween/blink';
 
