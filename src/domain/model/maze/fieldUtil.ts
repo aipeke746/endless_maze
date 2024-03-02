@@ -1,6 +1,6 @@
-import { Param } from '../../../param';
 import { Cell, getOpposite } from '../cell/cell';
 import { Coord } from '../coord/coord';
+import { Maze } from './maze';
 
 /**
  * フィールド（迷路）に関するユーティリティクラス
@@ -13,9 +13,9 @@ export class FieldUtil {
      */
     public static fill(cell: Cell): Cell[][] {
         const field: Cell[][] = [];
-        for (let y = 0; y < Param.MAZE_SIZE; y++) {
+        for (let y = 0; y < Maze.SIZE; y++) {
             field[y] = [];
-            for (let x = 0; x < Param.MAZE_SIZE; x++) {
+            for (let x = 0; x < Maze.SIZE; x++) {
                 field[y][x] = cell;
             }
         }
@@ -31,8 +31,8 @@ export class FieldUtil {
     public static circumference(cell: Cell): Cell[][] {
         const field: Cell[][] = FieldUtil.fill(getOpposite(cell));
 
-        for (let y = 0; y < Param.MAZE_SIZE; y++) {
-            for (let x = 0; x < Param.MAZE_SIZE; x++) {
+        for (let y = 0; y < Maze.SIZE; y++) {
+            for (let x = 0; x < Maze.SIZE; x++) {
                 if (this.isCircumference(new Coord(x, y))) {
                     field[y][x] = cell;
                 }
@@ -47,6 +47,6 @@ export class FieldUtil {
      * @returns 外周の場合はtrue
      */
     public static isCircumference(coord: Coord): boolean {
-        return coord.x === 0 || coord.x === Param.MAZE_SIZE - 1 || coord.y === 0 || coord.y === Param.MAZE_SIZE - 1;
+        return coord.x === 0 || coord.x === Maze.SIZE - 1 || coord.y === 0 || coord.y === Maze.SIZE - 1;
     }
 }

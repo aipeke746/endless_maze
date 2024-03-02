@@ -1,13 +1,17 @@
 import { Character } from '../../domain/model/sprite/character/character';
 import { Goal } from '../../domain/model/sprite/goal/goal';
 import { Tilemap } from '../../domain/model/map/tilemap';
-import { Param } from '../../param';
 import { ManualOperate } from '../../domain/model/operate/manualOperate';
+import { Maze } from '../../domain/model/maze/maze';
 
 /**
  * ゲームのプレイシーン
  */
 export class PlayScene extends Phaser.Scene {
+    /**
+     * ステージ
+     */
+    private stage: number;
     /**
      * タイルマップ
      */
@@ -30,6 +34,14 @@ export class PlayScene extends Phaser.Scene {
     }
 
     /**
+     * ゲームのプレイシーンの初期化
+     * @param data シーンの初期化データ
+     */
+    init(data: any): void {
+        this.stage = data.stage;
+    }
+
+    /**
      * ゲームのプレイシーンの準備
      */
     preload(): void {
@@ -48,8 +60,10 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの作成
      */
     create(): void {
+        const mazeSize = this.stage * 10 + 1;
+
         this.cameras.main.fadeIn(1000, 0, 0, 0);
-        this.tilemap = new Tilemap(this, 'mapTiles');
+        this.tilemap = new Tilemap(this, 'mapTiles', mazeSize);
         this.player = new Character(this, this.tilemap, 'character');
         this.operate = new ManualOperate(this);
         this.goal = new Goal(this, this.tilemap, 'goal');
@@ -70,7 +84,7 @@ export class PlayScene extends Phaser.Scene {
      * カメラの設定（プレイヤーに合わせて移動する）
      */
     private cameraSetting(): void {
-        const bounds = Param.MAZE_SIZE * Tilemap.SIZE;
+        const bounds = Maze.SIZE * Tilemap.SIZE;
         this.cameras.main.setBounds(0, 0, bounds, bounds).startFollow(this.player.sprite.sprite, true);
     }
 
@@ -84,7 +98,7 @@ export class PlayScene extends Phaser.Scene {
             this.goal.sprite.sprite,
             () => {
                 this.time.delayedCall(200, () => {
-                    this.scene.start('playScene');
+                    this.scene.start('playScene', { stage: this.stage + 1 });
                 });
             },
             undefined,

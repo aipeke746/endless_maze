@@ -1,9 +1,9 @@
-import { Param } from '../../../../../param';
 import { Cell } from '../../../cell/cell';
 import { MoveDirectionDiff } from '../../../direction/moveDirectionDiff';
 import { FieldUtil } from '../../fieldUtil';
 import { Coord } from '../../../coord/coord';
 import { MazeGenerate } from '../mazeFactory';
+import { Maze } from '../../maze';
 
 /**
  * 迷路自動生成: 壁のばし法
@@ -74,13 +74,13 @@ export class WallStretching implements MazeGenerate {
      * 縦横奇数番目の壁（外周）の座標を全てセットする
      */
     private setPositions(): void {
-        for (let y = 0; y < Param.MAZE_SIZE; y += 2) {
+        for (let y = 0; y < Maze.SIZE; y += 2) {
             this.positions.push(new Coord(0, y));
-            this.positions.push(new Coord(Param.MAZE_SIZE - 1, y));
+            this.positions.push(new Coord(Maze.SIZE - 1, y));
         }
-        for (let x = 0; x < Param.MAZE_SIZE; x += 2) {
+        for (let x = 0; x < Maze.SIZE; x += 2) {
             this.positions.push(new Coord(x, 0));
-            this.positions.push(new Coord(x, Param.MAZE_SIZE - 1));
+            this.positions.push(new Coord(x, Maze.SIZE - 1));
         }
     }
 

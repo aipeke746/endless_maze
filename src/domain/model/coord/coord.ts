@@ -1,4 +1,4 @@
-import { Param } from '../../../param';
+import { Maze } from '../maze/maze';
 
 export class Coord {
     /**
@@ -48,7 +48,7 @@ export class Coord {
      * @returns 無効な座標の場合はtrue
      */
     private inValid(): boolean {
-        return this._x < 0 || Param.MAZE_SIZE <= this._x || this._y < 0 || Param.MAZE_SIZE <= this._y;
+        return this._x < 0 || Maze.SIZE <= this._x || this._y < 0 || Maze.SIZE <= this._y;
     }
 
     public get x(): number {

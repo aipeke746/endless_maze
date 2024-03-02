@@ -1,9 +1,9 @@
-import { Param } from '../../../../../param';
 import { Cell } from '../../../cell/cell';
 import { MoveDirectionDiff } from '../../../direction/moveDirectionDiff';
 import { FieldUtil } from '../../fieldUtil';
 import { Coord } from '../../../coord/coord';
 import { MazeGenerate } from '../mazeFactory';
+import { Maze } from '../../maze';
 
 /**
  * 迷路自動生成: 棒倒し法
@@ -28,8 +28,8 @@ export class StickKnockDown implements MazeGenerate {
      */
     private setupBase(): Cell[][] {
         const base: Cell[][] = FieldUtil.circumference(Cell.Wall);
-        for (let y = 0; y < Param.MAZE_SIZE - 2; y += 2) {
-            for (let x = 0; x < Param.MAZE_SIZE - 2; x += 2) {
+        for (let y = 0; y < Maze.SIZE - 2; y += 2) {
+            for (let x = 0; x < Maze.SIZE - 2; x += 2) {
                 base[y][x] = Cell.Wall;
             }
         }
@@ -46,8 +46,8 @@ export class StickKnockDown implements MazeGenerate {
     private stickKnockDown(base: Cell[][]): Cell[][] {
         const maze = JSON.parse(JSON.stringify(base));
 
-        for (let y = 2; y < Param.MAZE_SIZE - 2; y += 2) {
-            for (let x = 2; x < Param.MAZE_SIZE - 2; x += 2) {
+        for (let y = 2; y < Maze.SIZE - 2; y += 2) {
+            for (let x = 2; x < Maze.SIZE - 2; x += 2) {
                 const baseCoord = new Coord(x, y);
                 const wallCoord = this.getWallCoord(baseCoord);
                 maze[wallCoord.y][wallCoord.x] = Cell.Wall;

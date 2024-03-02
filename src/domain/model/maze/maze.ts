@@ -8,6 +8,11 @@ import { MazeType } from './generate/mazeType';
  */
 export class Maze {
     /**
+     * 迷路のサイズ
+     * コンストラクタでのみ設定する
+     */
+    public static SIZE: number;
+    /**
      * 迷路全体の状態を表す2次元配列
      */
     private readonly _field: Cell[][];
@@ -16,7 +21,8 @@ export class Maze {
      * 迷路を生成する
      * @param mazeType 迷路の種類
      */
-    constructor(mazeType: MazeType) {
+    constructor(mazeType: MazeType, size: number) {
+        Maze.SIZE = size;
         this._field = new MazeFactory().create(mazeType);
     }
 

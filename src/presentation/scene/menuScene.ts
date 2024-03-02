@@ -1,4 +1,3 @@
-import { MAZE_TYPE } from '../../domain/model/maze/generate/mazeType';
 import { Text } from '../../domain/model/text/text';
 import { Blink } from '../../domain/model/tween/blink';
 
@@ -34,7 +33,7 @@ export class MenuScene extends Phaser.Scene {
     private createStartText(x: number, y: number, content: string): void {
         const text = Text.createButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
             this.scene.start('playScene', {
-                mazeType: MAZE_TYPE.StickKnockDown,
+                stage: 1,
             });
         });
         const blinkTween: Blink = new Blink(this, text, 1000);

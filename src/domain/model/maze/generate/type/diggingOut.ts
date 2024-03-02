@@ -1,9 +1,9 @@
-import { Param } from '../../../../../param';
 import { Cell } from '../../../cell/cell';
 import { FieldUtil } from '../../fieldUtil';
 import { Coord } from '../../../coord/coord';
 import { MoveDirectionDiff } from '../../../direction/moveDirectionDiff';
 import { MazeGenerate } from '../mazeFactory';
+import { Maze } from '../../maze';
 
 /**
  * 迷路自動生成: 穴掘り法
@@ -75,8 +75,8 @@ export class DiggingOut implements MazeGenerate {
      * @returns スタート位置
      */
     private getStartCoord(): Coord {
-        const x = Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
-        const y = Math.floor(Math.random() * ((Param.MAZE_SIZE - 1) / 2 - 1)) * 2 + 1;
+        const x = Math.floor(Math.random() * ((Maze.SIZE - 1) / 2 - 1)) * 2 + 1;
+        const y = Math.floor(Math.random() * ((Maze.SIZE - 1) / 2 - 1)) * 2 + 1;
 
         return new Coord(x, y);
     }

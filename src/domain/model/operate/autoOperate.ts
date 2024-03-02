@@ -1,4 +1,3 @@
-import { Param } from '../../../param';
 import { MoveDirection } from '../direction/moveDirection';
 import { MoveDirectionDiff } from '../direction/moveDirectionDiff';
 import { Coord } from '../coord/coord';
@@ -49,9 +48,9 @@ export class AutoOperate {
      */
     private conversion(maze: Maze): number[][] {
         const dist: number[][] = [];
-        for (let y = 0; y < Param.MAZE_SIZE; y++) {
+        for (let y = 0; y < Maze.SIZE; y++) {
             dist[y] = [];
-            for (let x = 0; x < Param.MAZE_SIZE; x++) {
+            for (let x = 0; x < Maze.SIZE; x++) {
                 dist[y][x] = maze.isFloor(new Coord(x, y)) ? this.CAN_MOVE : this.CANNOT_MOVE;
             }
         }

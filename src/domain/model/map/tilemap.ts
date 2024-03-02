@@ -35,8 +35,8 @@ export class Tilemap {
      * @param scene シーン
      * @param tilesetName タイルセットの名前
      */
-    constructor(scene: Phaser.Scene, tilesetName: string) {
-        this._maze = new Maze(MAZE_TYPE.DiggingOut);
+    constructor(scene: Phaser.Scene, tilesetName: string, mazeSize: number) {
+        this._maze = new Maze(MAZE_TYPE.DiggingOut, mazeSize);
         this.map = scene.make.tilemap({
             data: this._maze.field,
             tileWidth: Tilemap.SIZE,
