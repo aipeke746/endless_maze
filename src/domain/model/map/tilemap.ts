@@ -1,5 +1,6 @@
 import { Coord } from '../coord/coord';
-import { MapState } from './mapState';
+import { MAZE_TYPE } from '../maze/generate/mazeType';
+import { Maze } from '../maze/maze';
 
 /**
  * タイルマップを表すクラス
@@ -14,7 +15,7 @@ export class Tilemap {
     /**
      * マップ（迷路）の状態
      */
-    public mapState: MapState;
+    public maze: Maze;
     /**
      * タイルマップ
      */
@@ -35,9 +36,9 @@ export class Tilemap {
      * @param tilesetName タイルセットの名前
      */
     constructor(scene: Phaser.Scene, tilesetName: string) {
-        this.mapState = new MapState();
+        this.maze = new Maze(MAZE_TYPE.DiggingOut);
         this.map = scene.make.tilemap({
-            data: this.mapState.maze.field,
+            data: this.maze.field,
             tileWidth: Tilemap.SIZE,
             tileHeight: Tilemap.SIZE,
         });

@@ -1,9 +1,9 @@
-import { MapState } from '../map/mapState';
 import { Param } from '../../../param';
 import { MoveDirection } from '../direction/moveDirection';
 import { MoveDirectionDiff } from '../direction/moveDirectionDiff';
 import { Coord } from '../coord/coord';
 import { FifoQueue } from '../queue/fifoQueue';
+import { Maze } from '../maze/maze';
 
 /**
  * 自動操作の実装
@@ -30,29 +30,29 @@ export class AutoOperate {
 
     /**
      * 次の移動方向を返す
-     * @param mapState マップの状態
+     * @param maze 迷路の状態
      * @param from 移動元の座標（現在地）
      * @param to 移動先の座標（目的地）
      * @returns 次の移動方向
      */
-    getDirection(mapState: MapState, from: Coord, to: Coord): MoveDirection {
-        const dist = this.conversion(mapState);
+    getDirection(maze: Maze, from: Coord, to: Coord): MoveDirection {
+        const dist = this.conversion(maze);
         const bfsDist = this.bfs(dist, from, to);
         return this.nextDirection(bfsDist, to);
     }
 
     /**
      * 迷路の状態から移動可能な座標と移動不可な座標に変換する
-     * @param mapState マップの状態
+     * @param maze 迷路の状態
      * @param from 移動元の座標
      * @returns 移動可能な座標
      */
-    private conversion(mapState: MapState): number[][] {
+    private conversion(maze: Maze): number[][] {
         const dist: number[][] = [];
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             dist[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
-                dist[y][x] = mapState.maze.isFloor(new Coord(x, y)) ? this.CAN_MOVE : this.CANNOT_MOVE;
+                dist[y][x] = maze.isFloor(new Coord(x, y)) ? this.CAN_MOVE : this.CANNOT_MOVE;
             }
         }
         return dist;

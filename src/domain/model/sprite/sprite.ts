@@ -48,7 +48,7 @@ export class Sprite {
         tilemap: Tilemap,
         spriteName: string
     ): Phaser.GameObjects.Sprite {
-        const coord: Coord = tilemap.mapState.maze.getRandomFloorCoord();
+        const coord: Coord = tilemap.maze.getRandomFloorCoord();
         const pos: Phaser.Math.Vector2 = tilemap.getWorldPos(coord);
         return this.createSprite(scene, pos, spriteName);
     }
