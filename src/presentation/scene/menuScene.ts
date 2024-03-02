@@ -1,6 +1,6 @@
 import { MAZE_TYPE } from '../../domain/model/maze/mazeType';
-import { TextUtil } from '../../domain/model/text/textUtil';
-import { TweenUtil } from '../../domain/model/tween/tweenUtil';
+import { TextFactory } from '../../domain/model/text/textFactory';
+import { Blink } from '../../domain/model/tween/blink';
 
 /**
  * ゲームのメニューシーン
@@ -32,11 +32,12 @@ export class MenuScene extends Phaser.Scene {
      * @param content 表示する文字列
      */
     private createStartText(x: number, y: number, content: string): void {
-        const text = TextUtil.createTextButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
+        const text = TextFactory.createButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
             this.scene.start('playScene', {
                 mazeType: MAZE_TYPE.StickKnockDown,
             });
         });
-        TweenUtil.blinking(this, text, 1000);
+        const blinkTween: Blink = new Blink(this, text, 1000);
+        blinkTween.start();
     }
 }

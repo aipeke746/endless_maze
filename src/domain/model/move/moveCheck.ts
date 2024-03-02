@@ -7,7 +7,7 @@ import { Sprite } from '../sprite/sprite';
 /**
  * 移動に関連するサービス
  */
-export class Move {
+export class MoveCheck {
     /**
      * 移動方向と移動する時の差分をまとめたマップ
      */
@@ -35,35 +35,5 @@ export class Move {
             // 例外（移動先の座標がマップ[迷路のフィールド]外）の場合
             return nowCoord;
         }
-    }
-
-    /**
-     * 対象のスプライトをグリッド移動させる
-     * @param target 移動するターゲットのスプライト
-     * @param tilemap タイルマップ
-     * @param nextCoord 移動先の座標
-     * @param onComplete 移動完了時の処理
-     */
-    public gridMoveTween(target: Sprite, tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
-        const nowPos = target.getPos();
-        const nextPos = tilemap.getWorldPos(nextCoord);
-        const sprite = target.getSprite();
-
-        const tween: Phaser.Tweens.Tween = sprite.scene.add.tween({
-            targets: [sprite],
-            x: {
-                getStart: () => nowPos.x,
-                getEnd: () => nextPos.x,
-            },
-            y: {
-                getStart: () => nowPos.y,
-                getEnd: () => nextPos.y,
-            },
-            duration: 200,
-            onComplete: () => {
-                tween.stop();
-                onComplete();
-            },
-        });
     }
 }

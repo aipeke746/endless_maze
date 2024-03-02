@@ -3,7 +3,7 @@ import { Color } from '../color/color';
 /**
  * 文字を作成するユーティリティクラス
  */
-export class TextUtil {
+export class TextFactory {
     /**
      * 文字を作成する
      * @param scene シーン
@@ -13,7 +13,7 @@ export class TextUtil {
      * @param fontSize 文字の大きさ
      * @returns 作成した文字
      */
-    public static createText(
+    public static create(
         scene: Phaser.Scene,
         x: number,
         y: number,
@@ -33,7 +33,7 @@ export class TextUtil {
      * @param fontSize 文字の大きさ
      * @returns 作成したボタン機能を持った文字
      */
-    public static createTextButton(
+    public static createButton(
         scene: Phaser.Scene,
         x: number,
         y: number,
@@ -41,6 +41,6 @@ export class TextUtil {
         fontSize: number,
         fontColor: string = Color.WHITE
     ): Phaser.GameObjects.Text {
-        return this.createText(scene, x, y, content, fontSize, fontColor).setInteractive();
+        return this.create(scene, x, y, content, fontSize, fontColor).setInteractive();
     }
 }

@@ -1,10 +1,11 @@
 import { Animation } from '../../animation/animation';
 import { CharacterAnimation } from '../../animation/sprite/characterAnimation';
-import { Move } from '../../move/move';
+import { MoveCheck } from '../../move/moveCheck';
 import { MoveDirection } from '../../direction/moveDirection';
 import { Coord } from '../../coord/coord';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
+import { GridMove } from '../../tween/gridMove';
 
 /**
  * キャラクターを管理するクラス
@@ -21,7 +22,11 @@ export class Character {
     /**
      * キャラクターの移動
      */
-    private readonly moveService: Move;
+    private readonly move: GridMove;
+    /**
+     * キャラクターの移動に関するサービス
+     */
+    private readonly moveCheck: MoveCheck = new MoveCheck();
     /**
      * キャラクターが歩いているかどうか
      * グリッド移動をするため、歩いている間は他の移動を受け付けない
@@ -36,7 +41,7 @@ export class Character {
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         this.main = new Sprite(scene, tilemap, spriteName);
-        this.moveService = new Move();
+        this.move = new GridMove(this.main);
         this.animation = new CharacterAnimation();
         this.animation.create(scene, spriteName);
     }
@@ -57,9 +62,9 @@ export class Character {
     public walk(tilemap: Tilemap, direction: MoveDirection): void {
         if (this.isWalking || direction === MoveDirection.IDLE) return;
 
-        const nextCoord: Coord = this.moveService.getMoveToCoord(this.main, tilemap, direction);
+        const nextCoord: Coord = this.moveCheck.getMoveToCoord(this.main, tilemap, direction);
         this.startWalk(direction);
-        this.moveService.gridMoveTween(this.main, tilemap, nextCoord, () => {
+        this.move.run(tilemap, nextCoord, () => {
             this.stopWalk();
         });
     }
