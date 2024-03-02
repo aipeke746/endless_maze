@@ -1,5 +1,5 @@
 import { MapState } from '../../model/map/mapState';
-import { MoveDirectionType } from '../../model/direction/MoveDirectionType';
+import { MoveDirection } from '../../model/direction/MoveDirection';
 import { Coord } from '../../model/coord/coord';
 
 /**
@@ -14,5 +14,5 @@ export interface OperateService {
      * @param to 移動先の座標（自動操作の場合は必要）
      * @returns キャラクターの移動方向
      */
-    getDirection: (mapState?: MapState, from?: Coord, to?: Coord) => MoveDirectionType;
+    getDirection: (mapState?: MapState, from?: Coord, to?: Coord) => MoveDirection;
 }

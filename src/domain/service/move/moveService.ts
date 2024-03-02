@@ -1,5 +1,5 @@
 import { Tilemap } from '../../model/map/tilemap';
-import { MoveDirectionType } from '../../model/direction/MoveDirectionType';
+import { MOVE_DIRECTION, MoveDirection } from '../../model/direction/MoveDirection';
 import { Coord } from '../../model/coord/coord';
 import Phaser from 'phaser';
 import { Sprite } from '../../model/sprite/sprite';
@@ -11,15 +11,13 @@ export class MoveService {
     /**
      * 移動方向と移動する時の差分をまとめたマップ
      */
-    private readonly MAP: Map<MoveDirectionType, Phaser.Math.Vector2> = new Map<MoveDirectionType, Phaser.Math.Vector2>(
-        [
-            [MoveDirectionType.DOWN, new Phaser.Math.Vector2(0, 1)],
-            [MoveDirectionType.UP, new Phaser.Math.Vector2(0, -1)],
-            [MoveDirectionType.LEFT, new Phaser.Math.Vector2(-1, 0)],
-            [MoveDirectionType.RIGHT, new Phaser.Math.Vector2(1, 0)],
-            [MoveDirectionType.IDLE, undefined],
-        ]
-    );
+    private readonly MAP: Map<MoveDirection, Phaser.Math.Vector2> = new Map<MoveDirection, Phaser.Math.Vector2>([
+        [MOVE_DIRECTION.DOWN, new Phaser.Math.Vector2(0, 1)],
+        [MOVE_DIRECTION.UP, new Phaser.Math.Vector2(0, -1)],
+        [MOVE_DIRECTION.LEFT, new Phaser.Math.Vector2(-1, 0)],
+        [MOVE_DIRECTION.RIGHT, new Phaser.Math.Vector2(1, 0)],
+        [MOVE_DIRECTION.IDLE, undefined],
+    ]);
 
     /**
      * 移動先の座標を取得する（移動できない場合はundefinedを返す）
@@ -28,7 +26,7 @@ export class MoveService {
      * @param direction 移動方向
      * @returns 移動先の座標
      */
-    public getMoveToCoord(target: Sprite, tilemap: Tilemap, direction: MoveDirectionType): Coord {
+    public getMoveToCoord(target: Sprite, tilemap: Tilemap, direction: MoveDirection): Coord {
         const nowCoord: Coord = target.getCoord(tilemap);
         try {
             const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));

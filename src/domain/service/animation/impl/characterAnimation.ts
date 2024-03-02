@@ -1,4 +1,4 @@
-import { MoveDirectionType } from '../../../model/direction/MoveDirectionType';
+import { MOVE_DIRECTION, MoveDirection } from '../../../model/direction/MoveDirection';
 import { AnimationService } from '../animationService';
 
 /**
@@ -9,13 +9,13 @@ export class CharacterAnimation extends AnimationService {
      * アニメーションの設定
      */
     protected readonly ANIMATION: Array<{
-        key: MoveDirectionType;
+        key: MoveDirection;
         frameStart: number;
         frameEnd: number;
     }> = [
-        { key: MoveDirectionType.DOWN, frameStart: 0, frameEnd: 2 },
-        { key: MoveDirectionType.LEFT, frameStart: 3, frameEnd: 5 },
-        { key: MoveDirectionType.RIGHT, frameStart: 6, frameEnd: 8 },
-        { key: MoveDirectionType.UP, frameStart: 9, frameEnd: 11 },
+        { key: MOVE_DIRECTION.DOWN, frameStart: 0, frameEnd: 2 },
+        { key: MOVE_DIRECTION.LEFT, frameStart: 3, frameEnd: 5 },
+        { key: MOVE_DIRECTION.RIGHT, frameStart: 6, frameEnd: 8 },
+        { key: MOVE_DIRECTION.UP, frameStart: 9, frameEnd: 11 },
     ];
 }

@@ -1,6 +1,6 @@
 import { MapState } from '../../../model/map/mapState';
 import { Param } from '../../../../param';
-import { MoveDirectionType } from '../../../model/direction/MoveDirectionType';
+import { MOVE_DIRECTION, MoveDirection } from '../../../model/direction/MoveDirection';
 import { DirectionDiffService } from '../../direction/directionDiffService';
 import { Coord } from '../../../model/coord/coord';
 import { FifoQueue } from '../../../model/queue/fifoQueue';
@@ -36,7 +36,7 @@ export class AutoImpl implements OperateService {
      * @param to 移動先の座標（目的地）
      * @returns 次の移動方向
      */
-    getDirection(mapState: MapState, from: Coord, to: Coord): MoveDirectionType {
+    getDirection(mapState: MapState, from: Coord, to: Coord): MoveDirection {
         const dist = this.conversion(mapState);
         const bfsDist = this.bfs(dist, from, to);
         return this.nextDirection(bfsDist, to);
@@ -103,8 +103,8 @@ export class AutoImpl implements OperateService {
      * @param to
      * @returns
      */
-    private nextDirection(dist: number[][], to: Coord): MoveDirectionType {
-        let nextDirection: MoveDirectionType = MoveDirectionType.IDLE;
+    private nextDirection(dist: number[][], to: Coord): MoveDirection {
+        let nextDirection: MoveDirection = MOVE_DIRECTION.IDLE;
         let coord = to;
 
         while (dist[coord.y][coord.x] > this.START_COUNTER_NUM) {

@@ -1,4 +1,4 @@
-import { MoveDirectionType } from '../../../model/direction/MoveDirectionType';
+import { MOVE_DIRECTION, MoveDirection } from '../../../model/direction/MoveDirection';
 import { OperateService } from '../operateService';
 
 /**
@@ -51,37 +51,37 @@ export class ManualImpl implements OperateService {
      * 外部入力からキャラクターの移動方向を返す
      * @returns
      */
-    getDirection(): MoveDirectionType {
+    getDirection(): MoveDirection {
         const keyDirection = this.getKeyDirection();
         const swipeDirection = this.getSwipeDirection();
 
-        return this.getKeyDirection() !== MoveDirectionType.IDLE ? keyDirection : swipeDirection;
+        return this.getKeyDirection() !== MOVE_DIRECTION.IDLE ? keyDirection : swipeDirection;
     }
 
     /**
      * 方向キーの入力からキャラクターの移動方向を返す
      * @returns キャラクターの移動方向
      */
-    private getKeyDirection(): MoveDirectionType {
+    private getKeyDirection(): MoveDirection {
         if (this.cursors.right.isDown) {
-            return MoveDirectionType.RIGHT;
+            return MOVE_DIRECTION.RIGHT;
         } else if (this.cursors.left.isDown) {
-            return MoveDirectionType.LEFT;
+            return MOVE_DIRECTION.LEFT;
         } else if (this.cursors.down.isDown) {
-            return MoveDirectionType.DOWN;
+            return MOVE_DIRECTION.DOWN;
         } else if (this.cursors.up.isDown) {
-            return MoveDirectionType.UP;
+            return MOVE_DIRECTION.UP;
         }
 
-        return MoveDirectionType.IDLE;
+        return MOVE_DIRECTION.IDLE;
     }
 
     /**
      * スワイプの入力からキャラクターの移動方向を返す
      * @returns キャラクターの移動方向
      */
-    private getSwipeDirection(): MoveDirectionType {
-        if (!this.isPointerDown) return MoveDirectionType.IDLE;
+    private getSwipeDirection(): MoveDirection {
+        if (!this.isPointerDown) return MOVE_DIRECTION.IDLE;
         return this.onSwipe();
     }
 
@@ -89,7 +89,7 @@ export class ManualImpl implements OperateService {
      * スワイプの方向を返す
      * @returns スワイプの方向
      */
-    private onSwipe(): MoveDirectionType {
+    private onSwipe(): MoveDirection {
         const swipeVector = new Phaser.Geom.Point(
             this.pointer.position.x - this.pointer.downX,
             this.pointer.position.y - this.pointer.downY
@@ -98,14 +98,14 @@ export class ManualImpl implements OperateService {
         const swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipeVector);
         const swipeNormal = new Phaser.Geom.Point(swipeVector.x / swipeMagnitude, swipeVector.y / swipeMagnitude);
 
-        if (swipeMagnitude < 50) return MoveDirectionType.IDLE;
+        if (swipeMagnitude < 50) return MOVE_DIRECTION.IDLE;
 
         const { x: absX, y: absY } = new Phaser.Geom.Point(Math.abs(swipeNormal.x), Math.abs(swipeNormal.y));
 
         if (absX > absY) {
-            return swipeNormal.x > 0 ? MoveDirectionType.RIGHT : MoveDirectionType.LEFT;
+            return swipeNormal.x > 0 ? MOVE_DIRECTION.RIGHT : MOVE_DIRECTION.LEFT;
         } else {
-            return swipeNormal.y > 0 ? MoveDirectionType.DOWN : MoveDirectionType.UP;
+            return swipeNormal.y > 0 ? MOVE_DIRECTION.DOWN : MOVE_DIRECTION.UP;
         }
     }
 }
