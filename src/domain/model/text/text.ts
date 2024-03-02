@@ -3,7 +3,7 @@ import { Color } from '../color/color';
 /**
  * 文字を作成するユーティリティクラス
  */
-export class TextFactory {
+export class Text {
     /**
      * 文字を作成する
      * @param scene シーン
