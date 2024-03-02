@@ -1,7 +1,7 @@
 /**
  * 操作方法の種類
  */
-export const OPERATION = {
+export const Operation = {
     /**
      * 手動
      * （矢印キー入力・スワイプ入力によって移動する）
@@ -14,4 +14,4 @@ export const OPERATION = {
     AUTO: 'auto',
 };
 
-export type Operation = (typeof OPERATION)[keyof typeof OPERATION];
+export type Operation = (typeof Operation)[keyof typeof Operation]; // eslint-disable-line

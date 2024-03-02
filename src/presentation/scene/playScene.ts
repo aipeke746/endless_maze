@@ -4,7 +4,7 @@ import { Tilemap } from '../../domain/model/map/tilemap';
 import { OperateFactory } from '../../domain/model/operate/operateFactory';
 import { Param } from '../../param';
 import { OperateService } from '../../domain/service/operate/operateService';
-import { OPERATION } from '../../domain/model/operate/operation';
+import { Operation } from '../../domain/model/operate/operation';
 
 /**
  * ゲームのプレイシーン
@@ -53,7 +53,7 @@ export class PlayScene extends Phaser.Scene {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.tilemap = new Tilemap(this, 'mapTiles');
         this.player = new Character(this, this.tilemap, 'character');
-        this.operate = new OperateFactory(this).create(OPERATION.MANUAL);
+        this.operate = new OperateFactory(this).create(Operation.MANUAL);
         this.goal = new Goal(this, this.tilemap, 'goal');
 
         this.cameraSetting();
