@@ -1,11 +1,11 @@
 import { Animation } from '../../animation/animation';
 import { CharacterAnimation } from '../../animation/sprite/characterAnimation';
-import { MoveCheck } from '../../move/moveCheck';
 import { MoveDirection } from '../../direction/moveDirection';
 import { Coord } from '../../coord/coord';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
 import { GridMove } from '../../tween/gridMove';
+import { MoveService } from '../../../service/moveService';
 
 /**
  * キャラクターを管理するクラス
@@ -26,7 +26,7 @@ export class Character {
     /**
      * キャラクターの移動に関するサービス
      */
-    private readonly moveCheck: MoveCheck = new MoveCheck();
+    private readonly moveService: MoveService = new MoveService();
     /**
      * キャラクターが歩いているかどうか
      * グリッド移動をするため、歩いている間は他の移動を受け付けない
@@ -53,7 +53,7 @@ export class Character {
     public walk(tilemap: Tilemap, direction: MoveDirection): void {
         if (this.isWalking || direction === MoveDirection.IDLE) return;
 
-        const nextCoord: Coord = this.moveCheck.getMoveToCoord(this._sprite, tilemap, direction);
+        const nextCoord: Coord = this.moveService.getMoveToCoord(this._sprite, tilemap, direction);
         this.startWalk(direction);
         this.move.run(tilemap, nextCoord, () => {
             this.stopWalk();
