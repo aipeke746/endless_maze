@@ -1,17 +1,16 @@
-import { MapState } from '../../map/mapState';
-import { Param } from '../../../../param';
-import { MoveDirection } from '../../direction/moveDirection';
-import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
-import { Coord } from '../../coord/coord';
-import { FifoQueue } from '../../queue/fifoQueue';
-import { Operate } from '../operate';
+import { MapState } from '../map/mapState';
+import { Param } from '../../../param';
+import { MoveDirection } from '../direction/moveDirection';
+import { MoveDirectionDiff } from '../direction/moveDirectionDiff';
+import { Coord } from '../coord/coord';
+import { FifoQueue } from '../queue/fifoQueue';
 
 /**
  * 自動操作の実装
  *
  * 幅優先探索方を用いて、移動元（from）から移動先（to）までの最短経路を求めて次に移動する方向を決定する
  */
-export class AutoImpl implements Operate {
+export class AutoOperate {
     /**
      * 移動不可
      */

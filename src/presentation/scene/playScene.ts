@@ -1,10 +1,8 @@
 import { Character } from '../../domain/model/sprite/character/character';
 import { Goal } from '../../domain/model/sprite/goal/goal';
 import { Tilemap } from '../../domain/model/map/tilemap';
-import { OperateFactory } from '../../domain/model/operate/operateFactory';
 import { Param } from '../../param';
-import { Operate } from '../../domain/model/operate/operate';
-import { Operation } from '../../domain/model/operate/operation';
+import { ManualOperate } from '../../domain/model/operate/manualOperate';
 
 /**
  * ゲームのプレイシーン
@@ -21,7 +19,7 @@ export class PlayScene extends Phaser.Scene {
     /**
      * プレイヤーの操作
      */
-    private operate: Operate;
+    private operate: ManualOperate;
     /**
      * ゴール
      */
@@ -53,7 +51,7 @@ export class PlayScene extends Phaser.Scene {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.tilemap = new Tilemap(this, 'mapTiles');
         this.player = new Character(this, this.tilemap, 'character');
-        this.operate = new OperateFactory(this).create(Operation.MANUAL);
+        this.operate = new ManualOperate(this);
         this.goal = new Goal(this, this.tilemap, 'goal');
 
         this.cameraSetting();
