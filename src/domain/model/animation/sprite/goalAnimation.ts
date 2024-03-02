@@ -1,9 +1,9 @@
-import { AnimationService } from '../animationService';
+import { Animation } from '../animation';
 
 /**
  * ゴールのアニメーション
  */
-export class GoalAnimation extends AnimationService {
+export class GoalAnimation extends Animation {
     /**
      * アニメーションのキー
      */

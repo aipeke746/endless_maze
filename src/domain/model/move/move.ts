@@ -1,13 +1,13 @@
-import { Tilemap } from '../../model/map/tilemap';
-import { MoveDirection } from '../../model/direction/MoveDirection';
-import { Coord } from '../../model/coord/coord';
+import { Tilemap } from '../map/tilemap';
+import { MoveDirection } from '../direction/moveDirection';
+import { Coord } from '../coord/coord';
 import Phaser from 'phaser';
-import { Sprite } from '../../model/sprite/sprite';
+import { Sprite } from '../sprite/sprite';
 
 /**
  * 移動に関連するサービス
  */
-export class MoveService {
+export class Move {
     /**
      * 移動方向と移動する時の差分をまとめたマップ
      */

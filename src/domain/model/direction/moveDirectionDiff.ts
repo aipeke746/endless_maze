@@ -1,9 +1,9 @@
-import { MoveDirection } from '../../model/direction/MoveDirection';
+import { MoveDirection } from './moveDirection';
 
 /**
  * 方向の差分に関するサービスクラス
  */
-export class DirectionDiffService {
+export class MoveDirectionDiff {
     /**
      * 移動方向と座標の差分のマップ
      */
@@ -18,7 +18,7 @@ export class DirectionDiffService {
     /**
      * 移動方向と反対の移動方向のマップ
      */
-    private readonly OPPNENT_DICTION = new Map<MoveDirection, MoveDirection>([
+    private readonly OPPONENT_DIRECTION = new Map<MoveDirection, MoveDirection>([
         [MoveDirection.IDLE, MoveDirection.IDLE],
         [MoveDirection.UP, MoveDirection.DOWN],
         [MoveDirection.DOWN, MoveDirection.UP],
@@ -96,6 +96,6 @@ export class DirectionDiffService {
      */
     public getOpponentDirection(diff: Phaser.Math.Vector2): MoveDirection {
         const direction = this.getDirection(diff);
-        return this.OPPNENT_DICTION.get(direction);
+        return this.OPPONENT_DIRECTION.get(direction);
     }
 }

@@ -1,5 +1,5 @@
-import { AnimationService } from '../../../service/animation/animationService';
-import { GoalAnimation } from '../../../service/animation/impl/goalAnimation';
+import { Animation } from '../../animation/animation';
+import { GoalAnimation } from '../../animation/sprite/goalAnimation';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
 
@@ -14,7 +14,7 @@ export class Goal {
     /**
      * ゴールのアニメーション
      */
-    private readonly animation: AnimationService;
+    private readonly animation: Animation;
 
     /**
      * ゴールを生成する

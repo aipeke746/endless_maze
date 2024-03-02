@@ -1,11 +1,11 @@
-import { MapState } from '../../model/map/mapState';
-import { MoveDirection } from '../../model/direction/MoveDirection';
-import { Coord } from '../../model/coord/coord';
+import { MapState } from '../map/mapState';
+import { MoveDirection } from '../direction/moveDirection';
+import { Coord } from '../coord/coord';
 
 /**
  * キャラクターの操作を行うサービス
  */
-export interface OperateService {
+export interface Operate {
     /**
      * キャラクターの移動方向を返す
      * 手動操作の場合は、引数は不要

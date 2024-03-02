@@ -1,7 +1,7 @@
-import { AnimationService } from '../../../service/animation/animationService';
-import { CharacterAnimation } from '../../../service/animation/impl/characterAnimation';
-import { MoveService } from '../../../service/move/moveService';
-import { MoveDirection } from '../../direction/MoveDirection';
+import { Animation } from '../../animation/animation';
+import { CharacterAnimation } from '../../animation/sprite/characterAnimation';
+import { Move } from '../../move/move';
+import { MoveDirection } from '../../direction/moveDirection';
 import { Coord } from '../../coord/coord';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
@@ -17,11 +17,11 @@ export class Character {
     /**
      * キャラクターのアニメーション
      */
-    private readonly animation: AnimationService;
+    private readonly animation: Animation;
     /**
      * キャラクターの移動
      */
-    private readonly moveService: MoveService;
+    private readonly moveService: Move;
     /**
      * キャラクターが歩いているかどうか
      * グリッド移動をするため、歩いている間は他の移動を受け付けない
@@ -36,7 +36,7 @@ export class Character {
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         this.main = new Sprite(scene, tilemap, spriteName);
-        this.moveService = new MoveService();
+        this.moveService = new Move();
         this.animation = new CharacterAnimation();
         this.animation.create(scene, spriteName);
     }

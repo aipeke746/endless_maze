@@ -1,7 +1,7 @@
-import { DiggingOut } from '../../service/maze/impl/diggingOut';
-import { StickKnockDown } from '../../service/maze/impl/stickKnockDown';
+import { DiggingOut } from '../maze/impl/diggingOut';
+import { StickKnockDown } from '../maze/impl/stickKnockDown';
 import { MAZE_TYPE, MazeType } from '../maze/mazeType';
-import { MazeService } from '../../service/maze/mazeService';
+import { Maze } from '../maze/maze';
 
 /**
  * 迷路生成方法の種類から迷路生成を行うクラスを取得するファクトリクラス
@@ -10,7 +10,7 @@ export class MazeFactory {
     /**
      * 迷路生成方法の種類と迷路生成を行うクラスのマップ
      */
-    private readonly MAP = new Map<MazeType, MazeService>();
+    private readonly MAP = new Map<MazeType, Maze>();
 
     /**
      * 迷路生成方法の種類と迷路生成を行うクラスのマップを設定する
@@ -26,7 +26,7 @@ export class MazeFactory {
      * @param type 迷路生成方法の種類
      * @returns 迷路生成を行うクラス
      */
-    public create(type: MazeType): MazeService {
+    public create(type: MazeType): Maze {
         return this.MAP.get(type);
     }
 }

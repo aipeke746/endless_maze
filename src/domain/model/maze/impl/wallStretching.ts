@@ -1,14 +1,14 @@
 import { Param } from '../../../../param';
-import { Cell } from '../../../model/cell/cell';
-import { DirectionDiffService } from '../../direction/directionDiffService';
-import { FieldUtil } from '../../../model/maze/fieldUtil';
-import { Coord } from '../../../model/coord/coord';
-import { MazeService } from '../mazeService';
+import { Cell } from '../../cell/cell';
+import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
+import { FieldUtil } from '../fieldUtil';
+import { Coord } from '../../coord/coord';
+import { Maze } from '../maze';
 
 /**
  * 迷路自動生成: 壁のばし法
  */
-export class WallStretching implements MazeService {
+export class WallStretching implements Maze {
     /**
      * 生成を行う迷路
      */
@@ -20,7 +20,7 @@ export class WallStretching implements MazeService {
     /**
      * 移動方向の差分に関するサービス
      */
-    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
+    private readonly directionDiffService: MoveDirectionDiff = new MoveDirectionDiff();
 
     /**
      * 壁のばし法で迷路を生成する

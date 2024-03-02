@@ -1,5 +1,5 @@
-import { MoveDirection } from '../../../model/direction/MoveDirection';
-import { OperateService } from '../operateService';
+import { MoveDirection } from '../../direction/moveDirection';
+import { Operate } from '../operate';
 
 /**
  * 外部入力（手動操作）からキャラクターを操作する
@@ -7,7 +7,7 @@ import { OperateService } from '../operateService';
  * PC: キーボードの上下左右キーでキャラクターを操作する
  * スマホ: スワイプでキャラクターを操作する
  */
-export class ManualImpl implements OperateService {
+export class ManualImpl implements Operate {
     /**
      * キーボード入力
      */

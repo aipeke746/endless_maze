@@ -1,6 +1,6 @@
-import { AutoImpl } from '../../service/operate/impl/autoImpl';
-import { ManualImpl } from '../../service/operate/impl/manualImpl';
-import { OperateService } from '../../service/operate/operateService';
+import { AutoImpl } from './impl/autoImpl';
+import { ManualImpl } from './impl/manualImpl';
+import { Operate } from './operate';
 import { Operation } from './operation';
 
 /**
@@ -10,7 +10,7 @@ export class OperateFactory {
     /**
      * 操作方法の種類と操作方法のサービスクラスのマップ
      */
-    private readonly MAP = new Map<Operation, OperateService>();
+    private readonly MAP = new Map<Operation, Operate>();
 
     /**
      * 操作方法の種類と操作方法のサービスクラスのマップを設定する
@@ -22,10 +22,10 @@ export class OperateFactory {
 
     /**
      * 操作方法のサービスクラスを作成する
-     * @param type 操作方法の種類
+     * @param operation 操作方法の種類
      * @returns 操作方法のサービスクラス
      */
-    public create(type: Operation): OperateService {
-        return this.MAP.get(type);
+    public create(operation: Operation): Operate {
+        return this.MAP.get(operation);
     }
 }

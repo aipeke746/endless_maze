@@ -1,14 +1,14 @@
 import { Param } from '../../../../param';
-import { Cell } from '../../../model/cell/cell';
-import { FieldUtil } from '../../../model/maze/fieldUtil';
-import { Coord } from '../../../model/coord/coord';
-import { MazeService } from '../mazeService';
-import { DirectionDiffService } from '../../direction/directionDiffService';
+import { Cell } from '../../cell/cell';
+import { FieldUtil } from '../fieldUtil';
+import { Coord } from '../../coord/coord';
+import { Maze } from '../maze';
+import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
 
 /**
  * 迷路自動生成: 穴掘り法
  */
-export class DiggingOut implements MazeService {
+export class DiggingOut implements Maze {
     /**
      * 生成を行う迷路
      */
@@ -20,7 +20,7 @@ export class DiggingOut implements MazeService {
     /**
      * 移動方向の差分に関するサービス
      */
-    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
+    private readonly directionDiffService: MoveDirectionDiff = new MoveDirectionDiff();
 
     /**
      * 穴掘り法で迷路を生成する

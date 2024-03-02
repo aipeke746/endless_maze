@@ -1,10 +1,10 @@
-import { MoveDirection } from '../../../model/direction/MoveDirection';
-import { AnimationService } from '../animationService';
+import { MoveDirection } from '../../direction/moveDirection';
+import { Animation } from '../animation';
 
 /**
  * キャラクターのアニメーション
  */
-export class CharacterAnimation extends AnimationService {
+export class CharacterAnimation extends Animation {
     /**
      * アニメーションの設定
      */

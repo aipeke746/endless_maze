@@ -1,5 +1,5 @@
 import { MazeFactory } from './mazeFactory';
-import { MazeService } from '../../service/maze/mazeService';
+import { Maze } from '../maze/maze';
 import { Cell } from '../cell/cell';
 import { MAZE_TYPE } from '../maze/mazeType';
 import { Coord } from '../coord/coord';
@@ -17,7 +17,7 @@ export class MapState {
      * マップ（迷路）の状態を生成する
      */
     constructor() {
-        const mazeService: MazeService = new MazeFactory().create(MAZE_TYPE.DiggingOut);
+        const mazeService: Maze = new MazeFactory().create(MAZE_TYPE.DiggingOut);
         this.field = mazeService.create();
     }
 

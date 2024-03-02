@@ -3,7 +3,7 @@ import { Goal } from '../../domain/model/sprite/goal/goal';
 import { Tilemap } from '../../domain/model/map/tilemap';
 import { OperateFactory } from '../../domain/model/operate/operateFactory';
 import { Param } from '../../param';
-import { OperateService } from '../../domain/service/operate/operateService';
+import { Operate } from '../../domain/model/operate/operate';
 import { Operation } from '../../domain/model/operate/operation';
 
 /**
@@ -21,7 +21,7 @@ export class PlayScene extends Phaser.Scene {
     /**
      * プレイヤーの操作
      */
-    private operate: OperateService;
+    private operate: Operate;
     /**
      * ゴール
      */

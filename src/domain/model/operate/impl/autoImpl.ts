@@ -1,17 +1,17 @@
-import { MapState } from '../../../model/map/mapState';
+import { MapState } from '../../map/mapState';
 import { Param } from '../../../../param';
-import { MoveDirection } from '../../../model/direction/MoveDirection';
-import { DirectionDiffService } from '../../direction/directionDiffService';
-import { Coord } from '../../../model/coord/coord';
-import { FifoQueue } from '../../../model/queue/fifoQueue';
-import { OperateService } from '../operateService';
+import { MoveDirection } from '../../direction/moveDirection';
+import { MoveDirectionDiff } from '../../direction/moveDirectionDiff';
+import { Coord } from '../../coord/coord';
+import { FifoQueue } from '../../queue/fifoQueue';
+import { Operate } from '../operate';
 
 /**
  * 自動操作の実装
  *
  * 幅優先探索方を用いて、移動元（from）から移動先（to）までの最短経路を求めて次に移動する方向を決定する
  */
-export class AutoImpl implements OperateService {
+export class AutoImpl implements Operate {
     /**
      * 移動不可
      */
@@ -27,7 +27,7 @@ export class AutoImpl implements OperateService {
     /**
      * 移動方向の差分に関するサービス
      */
-    private readonly directionDiffService: DirectionDiffService = new DirectionDiffService();
+    private readonly directionDiffService: MoveDirectionDiff = new MoveDirectionDiff();
 
     /**
      * 次の移動方向を返す

@@ -3,7 +3,7 @@
  *
  * スプライトのアニメーションを生成する場合はこのクラスを継承して、クラスを作成する
  */
-export abstract class AnimationService {
+export abstract class Animation {
     /**
      * アニメーションの設定
      */
