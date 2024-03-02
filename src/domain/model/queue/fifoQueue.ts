@@ -5,21 +5,15 @@ export class FifoQueue<T> {
     /**
      * キュー
      */
-    private readonly queue: Map<number, T>;
+    private readonly queue: Map<number, T> = new Map<number, T>();
     /**
      * 先頭のインデックス
      */
-    private head: number;
+    private head: number = 0;
     /**
      * 末尾のインデックス
      */
-    private tail: number;
-
-    constructor() {
-        this.queue = new Map<number, T>();
-        this.head = 0;
-        this.tail = 0;
-    }
+    private tail: number = 0;
 
     /**
      * キューに値を追加する
