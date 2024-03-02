@@ -15,7 +15,7 @@ export class Tilemap {
     /**
      * マップ（迷路）の状態
      */
-    public maze: Maze;
+    private readonly _maze: Maze;
     /**
      * タイルマップ
      */
@@ -36,9 +36,9 @@ export class Tilemap {
      * @param tilesetName タイルセットの名前
      */
     constructor(scene: Phaser.Scene, tilesetName: string) {
-        this.maze = new Maze(MAZE_TYPE.DiggingOut);
+        this._maze = new Maze(MAZE_TYPE.DiggingOut);
         this.map = scene.make.tilemap({
-            data: this.maze.field,
+            data: this._maze.field,
             tileWidth: Tilemap.SIZE,
             tileHeight: Tilemap.SIZE,
         });
@@ -94,5 +94,9 @@ export class Tilemap {
             throw new Error('layer is null');
         }
         return layer;
+    }
+
+    public get maze(): Maze {
+        return this._maze;
     }
 }
