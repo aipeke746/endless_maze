@@ -37,7 +37,7 @@ export class Tilemap {
     constructor(scene: Phaser.Scene, tilesetName: string) {
         this.mapState = new MapState();
         this.map = scene.make.tilemap({
-            data: this.mapState.getField(),
+            data: this.mapState.maze.field,
             tileWidth: Tilemap.SIZE,
             tileHeight: Tilemap.SIZE,
         });

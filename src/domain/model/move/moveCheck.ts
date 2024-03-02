@@ -30,7 +30,7 @@ export class MoveCheck {
         const nowCoord: Coord = target.getCoord(tilemap);
         try {
             const nextCoord: Coord = nowCoord.addPos(this.MAP.get(direction));
-            return tilemap.mapState.isFloor(nextCoord) ? nextCoord : nowCoord;
+            return tilemap.mapState.maze.isFloor(nextCoord) ? nextCoord : nowCoord;
         } catch {
             // 例外（移動先の座標がマップ[迷路のフィールド]外）の場合
             return nowCoord;

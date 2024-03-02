@@ -1,6 +1,7 @@
 import { Cell } from '../cell/cell';
+import { Coord } from '../coord/coord';
 import { MazeFactory } from './generate/mazeFactory';
-import { MAZE_TYPE } from './generate/mazeType';
+import { MazeType } from './generate/mazeType';
 
 /**
  * 迷路
@@ -11,8 +12,37 @@ export class Maze {
      */
     private readonly _field: Cell[][];
 
-    constructor() {
-        this._field = new MazeFactory().create(MAZE_TYPE.DiggingOut);
+    /**
+     * 迷路を生成する
+     * @param mazeType 迷路の種類
+     */
+    constructor(mazeType: MazeType) {
+        this._field = new MazeFactory().create(mazeType);
+    }
+
+    /**
+     * 指定した座標のセルが通路かどうかを返す
+     * @param coord 座標
+     * @returns 通路の場合はtrue
+     */
+    public isFloor(coord: Coord): boolean {
+        return this._field[coord.y][coord.x] === Cell.Floor;
+    }
+
+    /**
+     * 床の座標をランダムに取得する
+     * @param coord 座標
+     */
+    public getRandomFloorCoord(): Coord {
+        const floorCoords: Coord[] = [];
+        this._field.forEach((row, y) => {
+            row.forEach((cell, x) => {
+                if (cell === Cell.Floor) {
+                    floorCoords.push(new Coord(x, y));
+                }
+            });
+        });
+        return floorCoords[Math.floor(Math.random() * floorCoords.length)];
     }
 
     public get field(): Cell[][] {

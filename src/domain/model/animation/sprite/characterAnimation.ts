@@ -14,7 +14,7 @@ export class CharacterAnimation extends Animation {
         frameEnd: number;
     }> = [
         { key: MoveDirection.DOWN, frameStart: 0, frameEnd: 2 },
-        { key: MoveDirection.LEFT, frameStart: 3, frameEnd: 5 },
+        { key: MoveDirection.LEFT, frameStart: 5, frameEnd: 3 },
         { key: MoveDirection.RIGHT, frameStart: 6, frameEnd: 8 },
         { key: MoveDirection.UP, frameStart: 9, frameEnd: 11 },
     ];

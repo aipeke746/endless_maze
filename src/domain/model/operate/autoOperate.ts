@@ -52,7 +52,7 @@ export class AutoOperate {
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             dist[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
-                dist[y][x] = mapState.isFloor(new Coord(x, y)) ? this.CAN_MOVE : this.CANNOT_MOVE;
+                dist[y][x] = mapState.maze.isFloor(new Coord(x, y)) ? this.CAN_MOVE : this.CANNOT_MOVE;
             }
         }
         return dist;
