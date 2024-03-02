@@ -1,7 +1,6 @@
 import { Param } from '../../../param';
-import { Cell } from '../cell/cell';
+import { Cell, getOpposite } from '../cell/cell';
 import { Coord } from '../coord/coord';
-import { CellUtil } from '../cell/cellUtil';
 
 /**
  * フィールド（迷路）に関するユーティリティクラス
@@ -9,15 +8,15 @@ import { CellUtil } from '../cell/cellUtil';
 export class FieldUtil {
     /**
      * フィールドを指定したセルタイプで埋める
-     * @param type セルタイプ
+     * @param cell セルタイプ
      * @returns 指定したセルタイプで埋めたフィールド
      */
-    public static fill(type: Cell): Cell[][] {
+    public static fill(cell: Cell): Cell[][] {
         const field: Cell[][] = [];
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             field[y] = [];
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
-                field[y][x] = type;
+                field[y][x] = cell;
             }
         }
         return field;
@@ -26,16 +25,16 @@ export class FieldUtil {
     /**
      * フィールドの外周を指定したセルタイプで埋める（うちは反対のセルタイプで埋める）
      *   例）床を指定した場合は壁で埋める
-     * @param type セルタイプ
+     * @param cell セルタイプ
      * @returns 指定したセルタイプで埋めたフィールド
      */
-    public static circumference(type: Cell): Cell[][] {
-        const field: Cell[][] = FieldUtil.fill(CellUtil.getOpposite(type));
+    public static circumference(cell: Cell): Cell[][] {
+        const field: Cell[][] = FieldUtil.fill(getOpposite(cell));
 
         for (let y = 0; y < Param.MAZE_SIZE; y++) {
             for (let x = 0; x < Param.MAZE_SIZE; x++) {
                 if (this.isCircumference(new Coord(x, y))) {
-                    field[y][x] = type;
+                    field[y][x] = cell;
                 }
             }
         }
