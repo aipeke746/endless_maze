@@ -1,6 +1,6 @@
 import { DiggingOut } from '../../service/maze/impl/diggingOut';
 import { StickKnockDown } from '../../service/maze/impl/stickKnockDown';
-import { MazeType } from '../maze/mazeType';
+import { MAZE_TYPE, MazeType } from '../maze/mazeType';
 import { MazeService } from '../../service/maze/mazeService';
 
 /**
@@ -16,9 +16,9 @@ export class MazeFactory {
      * 迷路生成方法の種類と迷路生成を行うクラスのマップを設定する
      */
     constructor() {
-        this.MAP.set(MazeType.StickKnockDown, new StickKnockDown());
-        this.MAP.set(MazeType.DiggingOut, new DiggingOut());
-        this.MAP.set(MazeType.WallStretching, new StickKnockDown());
+        this.MAP.set(MAZE_TYPE.StickKnockDown, new StickKnockDown());
+        this.MAP.set(MAZE_TYPE.DiggingOut, new DiggingOut());
+        this.MAP.set(MAZE_TYPE.WallStretching, new StickKnockDown());
     }
 
     /**

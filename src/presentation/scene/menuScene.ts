@@ -1,4 +1,4 @@
-import { MazeType } from '../../domain/model/maze/mazeType';
+import { MAZE_TYPE } from '../../domain/model/maze/mazeType';
 import { TextUtil } from '../../domain/model/text/textUtil';
 import { TweenUtil } from '../../domain/model/tween/tweenUtil';
 
@@ -34,7 +34,7 @@ export class MenuScene extends Phaser.Scene {
     private createStartText(x: number, y: number, content: string): void {
         const text = TextUtil.createTextButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
             this.scene.start('playScene', {
-                mazeType: MazeType.StickKnockDown,
+                mazeType: MAZE_TYPE.StickKnockDown,
             });
         });
         TweenUtil.blinking(this, text, 1000);
