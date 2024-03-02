@@ -7,7 +7,7 @@ import { MAZE_TYPE } from './generate/mazeType';
  */
 export class Maze {
     /**
-     * 迷路
+     * 迷路全体の状態を表す2次元配列
      */
     private readonly _field: Cell[][];
 
