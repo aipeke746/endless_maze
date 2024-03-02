@@ -42,8 +42,7 @@ export class Character {
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         this._sprite = new Sprite(scene, tilemap, spriteName);
         this.move = new GridMove(this._sprite);
-        this.animation = new CharacterAnimation();
-        this.animation.create(scene, spriteName);
+        this.animation = new CharacterAnimation(scene, spriteName);
     }
 
     /**

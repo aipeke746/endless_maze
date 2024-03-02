@@ -18,4 +18,14 @@ export class CharacterAnimation extends Animation {
         { key: MoveDirection.RIGHT, frameStart: 6, frameEnd: 8 },
         { key: MoveDirection.UP, frameStart: 9, frameEnd: 11 },
     ];
+
+    /**
+     * キャラクターのアニメーションを生成する
+     * @param scene シーン
+     * @param spriteName スプライト名
+     */
+    constructor(scene: Phaser.Scene, spriteName: string) {
+        super();
+        this.create(scene, spriteName);
+    }
 }

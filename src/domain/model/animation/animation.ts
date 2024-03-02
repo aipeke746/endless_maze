@@ -15,10 +15,11 @@ export abstract class Animation {
 
     /**
      * アニメーションを生成する
+     * 継承したクラスのコンストラクタで呼び出す
      * @param scene シーン
      * @param spriteName スプライト名
      */
-    public create(scene: Phaser.Scene, spriteName: string): void {
+    protected create(scene: Phaser.Scene, spriteName: string): void {
         for (const anim of this.ANIMATION) {
             if (!scene.anims.exists(anim.key)) {
                 scene.anims.create(this.config(scene, anim, spriteName));

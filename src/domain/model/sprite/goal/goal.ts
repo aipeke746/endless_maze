@@ -24,8 +24,7 @@ export class Goal {
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
         this._sprite = new Sprite(scene, tilemap, spriteName);
-        this.animation = new GoalAnimation();
-        this.animation.create(scene, spriteName);
+        this.animation = new GoalAnimation(scene, spriteName);
         this.animation.play(this._sprite.sprite, GoalAnimation.KEY);
     }
 
