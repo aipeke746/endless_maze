@@ -1,5 +1,5 @@
 import { Param } from '../../../../param';
-import { CELL, Cell } from '../../../model/cell/cell';
+import { Cell } from '../../../model/cell/cell';
 import { DirectionDiffService } from '../../direction/directionDiffService';
 import { FieldUtil } from '../../../model/maze/fieldUtil';
 import { Coord } from '../../../model/coord/coord';
@@ -27,7 +27,7 @@ export class WallStretching implements MazeService {
      * @returns 迷路を生成する
      */
     public create(): Cell[][] {
-        this.maze = FieldUtil.circumference(CELL.Wall);
+        this.maze = FieldUtil.circumference(Cell.Wall);
         this.createByWallStretching();
         return this.maze;
     }
@@ -55,9 +55,9 @@ export class WallStretching implements MazeService {
                 const coord1 = coord.addPos(dir);
                 const coord2 = coord1.addPos(dir);
 
-                if (this.maze[coord1.y][coord1.x] === CELL.Floor && this.maze[coord2.y][coord2.x] === CELL.Floor) {
-                    this.maze[coord1.y][coord1.x] = CELL.Wall;
-                    this.maze[coord2.y][coord2.x] = CELL.Wall;
+                if (this.maze[coord1.y][coord1.x] === Cell.Floor && this.maze[coord2.y][coord2.x] === Cell.Floor) {
+                    this.maze[coord1.y][coord1.x] = Cell.Wall;
+                    this.maze[coord2.y][coord2.x] = Cell.Wall;
 
                     this.positions.unshift(coord2);
                     this.positions.push(coord);

@@ -1,6 +1,6 @@
 import { MazeFactory } from './mazeFactory';
 import { MazeService } from '../../service/maze/mazeService';
-import { CELL, Cell } from '../cell/cell';
+import { Cell } from '../cell/cell';
 import { MAZE_TYPE } from '../maze/mazeType';
 import { Coord } from '../coord/coord';
 
@@ -37,7 +37,7 @@ export class MapState {
         const floorCoords: Coord[] = [];
         this.field.forEach((row, y) => {
             row.forEach((cell, x) => {
-                if (cell === CELL.Floor) {
+                if (cell === Cell.Floor) {
                     floorCoords.push(new Coord(x, y));
                 }
             });
@@ -51,6 +51,6 @@ export class MapState {
      * @returns 通路の場合はtrue
      */
     public isFloor(coord: Coord): boolean {
-        return this.field[coord.y][coord.x] === CELL.Floor;
+        return this.field[coord.y][coord.x] === Cell.Floor;
     }
 }

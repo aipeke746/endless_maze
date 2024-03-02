@@ -1,5 +1,5 @@
 import { Param } from '../../../../param';
-import { CELL, Cell } from '../../../model/cell/cell';
+import { Cell } from '../../../model/cell/cell';
 import { DirectionDiffService } from '../../direction/directionDiffService';
 import { FieldUtil } from '../../../model/maze/fieldUtil';
 import { Coord } from '../../../model/coord/coord';
@@ -27,10 +27,10 @@ export class StickKnockDown implements MazeService {
      * @returns 迷路の土台
      */
     private setupBase(): Cell[][] {
-        const base: Cell[][] = FieldUtil.circumference(CELL.Wall);
+        const base: Cell[][] = FieldUtil.circumference(Cell.Wall);
         for (let y = 0; y < Param.MAZE_SIZE - 2; y += 2) {
             for (let x = 0; x < Param.MAZE_SIZE - 2; x += 2) {
-                base[y][x] = CELL.Wall;
+                base[y][x] = Cell.Wall;
             }
         }
         return base;
@@ -50,7 +50,7 @@ export class StickKnockDown implements MazeService {
             for (let x = 2; x < Param.MAZE_SIZE - 2; x += 2) {
                 const baseCoord = new Coord(x, y);
                 const wallCoord = this.getWallCoord(baseCoord);
-                maze[wallCoord.y][wallCoord.x] = CELL.Wall;
+                maze[wallCoord.y][wallCoord.x] = Cell.Wall;
             }
         }
         return maze;

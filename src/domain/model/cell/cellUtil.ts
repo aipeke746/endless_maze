@@ -1,4 +1,4 @@
-import { CELL, Cell } from './cell';
+import { Cell } from './cell';
 
 /**
  * セル（迷路のマス）の種類に関するユーティリティクラス
@@ -8,8 +8,8 @@ export class CellUtil {
      * セルの種類を反転するマップ
      */
     private static readonly OPPSITE_MAP: Map<Cell, Cell> = new Map<Cell, Cell>([
-        [CELL.Wall, CELL.Floor],
-        [CELL.Floor, CELL.Wall],
+        [Cell.Wall, Cell.Floor],
+        [Cell.Floor, Cell.Wall],
     ]);
 
     /**

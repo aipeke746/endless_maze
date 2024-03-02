@@ -1,7 +1,7 @@
 /**
  * セル（迷路のマス）の種類
  */
-export const CELL = {
+export const Cell = {
     /**
      * 壁
      */
@@ -12,4 +12,4 @@ export const CELL = {
     Floor: 1,
 };
 
-export type Cell = (typeof CELL)[keyof typeof CELL];
+export type Cell = (typeof Cell)[keyof typeof Cell]; // eslint-disable-line
