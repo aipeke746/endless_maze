@@ -1,4 +1,4 @@
-import { MOVE_DIRECTION, MoveDirection } from '../../../model/direction/MoveDirection';
+import { MoveDirection } from '../../../model/direction/MoveDirection';
 import { OperateService } from '../operateService';
 
 /**
@@ -55,7 +55,7 @@ export class ManualImpl implements OperateService {
         const keyDirection = this.getKeyDirection();
         const swipeDirection = this.getSwipeDirection();
 
-        return this.getKeyDirection() !== MOVE_DIRECTION.IDLE ? keyDirection : swipeDirection;
+        return this.getKeyDirection() !== MoveDirection.IDLE ? keyDirection : swipeDirection;
     }
 
     /**
@@ -64,16 +64,16 @@ export class ManualImpl implements OperateService {
      */
     private getKeyDirection(): MoveDirection {
         if (this.cursors.right.isDown) {
-            return MOVE_DIRECTION.RIGHT;
+            return MoveDirection.RIGHT;
         } else if (this.cursors.left.isDown) {
-            return MOVE_DIRECTION.LEFT;
+            return MoveDirection.LEFT;
         } else if (this.cursors.down.isDown) {
-            return MOVE_DIRECTION.DOWN;
+            return MoveDirection.DOWN;
         } else if (this.cursors.up.isDown) {
-            return MOVE_DIRECTION.UP;
+            return MoveDirection.UP;
         }
 
-        return MOVE_DIRECTION.IDLE;
+        return MoveDirection.IDLE;
     }
 
     /**
@@ -81,7 +81,7 @@ export class ManualImpl implements OperateService {
      * @returns キャラクターの移動方向
      */
     private getSwipeDirection(): MoveDirection {
-        if (!this.isPointerDown) return MOVE_DIRECTION.IDLE;
+        if (!this.isPointerDown) return MoveDirection.IDLE;
         return this.onSwipe();
     }
 
@@ -98,14 +98,14 @@ export class ManualImpl implements OperateService {
         const swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipeVector);
         const swipeNormal = new Phaser.Geom.Point(swipeVector.x / swipeMagnitude, swipeVector.y / swipeMagnitude);
 
-        if (swipeMagnitude < 50) return MOVE_DIRECTION.IDLE;
+        if (swipeMagnitude < 50) return MoveDirection.IDLE;
 
         const { x: absX, y: absY } = new Phaser.Geom.Point(Math.abs(swipeNormal.x), Math.abs(swipeNormal.y));
 
         if (absX > absY) {
-            return swipeNormal.x > 0 ? MOVE_DIRECTION.RIGHT : MOVE_DIRECTION.LEFT;
+            return swipeNormal.x > 0 ? MoveDirection.RIGHT : MoveDirection.LEFT;
         } else {
-            return swipeNormal.y > 0 ? MOVE_DIRECTION.DOWN : MOVE_DIRECTION.UP;
+            return swipeNormal.y > 0 ? MoveDirection.DOWN : MoveDirection.UP;
         }
     }
 }

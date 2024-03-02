@@ -1,4 +1,4 @@
-import { MOVE_DIRECTION, MoveDirection } from '../../model/direction/MoveDirection';
+import { MoveDirection } from '../../model/direction/MoveDirection';
 
 /**
  * 方向の差分に関するサービスクラス
@@ -8,41 +8,41 @@ export class DirectionDiffService {
      * 移動方向と座標の差分のマップ
      */
     private readonly MAP = new Map<MoveDirection, Phaser.Math.Vector2>([
-        [MOVE_DIRECTION.IDLE, new Phaser.Math.Vector2(0, 0)],
-        [MOVE_DIRECTION.UP, new Phaser.Math.Vector2(0, -1)],
-        [MOVE_DIRECTION.DOWN, new Phaser.Math.Vector2(0, 1)],
-        [MOVE_DIRECTION.LEFT, new Phaser.Math.Vector2(-1, 0)],
-        [MOVE_DIRECTION.RIGHT, new Phaser.Math.Vector2(1, 0)],
+        [MoveDirection.IDLE, new Phaser.Math.Vector2(0, 0)],
+        [MoveDirection.UP, new Phaser.Math.Vector2(0, -1)],
+        [MoveDirection.DOWN, new Phaser.Math.Vector2(0, 1)],
+        [MoveDirection.LEFT, new Phaser.Math.Vector2(-1, 0)],
+        [MoveDirection.RIGHT, new Phaser.Math.Vector2(1, 0)],
     ]);
 
     /**
      * 移動方向と反対の移動方向のマップ
      */
     private readonly OPPNENT_DICTION = new Map<MoveDirection, MoveDirection>([
-        [MOVE_DIRECTION.IDLE, MOVE_DIRECTION.IDLE],
-        [MOVE_DIRECTION.UP, MOVE_DIRECTION.DOWN],
-        [MOVE_DIRECTION.DOWN, MOVE_DIRECTION.UP],
-        [MOVE_DIRECTION.LEFT, MOVE_DIRECTION.RIGHT],
-        [MOVE_DIRECTION.RIGHT, MOVE_DIRECTION.LEFT],
+        [MoveDirection.IDLE, MoveDirection.IDLE],
+        [MoveDirection.UP, MoveDirection.DOWN],
+        [MoveDirection.DOWN, MoveDirection.UP],
+        [MoveDirection.LEFT, MoveDirection.RIGHT],
+        [MoveDirection.RIGHT, MoveDirection.LEFT],
     ]);
 
     /**
      * 4方向（上下左右）の差分
      */
     private readonly DIFF: Phaser.Math.Vector2[] = [
-        this.MAP.get(MOVE_DIRECTION.UP),
-        this.MAP.get(MOVE_DIRECTION.DOWN),
-        this.MAP.get(MOVE_DIRECTION.LEFT),
-        this.MAP.get(MOVE_DIRECTION.RIGHT),
+        this.MAP.get(MoveDirection.UP),
+        this.MAP.get(MoveDirection.DOWN),
+        this.MAP.get(MoveDirection.LEFT),
+        this.MAP.get(MoveDirection.RIGHT),
     ];
 
     /**
      * 3方向（下左右）の差分
      */
     private readonly DIFF_WITHOUT_UP: Phaser.Math.Vector2[] = [
-        this.MAP.get(MOVE_DIRECTION.DOWN),
-        this.MAP.get(MOVE_DIRECTION.LEFT),
-        this.MAP.get(MOVE_DIRECTION.RIGHT),
+        this.MAP.get(MoveDirection.DOWN),
+        this.MAP.get(MoveDirection.LEFT),
+        this.MAP.get(MoveDirection.RIGHT),
     ];
 
     /**

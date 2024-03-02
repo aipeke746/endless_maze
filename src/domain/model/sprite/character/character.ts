@@ -1,7 +1,7 @@
 import { AnimationService } from '../../../service/animation/animationService';
 import { CharacterAnimation } from '../../../service/animation/impl/characterAnimation';
 import { MoveService } from '../../../service/move/moveService';
-import { MOVE_DIRECTION, MoveDirection } from '../../direction/MoveDirection';
+import { MoveDirection } from '../../direction/MoveDirection';
 import { Coord } from '../../coord/coord';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
@@ -55,7 +55,7 @@ export class Character {
      * @param direction 移動方向
      */
     public walk(tilemap: Tilemap, direction: MoveDirection): void {
-        if (this.isWalking || direction === MOVE_DIRECTION.IDLE) return;
+        if (this.isWalking || direction === MoveDirection.IDLE) return;
 
         const nextCoord: Coord = this.moveService.getMoveToCoord(this.main, tilemap, direction);
         this.startWalk(direction);

@@ -1,5 +1,5 @@
 import { Tilemap } from '../../model/map/tilemap';
-import { MOVE_DIRECTION, MoveDirection } from '../../model/direction/MoveDirection';
+import { MoveDirection } from '../../model/direction/MoveDirection';
 import { Coord } from '../../model/coord/coord';
 import Phaser from 'phaser';
 import { Sprite } from '../../model/sprite/sprite';
@@ -12,11 +12,11 @@ export class MoveService {
      * 移動方向と移動する時の差分をまとめたマップ
      */
     private readonly MAP: Map<MoveDirection, Phaser.Math.Vector2> = new Map<MoveDirection, Phaser.Math.Vector2>([
-        [MOVE_DIRECTION.DOWN, new Phaser.Math.Vector2(0, 1)],
-        [MOVE_DIRECTION.UP, new Phaser.Math.Vector2(0, -1)],
-        [MOVE_DIRECTION.LEFT, new Phaser.Math.Vector2(-1, 0)],
-        [MOVE_DIRECTION.RIGHT, new Phaser.Math.Vector2(1, 0)],
-        [MOVE_DIRECTION.IDLE, undefined],
+        [MoveDirection.DOWN, new Phaser.Math.Vector2(0, 1)],
+        [MoveDirection.UP, new Phaser.Math.Vector2(0, -1)],
+        [MoveDirection.LEFT, new Phaser.Math.Vector2(-1, 0)],
+        [MoveDirection.RIGHT, new Phaser.Math.Vector2(1, 0)],
+        [MoveDirection.IDLE, undefined],
     ]);
 
     /**

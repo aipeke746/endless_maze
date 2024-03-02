@@ -1,7 +1,7 @@
 /**
  * キャラルターの歩行タイプ（移動方向の種類）
  */
-export const MOVE_DIRECTION = {
+export const MoveDirection = {
     /**
      * 下移動
      */
@@ -24,4 +24,4 @@ export const MOVE_DIRECTION = {
     IDLE: 'idle',
 };
 
-export type MoveDirection = (typeof MOVE_DIRECTION)[keyof typeof MOVE_DIRECTION];
+export type MoveDirection = (typeof MoveDirection)[keyof typeof MoveDirection]; // eslint-disable-line
