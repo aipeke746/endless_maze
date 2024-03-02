@@ -71,7 +71,7 @@ export class PlayScene extends Phaser.Scene {
      */
     private cameraSetting(): void {
         const bounds = Param.MAZE_SIZE * Tilemap.SIZE;
-        this.cameras.main.setBounds(0, 0, bounds, bounds).startFollow(this.player.getMain().getSprite(), true);
+        this.cameras.main.setBounds(0, 0, bounds, bounds).startFollow(this.player.sprite.sprite, true);
     }
 
     /**
@@ -80,8 +80,8 @@ export class PlayScene extends Phaser.Scene {
      */
     private reachGoal(): void {
         this.physics.add.collider(
-            this.player.getMain().getSprite(),
-            this.goal.getMain().getSprite(),
+            this.player.sprite.sprite,
+            this.goal.sprite.sprite,
             () => {
                 this.time.delayedCall(200, () => {
                     this.scene.start('playScene');

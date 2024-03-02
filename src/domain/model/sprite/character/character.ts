@@ -14,7 +14,7 @@ export class Character {
     /**
      * キャラクターのスプライト
      */
-    private readonly main: Sprite;
+    private readonly _sprite: Sprite;
     /**
      * キャラクターのアニメーション
      */
@@ -40,18 +40,10 @@ export class Character {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this.main = new Sprite(scene, tilemap, spriteName);
-        this.move = new GridMove(this.main);
+        this._sprite = new Sprite(scene, tilemap, spriteName);
+        this.move = new GridMove(this._sprite);
         this.animation = new CharacterAnimation();
         this.animation.create(scene, spriteName);
-    }
-
-    /**
-     * キャラクターのスプライトを取得する
-     * @returns キャラクターのスプライト
-     */
-    public getMain(): Sprite {
-        return this.main;
     }
 
     /**
@@ -62,7 +54,7 @@ export class Character {
     public walk(tilemap: Tilemap, direction: MoveDirection): void {
         if (this.isWalking || direction === MoveDirection.IDLE) return;
 
-        const nextCoord: Coord = this.moveCheck.getMoveToCoord(this.main, tilemap, direction);
+        const nextCoord: Coord = this.moveCheck.getMoveToCoord(this._sprite, tilemap, direction);
         this.startWalk(direction);
         this.move.run(tilemap, nextCoord, () => {
             this.stopWalk();
@@ -76,7 +68,7 @@ export class Character {
      */
     private startWalk(direction: MoveDirection): void {
         this.isWalking = true;
-        this.animation.play(this.main.getSprite(), direction);
+        this.animation.play(this._sprite.sprite, direction);
     }
 
     /**
@@ -84,6 +76,10 @@ export class Character {
      */
     private stopWalk(): void {
         this.isWalking = false;
-        this.animation.stop(this.main.getSprite());
+        this.animation.stop(this._sprite.sprite);
+    }
+
+    public get sprite(): Sprite {
+        return this._sprite;
     }
 }

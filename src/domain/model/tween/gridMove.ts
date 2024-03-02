@@ -17,7 +17,7 @@ export class GridMove {
     public run(tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
         const nowPos = this._target.getPos();
         const nextPos = tilemap.getWorldPos(nextCoord);
-        const sprite = this._target.getSprite();
+        const sprite = this._target.sprite;
 
         const tween: Phaser.Tweens.Tween = sprite.scene.add.tween({
             targets: [sprite],

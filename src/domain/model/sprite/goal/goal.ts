@@ -10,7 +10,7 @@ export class Goal {
     /**
      * ゴールのスプライト
      */
-    private readonly main: Sprite;
+    private readonly _sprite: Sprite;
     /**
      * ゴールのアニメーション
      */
@@ -23,17 +23,13 @@ export class Goal {
      * @param spriteName スプライト名
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this.main = new Sprite(scene, tilemap, spriteName);
+        this._sprite = new Sprite(scene, tilemap, spriteName);
         this.animation = new GoalAnimation();
         this.animation.create(scene, spriteName);
-        this.animation.play(this.main.getSprite(), GoalAnimation.KEY);
+        this.animation.play(this._sprite.sprite, GoalAnimation.KEY);
     }
 
-    /**
-     * ゴールのスプライトを取得する
-     * @returns ゴールのスプライト
-     */
-    public getMain(): Sprite {
-        return this.main;
+    public get sprite(): Sprite {
+        return this._sprite;
     }
 }

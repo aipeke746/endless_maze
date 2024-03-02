@@ -9,18 +9,10 @@ export class Sprite {
     /**
      * スプライト
      */
-    private readonly sprite: Phaser.GameObjects.Sprite;
+    private readonly _sprite: Phaser.GameObjects.Sprite;
 
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this.sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
-    }
-
-    /**
-     * スプライトを取得する
-     * @returns スプライト
-     */
-    public getSprite(): Phaser.GameObjects.Sprite {
-        return this.sprite;
+        this._sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
     }
 
     /**
@@ -28,7 +20,7 @@ export class Sprite {
      * @returns スプライトのワールド（画面）の座標
      */
     public getPos(): Phaser.Math.Vector2 {
-        return new Phaser.Math.Vector2(this.sprite.x, this.sprite.y);
+        return new Phaser.Math.Vector2(this._sprite.x, this._sprite.y);
     }
 
     /**
@@ -70,5 +62,9 @@ export class Sprite {
      */
     private createSprite(scene: Phaser.Scene, pos: Phaser.Math.Vector2, spriteName: string): Phaser.GameObjects.Sprite {
         return scene.physics.add.sprite(pos.x, pos.y, spriteName).setOrigin(0, 0).setDisplaySize(this.SIZE, this.SIZE);
+    }
+
+    public get sprite(): Phaser.GameObjects.Sprite {
+        return this._sprite;
     }
 }
