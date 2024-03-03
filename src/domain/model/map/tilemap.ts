@@ -70,6 +70,15 @@ export class Tilemap {
     }
 
     /**
+     * 指定した位置にオセロを描画する
+     * @param x ｘ座標
+     * @param y ｙ座標
+     */
+    public setPosition(x: number, y: number): void {
+        this.layer.setPosition(x, y);
+    }
+
+    /**
      * タイルセットを取得する
      * @param name タイルセットの名前
      * @param map タイルマップ

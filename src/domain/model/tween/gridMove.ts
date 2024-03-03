@@ -5,8 +5,12 @@ import { Sprite } from '../sprite/sprite';
 export class GridMove {
     /**
      * @param _target 移動するターゲットのスプライト
+     * @param _duration 移動にかかる時間
      */
-    constructor(private readonly _target: Sprite) {}
+    constructor(
+        private readonly _target: Sprite,
+        private readonly _duration
+    ) {}
 
     /**
      * 対象のスプライトをグリッド移動させる
@@ -29,7 +33,7 @@ export class GridMove {
                 getStart: () => nowPos.y,
                 getEnd: () => nextPos.y,
             },
-            duration: 200,
+            duration: this._duration,
             onComplete: () => {
                 tween.stop();
                 onComplete();

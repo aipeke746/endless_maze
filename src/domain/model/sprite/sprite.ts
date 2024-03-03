@@ -11,8 +11,25 @@ export class Sprite {
      */
     private readonly _sprite: Phaser.GameObjects.Sprite;
 
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this._sprite = this.createSpriteByRandomPos(scene, tilemap, spriteName);
+    /**
+     * スプライトを生成する
+     * @param scene シーン
+     * @param tilemap タイルマップ
+     * @param spriteName スプライト名
+     * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
+     */
+    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
+        this._sprite = coord
+            ? this.createSprite(scene, tilemap.getWorldPos(coord), spriteName)
+            : this.createSpriteByRandomPos(scene, tilemap, spriteName);
+    }
+
+    /**
+     * スプライトのワールド（画面）の座標を設定する
+     * @param pos ワールドの座標
+     */
+    public setPos(pos: Phaser.Math.Vector2): void {
+        this._sprite.setPosition(pos.x, pos.y);
     }
 
     /**

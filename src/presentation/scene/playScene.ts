@@ -64,9 +64,9 @@ export class PlayScene extends Phaser.Scene {
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.tilemap = new Tilemap(this, 'mapTiles', mazeSize);
+        this.goal = new Goal(this, this.tilemap, 'goal');
         this.player = new Character(this, this.tilemap, 'character');
         this.operate = new ManualOperate(this);
-        this.goal = new Goal(this, this.tilemap, 'goal');
 
         this.cameraSetting();
         this.reachGoal();
@@ -97,7 +97,7 @@ export class PlayScene extends Phaser.Scene {
             this.player.sprite.sprite,
             this.goal.sprite.sprite,
             () => {
-                this.time.delayedCall(200, () => {
+                this.time.delayedCall(150, () => {
                     this.scene.start('playScene', { stage: this.stage + 1 });
                 });
             },

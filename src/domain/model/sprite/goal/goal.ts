@@ -2,6 +2,7 @@ import { Animation } from '../../animation/animation';
 import { GoalAnimation } from '../../animation/sprite/goalAnimation';
 import { Sprite } from '../sprite';
 import { Tilemap } from '../../map/tilemap';
+import { Coord } from '../../coord/coord';
 
 /**
  * 迷路のゴールを管理するクラス
@@ -21,9 +22,10 @@ export class Goal {
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
+     * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
      */
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this._sprite = new Sprite(scene, tilemap, spriteName);
+    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
+        this._sprite = new Sprite(scene, tilemap, spriteName, coord);
         this.animation = new GoalAnimation(scene, spriteName);
         this.animation.play(this._sprite.sprite, GoalAnimation.KEY);
     }

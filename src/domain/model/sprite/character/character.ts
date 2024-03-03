@@ -38,10 +38,11 @@ export class Character {
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
+     * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
      */
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string) {
-        this._sprite = new Sprite(scene, tilemap, spriteName);
-        this.move = new GridMove(this._sprite);
+    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
+        this._sprite = new Sprite(scene, tilemap, spriteName, coord);
+        this.move = new GridMove(this._sprite, 130);
         this.animation = new CharacterAnimation(scene, spriteName);
     }
 
