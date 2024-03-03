@@ -85,7 +85,7 @@ export class PlayScene extends Phaser.Scene {
      */
     private cameraSetting(): void {
         const bounds = Maze.SIZE * Tilemap.SIZE;
-        this.cameras.main.setBounds(0, 0, bounds, bounds).startFollow(this.player.sprite.sprite, true);
+        this.cameras.main.setBounds(0, 0, bounds, bounds).startFollow(this.player.sprite.sprite);
     }
 
     /**
