@@ -89,8 +89,7 @@ export class PlayScene extends Phaser.Scene {
     }
 
     /**
-     * ゴールに到達した時の処理
-     * 次の迷路コース、もしくはメニュー画面に遷移
+     * ゴールに到達したら、次の迷路コースへ
      */
     private reachGoal(): void {
         this.physics.add.collider(

@@ -61,7 +61,8 @@ export class MenuScene extends Phaser.Scene {
         Text.create(this, centerX, 50, 'エ ン ド レ ス 迷 路', this.FONT_SIZE);
 
         // 操作方法
-        Text.create(this, centerX, 150, '＜移動方法＞\n  ・スマホ　： スワイプ\n  ・パソコン： 方向キー', 20);
+        const operateContent = '＜移動方法＞\n  ・スマホ　： スワイプ\n  ・パソコン： 方向キー';
+        Text.create(this, centerX, 150, operateContent, this.FONT_SIZE - 10);
 
         // 迷路のサンプル表示
         const mazeSize = 7;
@@ -94,15 +95,13 @@ export class MenuScene extends Phaser.Scene {
     }
 
     /**
-     * ゴールに到達した時の処理
-     * 次の迷路コース、もしくはメニュー画面に遷移
+     * ゴールに到達したら、キャラクターを初期位置に戻す
      */
     private reachGoal(): void {
         this.physics.add.collider(
             this.character.sprite.sprite,
             this.goal.sprite.sprite,
             () => {
-                // ゴールに到達したら、キャラクターを初期位置に戻す
                 this.time.delayedCall(1000, () => {
                     const initCoord = new Coord(1, 1);
                     const initPos = this.tilemap.getWorldPos(initCoord);
