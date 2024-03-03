@@ -9,7 +9,7 @@ export class GridMove {
      */
     constructor(
         private readonly _target: Sprite,
-        private readonly _duration
+        private _duration
     ) {}
 
     /**
@@ -39,5 +39,13 @@ export class GridMove {
                 onComplete();
             },
         });
+    }
+
+    /**
+     * 移動にかかる時間を設定する
+     * @param duration 移動にかかる時間
+     */
+    public setDuration(duration: number): void {
+        this._duration = duration;
     }
 }

@@ -32,6 +32,14 @@ export class Character {
      * グリッド移動をするため、歩いている間は他の移動を受け付けない
      */
     private isWalking: boolean = false;
+    /**
+     * キャラクターの移動にかかる時間: 通常
+     */
+    private readonly NORMAL_MOVE_DURATION: number = 130;
+    /**
+     * キャラクターの移動にかかる時間: ゆっくり
+     */
+    private readonly SLOW_MOVE_DURATION: number = 200;
 
     /**
      * キャラクターを生成する
@@ -42,7 +50,7 @@ export class Character {
      */
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
         this._sprite = new Sprite(scene, tilemap, spriteName, coord);
-        this.move = new GridMove(this._sprite, 130);
+        this.move = new GridMove(this._sprite, this.NORMAL_MOVE_DURATION);
         this.animation = new CharacterAnimation(scene, spriteName);
     }
 
@@ -59,6 +67,14 @@ export class Character {
         this.move.run(tilemap, nextCoord, () => {
             this.stopWalk();
         });
+    }
+
+    /**
+     * キャラクターの移動にかかる時間を設定する
+     * @param duration 移動にかかる時間
+     */
+    public setSlowMoveDuration(): void {
+        this.move.setDuration(this.SLOW_MOVE_DURATION);
     }
 
     /**

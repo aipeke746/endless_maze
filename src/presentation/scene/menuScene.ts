@@ -64,6 +64,7 @@ export class MenuScene extends Phaser.Scene {
 
         this.goal = new Goal(this, this.tilemap, 'goal', new Coord(mazeSize - 2, mazeSize - 2));
         this.player = new Character(this, this.tilemap, 'character', new Coord(1, 1));
+        this.player.setSlowMoveDuration();
         this.operate = new AutoOperate();
 
         this.reachGoal();
@@ -87,7 +88,7 @@ export class MenuScene extends Phaser.Scene {
             this.player.sprite.sprite,
             this.goal.sprite.sprite,
             () => {
-                this.time.delayedCall(500, () => {
+                this.time.delayedCall(1000, () => {
                     const initCoord = new Coord(1, 1);
                     const initPos = this.tilemap.getWorldPos(initCoord);
                     this.player.sprite.setPos(initPos);
