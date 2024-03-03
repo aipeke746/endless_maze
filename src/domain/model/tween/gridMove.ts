@@ -4,12 +4,12 @@ import { Sprite } from '../sprite/sprite';
 
 export class GridMove {
     /**
-     * @param _target 移動するターゲットのスプライト
-     * @param _duration 移動にかかる時間
+     * @param target 移動するターゲットのスプライト
+     * @param duration 移動にかかる時間
      */
     constructor(
-        private readonly _target: Sprite,
-        private _duration
+        private readonly target: Sprite,
+        private duration
     ) {}
 
     /**
@@ -19,9 +19,9 @@ export class GridMove {
      * @param onComplete 移動完了時の処理
      */
     public run(tilemap: Tilemap, nextCoord: Coord, onComplete: () => void): void {
-        const nowPos = this._target.getPos();
+        const nowPos = this.target.getPos();
         const nextPos = tilemap.getWorldPos(nextCoord);
-        const sprite = this._target.sprite;
+        const sprite = this.target.sprite;
 
         const tween: Phaser.Tweens.Tween = sprite.scene.add.tween({
             targets: [sprite],
@@ -33,7 +33,7 @@ export class GridMove {
                 getStart: () => nowPos.y,
                 getEnd: () => nextPos.y,
             },
-            duration: this._duration,
+            duration: this.duration,
             onComplete: () => {
                 tween.stop();
                 onComplete();
@@ -46,6 +46,6 @@ export class GridMove {
      * @param duration 移動にかかる時間
      */
     public setDuration(duration: number): void {
-        this._duration = duration;
+        this.duration = duration;
     }
 }

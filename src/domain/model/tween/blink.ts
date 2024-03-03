@@ -4,24 +4,24 @@
 export class Blink {
     /**
      * 点滅させる
-     * @param _scene シーン
-     * @param _target ターゲット
-     * @param _duration 点滅の間隔
+     * @param scene シーン
+     * @param target ターゲット
+     * @param duration 点滅の間隔
      */
     constructor(
-        private readonly _scene: Phaser.Scene,
-        private readonly _target: object | any[],
-        private readonly _duration: number
+        private readonly scene: Phaser.Scene,
+        private readonly target: object | any[],
+        private readonly duration: number
     ) {}
 
     /**
      * 点滅を開始する
      */
     public start(): void {
-        this._scene.tweens.add({
-            targets: this._target,
+        this.scene.tweens.add({
+            targets: this.target,
             alpha: 0,
-            duration: this._duration,
+            duration: this.duration,
             ease: 'Sine.easeIn',
             repeat: -1,
             yoyo: true,
@@ -32,6 +32,6 @@ export class Blink {
      * 点滅を停止する
      */
     public stop(): void {
-        this._scene.tweens.killTweensOf(this._target);
+        this.scene.tweens.killTweensOf(this.target);
     }
 }
