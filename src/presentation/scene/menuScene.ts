@@ -19,9 +19,9 @@ export class MenuScene extends Phaser.Scene {
      */
     private tilemap: Tilemap;
     /**
-     * プレイヤー
+     * キャラクター
      */
-    private player: Character;
+    private character: Character;
     /**
      * プレイヤーの操作
      */
@@ -35,6 +35,9 @@ export class MenuScene extends Phaser.Scene {
         super({ key: 'menuScene' });
     }
 
+    /**
+     * ゲームのメニューシーンの準備
+     */
     preload(): void {
         this.load.image('mapTiles', 'asset/tileset/mapTiles.png');
         this.load.spritesheet('character', 'asset/sprite/character.png', {
@@ -52,31 +55,42 @@ export class MenuScene extends Phaser.Scene {
      */
     create(): void {
         const centerX = this.cameras.main.width / 2;
-        const centerY = this.cameras.main.height / 2;
         const bottomY = this.cameras.main.height;
 
-        this.createTitleText(centerX, 80, 'エ ン ド レ ス 迷 路');
-        this.createStartText(centerX, bottomY - 80, 'ゲームスタート');
+        // ゲームタイトル
+        Text.create(this, centerX, 50, 'エ ン ド レ ス 迷 路', this.FONT_SIZE);
 
+        // 操作方法
+        Text.create(this, centerX, 150, '＜移動方法＞\n  ・スマホ　： スワイプ\n  ・パソコン： 方向キー', 20);
+
+        // 迷路のサンプル表示
         const mazeSize = 7;
+        const displayCenterX = centerX - (Tilemap.SIZE * mazeSize) / 2;
+        const displayY = 200;
+
         this.tilemap = new Tilemap(this, 'mapTiles', mazeSize);
-        this.tilemap.setPosition(centerX - (Tilemap.SIZE * mazeSize) / 2, centerY - (Tilemap.SIZE * mazeSize) / 2);
-
+        this.tilemap.setPosition(displayCenterX, displayY);
         this.goal = new Goal(this, this.tilemap, 'goal', new Coord(mazeSize - 2, mazeSize - 2));
-        this.player = new Character(this, this.tilemap, 'character', new Coord(1, 1));
-        this.player.setSlowMoveDuration();
+        this.character = new Character(this, this.tilemap, 'character', new Coord(1, 1));
+        this.character.setSlowMoveDuration();
         this.operate = new AutoOperate();
-
         this.reachGoal();
+
+        // ゲームスタートボタン
+        this.createStartText(centerX, bottomY - 80, 'ゲームスタート');
     }
 
+    /**
+     * ゲームのメニューシーンの更新
+     */
     update(): void {
+        // 迷路のキャラクターを自動で動かす
         const direction = this.operate.getDirection(
             this.tilemap.maze,
-            this.player.sprite.getCoord(this.tilemap),
+            this.character.sprite.getCoord(this.tilemap),
             this.goal.sprite.getCoord(this.tilemap)
         );
-        this.player.walk(this.tilemap, direction);
+        this.character.walk(this.tilemap, direction);
     }
 
     /**
@@ -85,22 +99,19 @@ export class MenuScene extends Phaser.Scene {
      */
     private reachGoal(): void {
         this.physics.add.collider(
-            this.player.sprite.sprite,
+            this.character.sprite.sprite,
             this.goal.sprite.sprite,
             () => {
+                // ゴールに到達したら、キャラクターを初期位置に戻す
                 this.time.delayedCall(1000, () => {
                     const initCoord = new Coord(1, 1);
                     const initPos = this.tilemap.getWorldPos(initCoord);
-                    this.player.sprite.setPos(initPos);
+                    this.character.sprite.setPos(initPos);
                 });
             },
             undefined,
             this
         );
-    }
-
-    private createTitleText(x: number, y: number, content: string): void {
-        Text.create(this, x, y, content, this.FONT_SIZE);
     }
 
     /**
