@@ -1,5 +1,5 @@
-import { DiggingOut } from './type/diggingOut';
-import { StickKnockDown } from './type/stickKnockDown';
+import { DiggingOut } from './impl/diggingOut';
+import { StickKnockDown } from './impl/stickKnockDown';
 import { MAZE_TYPE, MazeType } from './mazeType';
 import { Cell } from '../../cell/cell';
 
@@ -27,8 +27,8 @@ export class MazeFactory {
      * @returns 迷路生成を行うクラス
      */
     public create(mazeType: MazeType): Cell[][] {
-        const maze: MazeGenerate = this.MAP.get(mazeType);
-        return maze.create();
+        const mazeGenerate: MazeGenerate = this.MAP.get(mazeType);
+        return mazeGenerate.create();
     }
 }
 
