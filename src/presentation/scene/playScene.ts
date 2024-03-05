@@ -8,25 +8,17 @@ import { Maze } from '../../domain/model/maze/maze';
  * ゲームのプレイシーン
  */
 export class PlayScene extends Phaser.Scene {
-    /**
-     * ステージ
-     */
+    /** ステージに対する迷路の大きさの拡大率 */
+    private readonly MAZE_SIZE_RATE: number = 4;
+    /** ステージ */
     private stage: number;
-    /**
-     * タイルマップ
-     */
+    /** タイルマップ */
     private tilemap: Tilemap;
-    /**
-     * プレイヤー
-     */
+    /** プレイヤー */
     private player: Character;
-    /**
-     * プレイヤーの操作
-     */
+    /** プレイヤーの操作 */
     private operate: ManualOperate;
-    /**
-     * ゴール
-     */
+    /** ゴール */
     private goal: Goal;
 
     constructor() {
@@ -60,9 +52,9 @@ export class PlayScene extends Phaser.Scene {
      * ゲームのプレイシーンの作成
      */
     create(): void {
-        const mazeSize = this.stage * 10 + 1;
-
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+
+        const mazeSize = this.stage * this.MAZE_SIZE_RATE + 7; // 迷路の大きさは奇数にすること
         this.tilemap = new Tilemap(this, 'mapTiles', mazeSize);
         this.goal = new Goal(this, this.tilemap, 'goal');
         this.player = new Character(this, this.tilemap, 'character');
@@ -97,7 +89,7 @@ export class PlayScene extends Phaser.Scene {
             this.goal.sprite.sprite,
             () => {
                 this.time.delayedCall(150, () => {
-                    this.scene.start('playScene', { stage: this.stage + 1 });
+                    this.scene.start('parameterScene', { stage: this.stage + 1 });
                 });
             },
             undefined,

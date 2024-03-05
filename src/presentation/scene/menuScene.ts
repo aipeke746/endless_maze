@@ -10,25 +10,15 @@ import { Blink } from '../../domain/model/tween/blink';
  * ゲームのメニューシーン
  */
 export class MenuScene extends Phaser.Scene {
-    /**
-     * フォントサイズ
-     */
+    /** フォントサイズ */
     private readonly FONT_SIZE: number = 30;
-    /**
-     * タイルマップ
-     */
+    /** タイルマップ */
     private tilemap: Tilemap;
-    /**
-     * キャラクター
-     */
+    /** キャラクター */
     private character: Character;
-    /**
-     * プレイヤーの操作
-     */
+    /** プレイヤーの操作 */
     private operate: AutoOperate;
-    /**
-     * ゴール
-     */
+    /** ゴール */
     private goal: Goal;
 
     constructor() {
@@ -121,7 +111,7 @@ export class MenuScene extends Phaser.Scene {
      */
     private createStartText(x: number, y: number, content: string): void {
         const text = Text.createButton(this, x, y, content, this.FONT_SIZE).on('pointerdown', () => {
-            this.scene.start('playScene', {
+            this.scene.start('parameterScene', {
                 stage: 1,
             });
         });
