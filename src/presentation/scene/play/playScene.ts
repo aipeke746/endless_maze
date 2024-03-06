@@ -1,8 +1,8 @@
-import { Character } from '../../domain/model/sprite/character/character';
-import { Goal } from '../../domain/model/sprite/goal/goal';
-import { Tilemap } from '../../domain/model/map/tilemap';
-import { ManualOperate } from '../../domain/model/operate/manualOperate';
-import { Maze } from '../../domain/model/maze/maze';
+import { Character } from '../../../domain/model/sprite/character/character';
+import { Goal } from '../../../domain/model/sprite/goal/goal';
+import { Tilemap } from '../../../domain/model/map/tilemap';
+import { ManualOperate } from '../../../domain/model/operate/manualOperate';
+import { Maze } from '../../../domain/model/maze/maze';
 
 /**
  * ゲームのプレイシーン
@@ -89,7 +89,7 @@ export class PlayScene extends Phaser.Scene {
             this.goal.sprite.sprite,
             () => {
                 this.time.delayedCall(150, () => {
-                    this.scene.start('parameterScene', { stage: this.stage + 1 });
+                    this.scene.start('navigateScene', { stage: this.stage + 1 });
                 });
             },
             undefined,
