@@ -1,3 +1,5 @@
+import { Sprite } from '../sprite/sprite';
+
 /**
  * アニメーションのサービスクラス
  *
@@ -13,16 +15,22 @@ export abstract class Animation {
         frameEnd: number;
     }>;
 
+    constructor(
+        private readonly scene: Phaser.Scene,
+        private readonly sprite: Sprite,
+        private readonly spriteName: string
+    ) {}
+
     /**
      * アニメーションを生成する
      * 継承したクラスのコンストラクタで呼び出す
      * @param scene シーン
      * @param spriteName スプライト名
      */
-    protected create(scene: Phaser.Scene, spriteName: string): void {
+    protected create(): void {
         for (const anim of this.ANIMATION) {
-            if (!scene.anims.exists(anim.key)) {
-                scene.anims.create(this.config(scene, anim, spriteName));
+            if (!this.scene.anims.exists(anim.key)) {
+                this.scene.anims.create(this.config(this.scene, anim, this.spriteName));
             }
         }
     }
@@ -32,16 +40,16 @@ export abstract class Animation {
      * @param sprite アニメーションを再生するスプライト
      * @param key 再生するアニメーションのキー
      */
-    public play(sprite: Phaser.GameObjects.Sprite, key: string): void {
-        sprite.anims.play(key);
+    public play(key: string): void {
+        this.sprite.sprite.anims.play(key);
     }
 
     /**
      * アニメーションを停止する
      * @param sprite アニメーションを停止するスプライト
      */
-    public stop(sprite: Phaser.GameObjects.Sprite): void {
-        sprite.anims.stop();
+    public stop(): void {
+        this.sprite.sprite.anims.stop();
     }
 
     /**

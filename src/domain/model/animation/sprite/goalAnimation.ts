@@ -1,3 +1,4 @@
+import { Sprite } from '../../sprite/sprite';
 import { Animation } from '../animation';
 
 /**
@@ -18,13 +19,8 @@ export class GoalAnimation extends Animation {
         frameEnd: number;
     }> = [{ key: GoalAnimation.KEY, frameStart: 0, frameEnd: 19 }];
 
-    /**
-     * ゴールのアニメーションを生成する
-     * @param scene シーン
-     * @param spriteName スプライト名
-     */
-    constructor(scene: Phaser.Scene, spriteName: string) {
-        super();
-        this.create(scene, spriteName);
+    constructor(scene: Phaser.Scene, sprite: Sprite, spriteName: string) {
+        super(scene, sprite, spriteName);
+        this.create();
     }
 }

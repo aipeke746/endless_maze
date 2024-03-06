@@ -51,7 +51,7 @@ export class Character {
     constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
         this._sprite = new Sprite(scene, tilemap, spriteName, coord);
         this.move = new GridMove(this._sprite, this.NORMAL_MOVE_DURATION);
-        this.animation = new CharacterAnimation(scene, spriteName);
+        this.animation = new CharacterAnimation(scene, this._sprite, spriteName);
     }
 
     /**
@@ -84,7 +84,7 @@ export class Character {
      */
     private startWalk(direction: MoveDirection): void {
         this.isWalking = true;
-        this.animation.play(this._sprite.sprite, direction);
+        this.animation.play(direction);
     }
 
     /**
@@ -92,7 +92,7 @@ export class Character {
      */
     private stopWalk(): void {
         this.isWalking = false;
-        this.animation.stop(this._sprite.sprite);
+        this.animation.stop();
     }
 
     public get sprite(): Sprite {

@@ -1,4 +1,5 @@
 import { MoveDirection } from '../../direction/moveDirection';
+import { Sprite } from '../../sprite/sprite';
 import { Animation } from '../animation';
 
 /**
@@ -19,13 +20,8 @@ export class CharacterAnimation extends Animation {
         { key: MoveDirection.UP, frameStart: 9, frameEnd: 11 },
     ];
 
-    /**
-     * キャラクターのアニメーションを生成する
-     * @param scene シーン
-     * @param spriteName スプライト名
-     */
-    constructor(scene: Phaser.Scene, spriteName: string) {
-        super();
-        this.create(scene, spriteName);
+    constructor(scene: Phaser.Scene, sprite: Sprite, spriteName: string) {
+        super(scene, sprite, spriteName);
+        this.create();
     }
 }
