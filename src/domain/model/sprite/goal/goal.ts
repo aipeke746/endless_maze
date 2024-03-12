@@ -22,12 +22,36 @@ export class Goal {
      * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
-     * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
      */
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
-        this._sprite = new Sprite(scene, tilemap, spriteName, coord);
+    private constructor(scene: Phaser.Scene, _sprite: Sprite, spriteName: string) {
+        this._sprite = _sprite;
         this.animation = new GoalAnimation(scene, this._sprite, spriteName);
         this.animation.play(GoalAnimation.KEY);
+    }
+
+    /**
+     * ランダムな位置にゴールを生成
+     * @param scene シーン
+     * @param tilemap タイルマップ
+     * @param spriteName スプライト名
+     * @returns ゴール
+     */
+    public static createByRandomPos(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string): Goal {
+        const sprite: Sprite = Sprite.createByRandomPos(scene, tilemap, spriteName);
+        return new Goal(scene, sprite, spriteName);
+    }
+
+    /**
+     * 指定した座標にゴールを生成
+     * @param scene シーン
+     * @param tilemap タイルマップ
+     * @param spriteName スプライト名
+     * @param coord 座標
+     * @returns ゴール
+     */
+    public static createByCoord(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord: Coord): Goal {
+        const sprite: Sprite = Sprite.createByCoord(scene, tilemap, spriteName, coord);
+        return new Goal(scene, sprite, spriteName);
     }
 
     public get sprite(): Sprite {

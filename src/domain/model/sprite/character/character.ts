@@ -33,13 +33,13 @@ export class Character {
      */
     private isWalking: boolean = false;
     /**
-     * キャラクターの移動にかかる時間: 通常
+     * キャラクターの移動にかかる時間: 速い
      */
-    private readonly NORMAL_MOVE_DURATION: number = 130;
+    private readonly QUIQ_MOVE_DURATION: number = 130;
     /**
-     * キャラクターの移動にかかる時間: ゆっくり
+     * キャラクターの移動にかかる時間: 普通
      */
-    private readonly SLOW_MOVE_DURATION: number = 200;
+    private readonly NORMAL_MOVE_DURATION: number = 200;
 
     /**
      * キャラクターを生成する
@@ -48,10 +48,20 @@ export class Character {
      * @param spriteName スプライト名
      * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
      */
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
-        this._sprite = new Sprite(scene, tilemap, spriteName, coord);
-        this.move = new GridMove(this._sprite, this.NORMAL_MOVE_DURATION);
+    private constructor(scene: Phaser.Scene, _sprite: Sprite, spriteName: string) {
+        this._sprite = _sprite;
+        this.move = new GridMove(this._sprite, this.QUIQ_MOVE_DURATION);
         this.animation = new CharacterAnimation(scene, this._sprite, spriteName);
+    }
+
+    public static createByRandomPos(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string): Character {
+        const sprite: Sprite = Sprite.createByRandomPos(scene, tilemap, spriteName);
+        return new Character(scene, sprite, spriteName);
+    }
+
+    public static createByCoord(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord: Coord): Character {
+        const sprite: Sprite = Sprite.createByCoord(scene, tilemap, spriteName, coord);
+        return new Character(scene, sprite, spriteName);
     }
 
     /**
@@ -74,7 +84,7 @@ export class Character {
      * @param duration 移動にかかる時間
      */
     public setSlowMoveDuration(): void {
-        this.move.setDuration(this.SLOW_MOVE_DURATION);
+        this.move.setDuration(this.NORMAL_MOVE_DURATION);
     }
 
     /**

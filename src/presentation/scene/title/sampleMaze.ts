@@ -30,8 +30,13 @@ export class SampleMaze {
         this.scene = scene;
         this.tilemap = new Tilemap(this.scene, 'mapTiles', this.MAZE_SIZE);
         this.tilemap.setPosition(mazePosX, mazePosY);
-        this.goal = new Goal(this.scene, this.tilemap, 'goal', new Coord(this.MAZE_SIZE - 2, this.MAZE_SIZE - 2));
-        this.character = new Character(this.scene, this.tilemap, 'character', new Coord(1, 1));
+        this.goal = Goal.createByCoord(
+            this.scene,
+            this.tilemap,
+            'goal',
+            new Coord(this.MAZE_SIZE - 2, this.MAZE_SIZE - 2)
+        );
+        this.character = Character.createByCoord(this.scene, this.tilemap, 'character', new Coord(1, 1));
         this.character.setSlowMoveDuration();
         this.operate = new AutoOperate();
 

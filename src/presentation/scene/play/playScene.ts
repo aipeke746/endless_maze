@@ -56,8 +56,8 @@ export class PlayScene extends Phaser.Scene {
 
         const mazeSize = this.stage * this.MAZE_SIZE_RATE + 7; // 迷路の大きさは奇数にすること
         this.tilemap = new Tilemap(this, 'mapTiles', mazeSize);
-        this.goal = new Goal(this, this.tilemap, 'goal');
-        this.player = new Character(this, this.tilemap, 'character');
+        this.goal = Goal.createByRandomPos(this, this.tilemap, 'goal');
+        this.player = Character.createByRandomPos(this, this.tilemap, 'character');
         this.operate = new ManualOperate(this);
 
         this.cameraSetting();

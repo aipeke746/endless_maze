@@ -14,14 +14,51 @@ export class Sprite {
     /**
      * スプライトを生成する
      * @param scene シーン
+     * @param pos ワールドの座標
+     * @param spriteName スプライト名
+     */
+    private constructor(scene: Phaser.Scene, pos: Phaser.Math.Vector2, spriteName: string) {
+        this._sprite = scene.physics.add
+            .sprite(pos.x, pos.y, spriteName)
+            .setOrigin(0, 0)
+            .setDisplaySize(this.SIZE, this.SIZE);
+    }
+
+    /**
+     * 指定した座標にスプライトを生成
+     * @param scene シーン
+     * @param tilemp タイルマップ
+     * @param spriteName スプライト名
+     * @param coord 座標
+     * @returns スプライト
+     */
+    public static createByCoord(scene: Phaser.Scene, tilemp: Tilemap, spriteName: string, coord: Coord): Sprite {
+        const pos: Phaser.Math.Vector2 = tilemp.getWorldPos(coord);
+        return new Sprite(scene, pos, spriteName);
+    }
+
+    /**
+     * 指定した位置にスプライトを生成
+     * @param scene シーン
+     * @param spriteName スプライト名
+     * @param pos 座標
+     * @returns スプライト
+     */
+    public static createByPos(scene: Phaser.Scene, spriteName: string, pos: Phaser.Math.Vector2): Sprite {
+        return new Sprite(scene, pos, spriteName);
+    }
+
+    /**
+     * ランダムな位置にスプライトを生成
+     * @param scene シーン
      * @param tilemap タイルマップ
      * @param spriteName スプライト名
-     * @param coord 座標（指定しなければ、通路のランダムな座標に生成される）
+     * @returns
      */
-    constructor(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string, coord?: Coord) {
-        this._sprite = coord
-            ? this.createSprite(scene, tilemap.getWorldPos(coord), spriteName)
-            : this.createSpriteByRandomPos(scene, tilemap, spriteName);
+    public static createByRandomPos(scene: Phaser.Scene, tilemap: Tilemap, spriteName: string): Sprite {
+        const randomCoord: Coord = tilemap.maze.getRandomFloorCoord();
+        const randomPos: Phaser.Math.Vector2 = tilemap.getWorldPos(randomCoord);
+        return new Sprite(scene, randomPos, spriteName);
     }
 
     /**
@@ -51,34 +88,6 @@ export class Sprite {
         } catch {
             throw new Error('invalid coord by character.ts: getCoord()');
         }
-    }
-
-    /**
-     * スプライトをランダムな位置に生成する
-     * @param scene シーン
-     * @param tilemap タイルマップ
-     * @param spriteName スプライト名
-     * @returns スプライト
-     */
-    private createSpriteByRandomPos(
-        scene: Phaser.Scene,
-        tilemap: Tilemap,
-        spriteName: string
-    ): Phaser.GameObjects.Sprite {
-        const coord: Coord = tilemap.maze.getRandomFloorCoord();
-        const pos: Phaser.Math.Vector2 = tilemap.getWorldPos(coord);
-        return this.createSprite(scene, pos, spriteName);
-    }
-
-    /**
-     * スプライトを生成する
-     * @param scene シーン
-     * @param pos ワールドの座標
-     * @param spriteName スプライト名
-     * @returns スプライト
-     */
-    private createSprite(scene: Phaser.Scene, pos: Phaser.Math.Vector2, spriteName: string): Phaser.GameObjects.Sprite {
-        return scene.physics.add.sprite(pos.x, pos.y, spriteName).setOrigin(0, 0).setDisplaySize(this.SIZE, this.SIZE);
     }
 
     public get sprite(): Phaser.GameObjects.Sprite {
