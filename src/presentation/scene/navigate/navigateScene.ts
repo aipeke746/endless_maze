@@ -1,6 +1,7 @@
 import { FontSize } from '../../../domain/model/text/fontSize';
 import { Text } from '../../../domain/model/text/text';
 import { MenuWindow } from './menuWindow';
+import { Stick } from './stick';
 
 /**
  * ゲームのナビゲートーシーン
@@ -10,6 +11,8 @@ export class NavigateScene extends Phaser.Scene {
     private stage: number;
     /** メニューウィンドウ */
     private menuWindow: MenuWindow;
+    /** 操作スティック */
+    private stick: Stick;
 
     constructor() {
         super({ key: 'navigateScene' });
@@ -28,6 +31,10 @@ export class NavigateScene extends Phaser.Scene {
      */
     preload(): void {
         this.load.image('frame', 'asset/image/frame.png');
+        this.load.spritesheet('stick', 'asset/sprite/stick.png', {
+            frameWidth: 128,
+            frameHeight: 128,
+        });
     }
 
     /**
@@ -39,6 +46,7 @@ export class NavigateScene extends Phaser.Scene {
 
         // ステージの表示
         const stageText = Text.create(this, centerX, centerY, `ステージ ${this.stage}`, FontSize.Large);
+        this.stick = new Stick(this);
 
         this.time.delayedCall(2000, () => {
             stageText.destroy();
@@ -48,6 +56,16 @@ export class NavigateScene extends Phaser.Scene {
         });
     }
 
+    /**
+     * ゲームのナビゲートーシーンの更新
+     */
+    update(): void {
+        this.stick.update();
+    }
+
+    /**
+     * メニューボタンの作成
+     */
     private createMenuButton(): void {
         const x = this.cameras.main.width - 80;
         const y = 30;

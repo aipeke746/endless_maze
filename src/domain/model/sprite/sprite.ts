@@ -90,6 +90,28 @@ export class Sprite {
         }
     }
 
+    /**
+     * スプライトのサイズを設定する
+     * @param size サイズ
+     */
+    public setSize(size: number): void {
+        this._sprite.setDisplaySize(size, size);
+    }
+
+    /**
+     * スプライトを表示する
+     */
+    public visible(): void {
+        this._sprite.setAlpha(1);
+    }
+
+    /**
+     * スプライトを非表示にする
+     */
+    public invisible(): void {
+        this._sprite.setAlpha(0);
+    }
+
     public get sprite(): Phaser.GameObjects.Sprite {
         return this._sprite;
     }
