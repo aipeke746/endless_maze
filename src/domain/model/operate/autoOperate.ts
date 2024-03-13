@@ -34,7 +34,7 @@ export class AutoOperate {
      * @param to 移動先の座標（目的地）
      * @returns 次の移動方向
      */
-    getDirection(maze: Maze, from: Coord, to: Coord): MoveDirection {
+    public getDirection(maze: Maze, from: Coord, to: Coord): MoveDirection {
         const dist = this.conversion(maze);
         const bfsDist = this.bfs(dist, from, to);
         return this.nextDirection(bfsDist, to);
@@ -102,7 +102,7 @@ export class AutoOperate {
      * @returns
      */
     private nextDirection(dist: number[][], to: Coord): MoveDirection {
-        let nextDirection: MoveDirection = MoveDirection.IDLE;
+        let nextDirection: MoveDirection = MoveDirection.Idle;
         let coord = to;
 
         while (dist[coord.y][coord.x] > this.START_COUNTER_NUM) {

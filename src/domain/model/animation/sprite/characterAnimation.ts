@@ -14,10 +14,10 @@ export class CharacterAnimation extends Animation {
         frameStart: number;
         frameEnd: number;
     }> = [
-        { key: MoveDirection.DOWN, frameStart: 0, frameEnd: 2 },
-        { key: MoveDirection.LEFT, frameStart: 5, frameEnd: 3 },
-        { key: MoveDirection.RIGHT, frameStart: 6, frameEnd: 8 },
-        { key: MoveDirection.UP, frameStart: 9, frameEnd: 11 },
+        { key: MoveDirection.Down, frameStart: 0, frameEnd: 2 },
+        { key: MoveDirection.Left, frameStart: 5, frameEnd: 3 },
+        { key: MoveDirection.Right, frameStart: 6, frameEnd: 8 },
+        { key: MoveDirection.Up, frameStart: 9, frameEnd: 11 },
     ];
 
     constructor(scene: Phaser.Scene, sprite: Sprite, spriteName: string) {

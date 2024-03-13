@@ -8,11 +8,11 @@ export class MoveService {
      * 移動方向と移動する時の差分をまとめたマップ
      */
     private readonly MAP: Map<MoveDirection, Phaser.Math.Vector2> = new Map<MoveDirection, Phaser.Math.Vector2>([
-        [MoveDirection.DOWN, new Phaser.Math.Vector2(0, 1)],
-        [MoveDirection.UP, new Phaser.Math.Vector2(0, -1)],
-        [MoveDirection.LEFT, new Phaser.Math.Vector2(-1, 0)],
-        [MoveDirection.RIGHT, new Phaser.Math.Vector2(1, 0)],
-        [MoveDirection.IDLE, undefined],
+        [MoveDirection.Down, new Phaser.Math.Vector2(0, 1)],
+        [MoveDirection.Up, new Phaser.Math.Vector2(0, -1)],
+        [MoveDirection.Left, new Phaser.Math.Vector2(-1, 0)],
+        [MoveDirection.Right, new Phaser.Math.Vector2(1, 0)],
+        [MoveDirection.Idle, undefined],
     ]);
 
     /**

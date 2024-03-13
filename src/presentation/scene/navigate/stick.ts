@@ -24,7 +24,7 @@ export class Stick {
     /**
      * スワイプした方向とスティックの方向をまとめたマップ
      */
-    private readonly MAP = new Map<Direction, StickDirection>([
+    private readonly directionMap = new Map<Direction, StickDirection>([
         [Direction.Down, StickDirection.Down],
         [Direction.Up, StickDirection.Up],
         [Direction.Left, StickDirection.Left],
@@ -54,7 +54,7 @@ export class Stick {
      */
     public update(): void {
         const swipeDirection = this.swipeDirection.getDirection(this.pointer);
-        const stickDirection = this.MAP.get(swipeDirection);
+        const stickDirection = this.directionMap.get(swipeDirection);
         this.stickAnimation.play(stickDirection);
     }
 

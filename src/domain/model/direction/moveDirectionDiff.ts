@@ -8,41 +8,41 @@ export class MoveDirectionDiff {
      * 移動方向と座標の差分のマップ
      */
     private readonly MAP = new Map<MoveDirection, Phaser.Math.Vector2>([
-        [MoveDirection.IDLE, new Phaser.Math.Vector2(0, 0)],
-        [MoveDirection.UP, new Phaser.Math.Vector2(0, -1)],
-        [MoveDirection.DOWN, new Phaser.Math.Vector2(0, 1)],
-        [MoveDirection.LEFT, new Phaser.Math.Vector2(-1, 0)],
-        [MoveDirection.RIGHT, new Phaser.Math.Vector2(1, 0)],
+        [MoveDirection.Idle, new Phaser.Math.Vector2(0, 0)],
+        [MoveDirection.Up, new Phaser.Math.Vector2(0, -1)],
+        [MoveDirection.Down, new Phaser.Math.Vector2(0, 1)],
+        [MoveDirection.Left, new Phaser.Math.Vector2(-1, 0)],
+        [MoveDirection.Right, new Phaser.Math.Vector2(1, 0)],
     ]);
 
     /**
      * 移動方向と反対の移動方向のマップ
      */
     private readonly OPPONENT_DIRECTION = new Map<MoveDirection, MoveDirection>([
-        [MoveDirection.IDLE, MoveDirection.IDLE],
-        [MoveDirection.UP, MoveDirection.DOWN],
-        [MoveDirection.DOWN, MoveDirection.UP],
-        [MoveDirection.LEFT, MoveDirection.RIGHT],
-        [MoveDirection.RIGHT, MoveDirection.LEFT],
+        [MoveDirection.Idle, MoveDirection.Idle],
+        [MoveDirection.Up, MoveDirection.Down],
+        [MoveDirection.Down, MoveDirection.Up],
+        [MoveDirection.Left, MoveDirection.Right],
+        [MoveDirection.Right, MoveDirection.Left],
     ]);
 
     /**
      * 4方向（上下左右）の差分
      */
     private readonly DIFF: Phaser.Math.Vector2[] = [
-        this.MAP.get(MoveDirection.UP),
-        this.MAP.get(MoveDirection.DOWN),
-        this.MAP.get(MoveDirection.LEFT),
-        this.MAP.get(MoveDirection.RIGHT),
+        this.MAP.get(MoveDirection.Up),
+        this.MAP.get(MoveDirection.Down),
+        this.MAP.get(MoveDirection.Left),
+        this.MAP.get(MoveDirection.Right),
     ];
 
     /**
      * 3方向（下左右）の差分
      */
     private readonly DIFF_WITHOUT_UP: Phaser.Math.Vector2[] = [
-        this.MAP.get(MoveDirection.DOWN),
-        this.MAP.get(MoveDirection.LEFT),
-        this.MAP.get(MoveDirection.RIGHT),
+        this.MAP.get(MoveDirection.Down),
+        this.MAP.get(MoveDirection.Left),
+        this.MAP.get(MoveDirection.Right),
     ];
 
     /**
