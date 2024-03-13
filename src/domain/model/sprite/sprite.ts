@@ -70,6 +70,14 @@ export class Sprite {
     }
 
     /**
+     * スプライトのワールド（画面）の座標を設定する
+     * @param pos ワールドの座標
+     */
+    public setPos(pos: Phaser.Math.Vector2): void {
+        this._sprite.setPosition(pos.x, pos.y);
+    }
+
+    /**
      * スプライトのワールド（画面）の座標を取得する
      * @returns スプライトのワールド（画面）の座標
      */
