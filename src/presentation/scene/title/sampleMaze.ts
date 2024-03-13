@@ -66,7 +66,7 @@ export class SampleMaze {
                 this.scene.time.delayedCall(1000, () => {
                     const initCoord = new Coord(1, 1);
                     const initPos = this.tilemap.getWorldPos(initCoord);
-                    this.character.sprite.setPos(initPos);
+                    this.character.sprite.setCenterPos(initPos);
                 });
             },
             undefined,

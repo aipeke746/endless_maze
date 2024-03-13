@@ -1,5 +1,7 @@
 import { StickAnimation } from '../../../domain/model/animation/sprite/stickAnimation';
+import { Direction } from '../../../domain/model/direction/direction';
 import { StickDirection } from '../../../domain/model/direction/stickDirection';
+import { SwipeDirection } from '../../../domain/model/direction/swipeDirection';
 import { Sprite } from '../../../domain/model/sprite/sprite';
 
 export class Stick {
@@ -15,6 +17,20 @@ export class Stick {
      * ポインター
      */
     private readonly pointer: Phaser.Input.Pointer;
+    /**
+     * スワイプした方向を取得する
+     */
+    private readonly swipeDirection: SwipeDirection = new SwipeDirection();
+    /**
+     * スワイプした方向とスティックの方向をまとめたマップ
+     */
+    private readonly MAP = new Map<Direction, StickDirection>([
+        [Direction.Down, StickDirection.Down],
+        [Direction.Up, StickDirection.Up],
+        [Direction.Left, StickDirection.Left],
+        [Direction.Right, StickDirection.Right],
+        [Direction.Center, StickDirection.Idle],
+    ]);
 
     /**
      * スティックを生成する
@@ -37,29 +53,9 @@ export class Stick {
      * スティックの更新
      */
     public update(): void {
-        if (!this.pointer.isDown) return;
-
-        const swipeVector = new Phaser.Geom.Point(
-            this.pointer.position.x - this.pointer.downX,
-            this.pointer.position.y - this.pointer.downY
-        );
-
-        const swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipeVector);
-        const swipeNormal = new Phaser.Geom.Point(swipeVector.x / swipeMagnitude, swipeVector.y / swipeMagnitude);
-
-        if (swipeMagnitude < 50) return;
-
-        const { x: absX, y: absY } = new Phaser.Geom.Point(Math.abs(swipeNormal.x), Math.abs(swipeNormal.y));
-
-        if (absX > absY) {
-            swipeNormal.x > 0
-                ? this.stickAnimation.play(StickDirection.Right)
-                : this.stickAnimation.play(StickDirection.Left);
-        } else {
-            swipeNormal.y > 0
-                ? this.stickAnimation.play(StickDirection.Down)
-                : this.stickAnimation.play(StickDirection.Up);
-        }
+        const swipeDirection = this.swipeDirection.getDirection(this.pointer);
+        const stickDirection = this.MAP.get(swipeDirection);
+        this.stickAnimation.play(stickDirection);
     }
 
     /**
@@ -68,7 +64,7 @@ export class Stick {
      */
     private setPointerEvent(scene: Phaser.Scene): void {
         scene.input.on('pointerdown', () => {
-            this._sprite.setPos(this.pointer.position);
+            this._sprite.setCenterPos(this.pointer.position);
             this._sprite.visible();
         });
 

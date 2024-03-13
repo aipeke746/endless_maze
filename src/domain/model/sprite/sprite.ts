@@ -62,11 +62,11 @@ export class Sprite {
     }
 
     /**
-     * スプライトのワールド（画面）の座標を設定する
+     * スプライトのワールド（画面）の中央座標を設定する
      * @param pos ワールドの座標
      */
-    public setPos(pos: Phaser.Math.Vector2): void {
-        this._sprite.setPosition(pos.x, pos.y);
+    public setCenterPos(pos: Phaser.Math.Vector2): void {
+        this._sprite.setPosition(pos.x, pos.y).setOrigin(0.5, 0.5);
     }
 
     /**
