@@ -1,3 +1,4 @@
+import { Color } from '../../../domain/model/color/color';
 import { FontSize } from '../../../domain/model/text/fontSize';
 import { Text } from '../../../domain/model/text/text';
 import { MenuWindow } from './menuWindow';
@@ -39,7 +40,7 @@ export class NavigateScene extends Phaser.Scene {
 
         this.time.delayedCall(2000, () => {
             stageText.destroy();
-            this.createMenuButton();
+            this.createMenuButton(this);
             this.menuWindow = new MenuWindow(this, this.stage);
             this.scene.launch('playScene', { stage: this.stage });
         });
@@ -55,11 +56,13 @@ export class NavigateScene extends Phaser.Scene {
     /**
      * メニューボタンの作成
      */
-    private createMenuButton(): void {
+    private createMenuButton(scene: Phaser.Scene): void {
         const x = this.cameras.main.width - 80;
         const y = 30;
 
-        Text.createButton(this, x, y, 'メニュー', FontSize.Normal).on('pointerdown', () => {
+        scene.add.rectangle(x, y, 100, 50, Color.GRAY);
+
+        Text.createButton(this, x, y, 'Menu', FontSize.Normal, Color.BLACK).on('pointerdown', () => {
             this.menuWindow.toggleMenuWindow();
         });
     }
