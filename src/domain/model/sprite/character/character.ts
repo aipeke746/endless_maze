@@ -35,11 +35,11 @@ export class Character {
     /**
      * キャラクターの移動にかかる時間: 速い
      */
-    private readonly QUIQ_MOVE_DURATION: number = 130;
+    private readonly MOVE_FAST_DURATION: number = 130;
     /**
      * キャラクターの移動にかかる時間: 普通
      */
-    private readonly NORMAL_MOVE_DURATION: number = 200;
+    private readonly MOVE_NORMAL_DURATION: number = 200;
 
     /**
      * キャラクターを生成する
@@ -50,7 +50,7 @@ export class Character {
      */
     private constructor(scene: Phaser.Scene, _sprite: Sprite, spriteName: string) {
         this._sprite = _sprite;
-        this.move = new GridMove(this._sprite, this.QUIQ_MOVE_DURATION);
+        this.move = new GridMove(this._sprite, this.MOVE_FAST_DURATION);
         this.animation = new CharacterAnimation(scene, this._sprite, spriteName);
     }
 
@@ -84,7 +84,7 @@ export class Character {
      * @param duration 移動にかかる時間
      */
     public setSlowMoveDuration(): void {
-        this.move.setDuration(this.NORMAL_MOVE_DURATION);
+        this.move.setDuration(this.MOVE_NORMAL_DURATION);
     }
 
     /**
