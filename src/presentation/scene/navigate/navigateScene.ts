@@ -27,17 +27,6 @@ export class NavigateScene extends Phaser.Scene {
     }
 
     /**
-     * ゲームのナビゲートーシーンの準備
-     */
-    preload(): void {
-        this.load.image('frame', 'asset/image/frame.png');
-        this.load.spritesheet('stick', 'asset/sprite/stick.png', {
-            frameWidth: 128,
-            frameHeight: 128,
-        });
-    }
-
-    /**
      * ゲームのナビゲートーシーンの作成
      */
     create(): void {

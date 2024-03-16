@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { PlayScene } from './presentation/scene/play/playScene';
 import { TitleScene } from './presentation/scene/title/titleScene';
 import { NavigateScene } from './presentation/scene/navigate/navigateScene';
+import { PreloadScene } from './presentation/scene/preload/preloadScene';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
@@ -18,7 +19,7 @@ const config: Phaser.Types.Core.GameConfig = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
-    scene: [TitleScene, PlayScene, NavigateScene],
+    scene: [PreloadScene, TitleScene, PlayScene, NavigateScene],
 };
 
 new Phaser.Game(config); // eslint-disable-line no-new

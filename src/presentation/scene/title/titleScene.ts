@@ -25,21 +25,6 @@ export class TitleScene extends Phaser.Scene {
     }
 
     /**
-     * ゲームのタイトルシーンの準備
-     */
-    preload(): void {
-        this.load.image('mapTiles', 'asset/tileset/mapTiles.png');
-        this.load.spritesheet('character', 'asset/sprite/character.png', {
-            frameWidth: 32,
-            frameHeight: 32,
-        });
-        this.load.spritesheet('goal', 'asset/sprite/goal.png', {
-            frameWidth: 240,
-            frameHeight: 240,
-        });
-    }
-
-    /**
      * ゲームのタイトルシーンの作成
      */
     create(): void {
